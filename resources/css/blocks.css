@@ -1,0 +1,130 @@
+/*--------------------------------------------------------------
+# Block Editor Overrides
+--------------------------------------------------------------*/
+
+/** === Buttons === */
+
+a.wp-block-button__link {
+	@apply bg-heritage-blue text-white border-none;
+}
+
+a.wp-block-button__link:hover {
+	@apply bg-spirit-blue text-white border-none;
+}
+
+.wp-block-button__link {
+	border-radius: 0px;
+}
+
+.wp-block-cover-text,
+.prose .wp-block-cover-text strong {
+	@apply text-white;
+}
+
+/** === Image Gallery === */
+.prose ul.blocks-gallery-grid > li::before {
+	content: none;
+}
+
+.prose figure.wp-block-gallery {
+	margin: 0 !important;
+}
+
+.prose figure.wp-block-gallery figcaption.blocks-gallery-caption {
+	@apply text-primary;
+}
+.prose ul.blocks-gallery-grid > li.blocks-gallery-item {
+	padding-left: 0 !important;
+}
+
+.wp-block-gallery.is-cropped .blocks-gallery-item a {
+	@apply border-none;
+}
+
+.blocks-gallery-item figure a {
+	@apply border-none;
+}
+
+.blocks-gallery-item figure img {
+	@apply border-none;
+}
+
+/** === Font Sizing === */
+.editor-styles-wrapper .has-normal-font-size, .editor-styles-wrapper .has-regular-font-size, .has-normal-font-size, .has-regular-font-size {
+	@apply text-base;
+}
+
+/** === Callouts === */
+.callout {
+	@apply relative p-4 border border-black text-black mb-4;
+}
+
+.wp-block-ksas-callouts-ksas-callout-block.callout {
+	font-family: var(--font-heavy);
+    font-weight: var(--font-bold);
+    font-style: normal;
+    font-display: swap;
+}
+
+.prose .callout h3, .prose .callout p {
+	margin: 0;
+}
+
+.callout.warning {
+	background-color: #fff3d9;
+}
+/** === Accordion === */
+.wp-block-pb-accordion-item.c-accordion__item {
+	@apply pb-2;
+}
+
+.wp-block-pb-accordion-item.c-accordion__item .c-accordion__title {
+	@apply text-heritage-blue font-heavy font-bold text-lg p-4 border-grey border mb-0;
+}
+
+.wp-block-pb-accordion-item.c-accordion__item .c-accordion__title::after {
+	@apply text-heritage-blue;
+	right: 1rem;
+}
+
+.wp-block-pb-accordion-item.c-accordion__item .c-accordion__content {
+	@apply p-4 border-grey border text-black;
+}
+
+.prose .c-accordion__content p {
+	@apply my-2;
+}
+
+
+div[class*="wp-block-kadence"] h1,  div[class*="wp-block-kadence"] h2 {
+	@apply font-serif-bold;
+}
+
+div[class*="wp-block-kadence"] h3, div[class*="wp-block-kadence"] h4, div[class*="wp-block-kadence"] h5 {
+	@apply font-heavy;
+}
+
+div[class*="wp-block-kadence"] p {
+	@apply font-sans;
+}
+
+span.kt-blocks-info-box-learnmore {
+	font-family: var(--font-heavy);
+    font-weight: var(--font-bold);
+	color: var(--color-primary);
+}
+
+a.kt-blocks-info-box-learnmore.info-box-link {
+	font-family: var(--font-heavy);
+    font-weight: var(--font-bold);
+	color: var(--color-heritage-blue);
+}
+
+.kt-button:hover, .kt-button:focus  {
+	color: #002d72 !important;
+	border-color: #002d72 !important;
+}
+
+a.kt-blocks-info-box-link-wrap {
+	border-style: inherit;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ksas-flagship-tailwind-2025",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "development": "mix",
+    "watch": "mix watch",
+    "production": "mix --production",
+    "browser": "browser-sync start --proxy \"https://stage.krieger.jhu.edu\" --files \"**/*\"",
+    "watch-browser": "npm run watch & npm run browser"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "cross-env": "^10.1.0",
+    "laravel-mix": "^6.0.49"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.22",
+    "browser-sync": "^3.0.4",
+    "glob-all": "^3.3.1",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.2.0",
+    "purgecss-webpack-plugin": "^7.0.2",
+    "tailwindcss": "^4.1.17",
+    "webpack": "^5.102.0",
+    "webpack-cli": "^6.0.1"
+  }
+}
