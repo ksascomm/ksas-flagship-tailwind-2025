@@ -12,8 +12,6 @@
 <a href="https://150.jhu.edu" parent="_blank" id="jhu-150th-bar" jhu-150th-bar-style="light">
 
 	<style>
-	/* Remove the following @import line if your website is already loading Proxima Nova Medium (500) */
-	@import url("https://use.typekit.net/tgg3dge.css");
 	
 	:root {
 		--jhu-brand-heritage-blue: #002D72;
@@ -37,7 +35,7 @@
 		box-sizing: border-box;
 		color: var(--jhu-150th-bar-color);
 		display: grid;
-		font-family: proxima-nova, sans-serif;
+		font-family: 'worksans-medium', sans-serif;
 		font-weight: 500;
 		font-size: min(3vw, 12px);
 		font-style: normal;
