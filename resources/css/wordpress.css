@@ -1371,7 +1371,7 @@ ul.page-numbers li .page-numbers.current {
 
 .intro-paragraph p {
   color: var(--color-heritage-blue);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 2.5rem;
   letter-spacing: -.05rem;
   font-family: var(--font-serif-bold);

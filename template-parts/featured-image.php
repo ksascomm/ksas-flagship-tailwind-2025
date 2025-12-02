@@ -11,13 +11,13 @@
 <?php if ( get_field( 'featured_image' ) == 1 ) : ?>
 <!-- Featured Image Conditional Start -->
 <div class="featured-image-area interior-featured-image-area h-auto mt-0! bg-white lg:bg-grey-lightest relative" role="banner">
-	<div class="flex h-auto lg:max-h-[25.78rem] lg:h-[24rem] relative w-full">
+	<div class="flex h-auto lg:max-h-[25.78rem] lg:h-96 relative w-full">
 		<?php
 		if ( has_post_thumbnail() ) :
 			the_post_thumbnail(
 				'full',
 				array(
-					'class' => 'h-56 w-full object-cover lg:max-h-[25.78rem] lg:h-[24rem]',
+					'class' => 'h-56 w-full object-cover lg:max-h-[25.78rem] lg:h-96',
 					'title' => 'Feature image',
 				)
 			);
@@ -36,7 +36,7 @@
 					$i              = wp_rand( 0, count( $bg ) - 1 ); // Generate random number size of the array.
 					$selected_image = "$bg[$i]"; // Set variable equal to which random filename was chosen.
 					?>
-				<img src="<?php echo esc_url( $selected_image ); ?>" alt="Generic Hero Image" class="h-56 w-full object-cover lg:max-h-[25.78rem] lg:h-[24rem]">
+				<img src="<?php echo esc_url( $selected_image ); ?>" alt="Generic Hero Image" class="h-56 w-full object-cover lg:max-h-[25.78rem] lg:h-96">
 						<?php
 		endif;
 			?>
@@ -44,7 +44,7 @@
 	<!-- Text Banner Overlay -->
 	<div class="absolute bottom-0 left-0 w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 		<div class="section-inner"> 
-			<h1 class="tracking-tight leading-10 sm:leading-none text-4xl xl:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">
+			<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">
 				<?php the_title(); ?>
 			</h1>
 		</div>
@@ -58,7 +58,8 @@
 	<div class="w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 		<div class="section-inner"> 
 			<?php
-				the_title( '<h1 class="tracking-tight leading-10 sm:leading-none text-4xl xl:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">', '</h1>' ); ?>
+				the_title( '<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">', '</h1>' );
+			?>
 		</div>
 	</div>
 	<!-- Decorative Bar Below the Image -->

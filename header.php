@@ -61,7 +61,7 @@
 			<div class="header-inner section-inner">
 				<div class="header-titles sm:grid sm:grid-cols-1 sm:gap-x-12 lg:flex lg:justify-between">
 					<div class="flex flex-col self-center md:flex-row">
-						<div class="h-auto mx-auto my-8 shield lg:my-0">
+						<div class="h-auto mx-auto mt-4 mb-8 shield lg:my-0">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
 								<?php
 								if ( is_front_page() ) :
