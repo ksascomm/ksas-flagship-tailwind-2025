@@ -52,21 +52,21 @@ module.exports = {
                 marginTop: "0.5rem",
                 marginBottom: "0.5rem",
                 maxWidth: "90ch",
-                fontSize: "1.875rem",
+                fontSize: "2rem",
                 fontWeight: "700",
                 fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               h3: {
                 marginTop: "0.5rem",
                 marginBottom: "0.5rem",
-                fontSize: "1.5rem",
+                fontSize: "1.6rem",
                 fontWeight: "700",
                 fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               h4: {
                 marginTop: "0.5rem",
                 marginBottom: "0.5rem",
-                fontSize: "1.125rem",
+                fontSize: "1.25rem",
                 fontWeight: "700",
                 fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
@@ -148,16 +148,17 @@ module.exports = {
 			h2: {
               marginTop: theme('spacing.2'), // e.g. mt-2 (.5rem)
 			  marginBottom: theme('spacing.2'),
-			  fontSize: "1.875rem",
+			  fontSize: "2rem",
             },
 			h3: {
         		marginTop: "0.5rem",
             	marginBottom: "0.5rem",
-				 fontSize: "1.5rem",
+				fontSize: "1.6rem",
 			},
 			h4: {
         		marginTop: "0.5rem",
             	marginBottom: "0.5rem",
+				fontSize: "1.25rem",
 			},
 			fontSize: "1.25rem",
             maxWidth: '75ch', // increase on large screens

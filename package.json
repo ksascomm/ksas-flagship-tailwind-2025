@@ -1,12 +1,12 @@
 {
   "name": "ksas-flagship-tailwind-2025",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "development": "mix",
     "watch": "mix watch",
     "production": "mix --production",
-    "browser": "browser-sync start --proxy \"https://stage.krieger.jhu.edu\" --files \"**/*\"",
+    "browser": "browser-sync start --proxy \"https://krieger.local\" --files \"**/*\"",
     "watch-browser": "npm run watch & npm run browser"
   },
   "dependencies": {

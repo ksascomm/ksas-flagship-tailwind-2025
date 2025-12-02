@@ -5,11 +5,11 @@
 /** === Buttons === */
 
 a.wp-block-button__link {
-	@apply bg-heritage-blue text-white border-none;
+	@apply text-white border-none bg-heritage-blue;
 }
 
 a.wp-block-button__link:hover {
-	@apply bg-spirit-blue text-white border-none;
+	@apply text-white border-none bg-spirit-blue;
 }
 
 .wp-block-button__link {
@@ -56,7 +56,7 @@ a.wp-block-button__link:hover {
 
 /** === Callouts === */
 .callout {
-	@apply relative p-4 border border-black text-black mb-4;
+	@apply relative p-4 mb-4 text-black border border-black;
 }
 
 .wp-block-ksas-callouts-ksas-callout-block.callout {
@@ -79,7 +79,7 @@ a.wp-block-button__link:hover {
 }
 
 .wp-block-pb-accordion-item.c-accordion__item .c-accordion__title {
-	@apply text-heritage-blue font-heavy font-bold text-lg p-4 border-grey border mb-0;
+	@apply p-4 mb-0 text-lg font-bold border text-heritage-blue font-heavy border-grey;
 }
 
 .wp-block-pb-accordion-item.c-accordion__item .c-accordion__title::after {
@@ -88,11 +88,7 @@ a.wp-block-button__link:hover {
 }
 
 .wp-block-pb-accordion-item.c-accordion__item .c-accordion__content {
-	@apply p-4 border-grey border text-black;
-}
-
-.prose .c-accordion__content p {
-	@apply my-2;
+	@apply p-4 text-black border border-grey;
 }
 
 

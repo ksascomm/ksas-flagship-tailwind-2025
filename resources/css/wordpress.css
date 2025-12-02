@@ -67,10 +67,6 @@ ul.nav {
     font-weight: var(--font-bold);
 }
 
-h4 {
-  text-transform: uppercase;
-}
-
 h2.wp-block-heading,
 h3.wp-block-heading {
   color: var(--color-medium-blue);
@@ -398,7 +394,7 @@ html {
 
 .site-main a:hover,
 .prose a:hover {
-  @apply text-heritage-blue border-b-2 border-solid border-primary;
+  @apply border-b-2 border-solid text-heritage-blue border-primary;
 }
 
 .custom-logo {

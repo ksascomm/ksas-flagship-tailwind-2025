@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '1.1.0' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '1.2.0' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
