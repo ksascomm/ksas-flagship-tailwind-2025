@@ -16,14 +16,10 @@ get_header();
 		<?php
 		if ( have_posts() ) :
 			?>
-			<div class="bg-heritage-blue bg-topography alignfull w-full h-min relative">
-				<div class="py-12 w-full xl:w-6xl lg:mx-auto">
-					<div class="grid gap-4 grid-cols-1 xl:grid-cols-2">
+			<div class="relative w-full bg-heritage-blue bg-topography alignfull h-min">
+				<div class="w-full py-12 xl:w-6xl lg:mx-auto">
+					<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 						<div class="pl-[3%] xl:pl-0 pr-[6%] xl:pr-0">
-							<header class="entry-header">
-								<?php the_title( '<h1 class="entry-title text-white text-5xl">', '</h1>' ); ?>
-							</header><!-- .entry-header -->
-						
 						<?php
 						/* Start the Loop */
 						while ( have_posts() ) :
@@ -59,13 +55,13 @@ get_header();
 														<!-- Full width first image -->
 														
 														<div class="w-full">
-															<img class="w-full h-auto object-cover rounded" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+															<img class="object-cover w-full h-auto rounded" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
 														</div>
-														<div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+														<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 															<?php elseif ( $row_index === 1 || $row_index === 2 ) : ?>
 															<!-- Two-column layout for next two images -->
 															<div>
-																<img class="w-full h-auto object-cover rounded" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+																<img class="object-cover w-full h-auto rounded" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
 															</div>
 																<?php if ( $row_index === 2 ) : ?>
 															</div> <!-- Close .acf-image-columns after second image -->
@@ -99,7 +95,7 @@ get_header();
 					</div>
 				<?php endif; ?>
 			</div>
-			<form class="p-4 mb-4 border-2 border-solid study-fields bg-grey-lightest border-grey w-full max-w-6xl text-left"" id="filters">
+			<form class="w-full max-w-6xl p-4 mb-4 text-left border-2 border-solid study-fields bg-grey-lightest border-grey"" id="filters">
 				<!-- Program Type -->
 				<label class="mt-4 mb-2 text-2xl font-bold font-heavy" for="filter-1">Program Type:</label>
 				<select class="mt-4 mb-2 mr-4 border-2 border-solid form-select border-grey"  name="program_type" id="filter-1">
@@ -133,7 +129,7 @@ get_header();
 					?>
 				</select>
 				<!-- Clear Filters Button -->
-				<button class="p-2 mx-1 mb-2 text-lg font-heavy font-bold leading-tight  text-white capitalize align-bottom border-b-0 all button bg-heritage-blue hover:bg-spirit-blue hover:text-primary" type="button" id="clear-filters">Clear Filters</button>
+				<button class="p-2 mx-1 mb-2 text-lg font-bold leading-tight text-white capitalize align-bottom border-b-0 font-heavy all button bg-heritage-blue hover:bg-spirit-blue hover:text-primary" type="button" id="clear-filters">Clear Filters</button>
 				
 				<fieldset class="w-auto px-4 xl:px-0 !m-0 search-form">
 					<legend class="mt-4 mb-2 text-xl font-bold font-heavy">Or, search by major/minor name, area of study, or description</legend>
@@ -154,9 +150,9 @@ get_header();
 
 			if ( $flagship_studyfields_query->have_posts() ) :
 				?>
-			<div class="fields-of-study loading w-full" id="isotope-list" >
+			<div class="w-full fields-of-study loading" id="isotope-list" >
 
-				<div class="isotope-container w-full flex flex-wrap">
+				<div class="flex flex-wrap w-full isotope-container">
 						<?php
 						while ( $flagship_studyfields_query->have_posts() ) :
 							$flagship_studyfields_query->the_post();

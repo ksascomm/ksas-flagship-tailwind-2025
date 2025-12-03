@@ -23,7 +23,7 @@ get_header();
 				?>
 				<div class="w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 					<div class="section-inner"> 
-						<h1 class="tracking-tight leading-10 sm:leading-none text-3xl lg:text-4xl xl:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">
+						<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0 -ml-0.5">
 							<?php single_post_title(); ?>
 						</h1>
 					</div>
@@ -32,7 +32,7 @@ get_header();
 				<div class="w-full h-3 text-white bg-heritage-blue bg-gradient-to-l from-heritage-blue to-medium-blue"></div>
 				<?php
 			endif; ?>
-			<div class="pt-4 pb-8 lg:pl-0 wayfinding w-full">
+			<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 				<div class="section-inner">
 					<?php get_template_part( 'template-parts/sidebar-menu' ); ?>
 				<?php

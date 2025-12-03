@@ -40,14 +40,6 @@
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-html {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  -ms-font-smoothing: antialiased;
-}
-
 h1 {
 	font-family: var(--font-serif-bold);
 	font-weight: var(--font-bold);

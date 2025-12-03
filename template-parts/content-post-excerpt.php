@@ -16,7 +16,15 @@ post_class(
 ?>
 aria-label="<?php the_title(); ?>">
 	<div class="grid h-full grid-cols-1 gap-4 xl:grid-cols-5">
-			<div class="order-2 <?php if ( has_post_thumbnail() ) : ?>xl:col-span-3 <?php else:?> xl:col-span-5 <?php endif;?> xl:order-1">
+			<div class="order-2 
+			<?php
+			if ( has_post_thumbnail() ) :
+				?>
+				xl:col-span-3 
+				<?php
+				else :
+					?>
+					xl:col-span-5 <?php endif; ?> xl:order-1">
 				<header class="entry-header">
 					<?php
 					if ( 'post' === get_post_type() ) :
@@ -50,7 +58,7 @@ aria-label="<?php the_title(); ?>">
 					the_post_thumbnail(
 						'large',
 						array(
-							'class' => 'mb-4 lg:mt-0 xl:pl-4 xl:pr-4',
+							'class' => 'mb-4 lg:mt-0 xl:pl-4 xl:pr-4 max-w-lg',
 							'alt'   => the_title_attribute(
 								array(
 									'echo' => false,

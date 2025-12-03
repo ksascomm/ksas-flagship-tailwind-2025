@@ -10,8 +10,10 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'prose prose-sm lg:prose-lg mx-auto' ); ?>>
-
-	<div class="entry-content text-2xl">
+	<header class="mx-auto entry-header">
+		<?php the_title( '<h1 class="entry-title text-white text-[2rem] lg:text-[44px]">', '</h1>' ); ?>
+	</header><!-- .entry-header -->
+	<div class="entry-content xl:text-2xl">
 
 		<?php
 		the_content();

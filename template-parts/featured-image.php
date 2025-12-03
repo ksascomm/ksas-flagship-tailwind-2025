@@ -44,7 +44,7 @@
 	<!-- Text Banner Overlay -->
 	<div class="absolute bottom-0 left-0 w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 		<div class="section-inner"> 
-			<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">
+			<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] -ml-0.5 lg:pl-2 xl:pl-0 py-4 mb-0">
 				<?php the_title(); ?>
 			</h1>
 		</div>
@@ -58,7 +58,7 @@
 	<div class="w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 		<div class="section-inner"> 
 			<?php
-				the_title( '<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">', '</h1>' );
+				the_title( '<h1 class="tracking-tight leading-10 sm:leading-none text-[2rem] lg:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0 -ml-0.5">', '</h1>' );
 			?>
 		</div>
 	</div>
