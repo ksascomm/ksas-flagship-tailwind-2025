@@ -27,9 +27,6 @@
 	})(window,document,'script','dataLayer','GTM-5VTN64C');</script>
 	<!-- End Google Tag Manager -->
 	<meta name="facebook-domain-verification" content="s1lj448peh4wqw24bgcc5f2t6n23tc" />
-	<!-- UX Tweak Script -->
-	<script type="text/javascript">(function(u,x,t,w,e,a,k,s){a=function(v){try{u.setItem(t+e,v)}catch(e){}v=JSON.parse(v);for(k=0;k<v.length;k++){s=x.createElement("script");s.text="(function(u,x,t,w,e,a,k){a=u[e]=function(){a.q.push(arguments)};a.q=[];a.t=+new Date;a.c=w;k=x.createElement('script');k.async=1;k.src=t;x.getElementsByTagName('head')[0].appendChild(k)})(window,document,'"+v[k].u+"',"+JSON.stringify(v[k].c)+",'"+v[k].g+"')";x.getElementsByTagName("head")[0].appendChild(s)}};try{k=u.getItem(t+e)}catch(e){}if(k){return a(k)}k=new XMLHttpRequest;k.onreadystatechange=function(){if(k.readyState==4&&k.status==200)a(k.responseText)};k.open("POST",w+e);k.send(x.URL)})(sessionStorage,document,"uxt:","https://api.uxtweak.com/snippet/","906caf0e-72cc-46d4-aa6a-9693feeae5db");</script>
-	<!-- UX Tweak Script End-->
 </head>
 
 <body <?php body_class(); ?>>
@@ -62,7 +59,7 @@
 				<div class="header-titles sm:grid sm:grid-cols-1 sm:gap-x-12 lg:flex lg:justify-between">
 					<div class="flex flex-col self-center md:flex-row">
 						<div class="h-auto mx-auto mt-4 mb-8 shield lg:my-0">
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"  aria-label="Krieger Home">
 								<?php
 								if ( is_front_page() ) :
 									?>
@@ -76,7 +73,8 @@
 								else :
 									?>
 									<div class="p-5">
-									<?php echo file_get_contents( get_template_directory() . '/dist/images/krieger.logo.horizontal.blue.svg' ); ?>
+										<span class="sr-only">Krieger Home</span>
+										<?php echo file_get_contents( get_template_directory() . '/dist/images/krieger.logo.horizontal.blue.svg' ); ?>
 									</div>
 								<?php endif; ?>
 							</a>

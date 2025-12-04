@@ -9,7 +9,7 @@
 
 ?>
 <!-- START COPY HERE -->
-<a href="https://150.jhu.edu" parent="_blank" id="jhu-150th-bar" jhu-150th-bar-style="dark">
+<a href="https://150.jhu.edu" parent="_blank" id="jhu-150th-bar" jhu-150th-bar-style="dark" role="banner">
 
 	<style>
 	

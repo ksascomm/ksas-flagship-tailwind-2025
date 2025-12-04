@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-
+<main id="primary">
 		<?php
 		if ( have_posts() ) :
 
@@ -44,7 +44,7 @@ get_header();
 				<?php endif; ?>
 				</div>
 			</div>
-			<main id="primary" class="w-full px-4">
+			<div class="w-full px-4">
 					<div class="w-full xl:w-7xl max-w-screen-3xl xl:mx-auto">
 					<?php 
 					/* Start the Loop */
@@ -79,6 +79,7 @@ get_header();
 
 				endif;
 				?>
+			</div>
 		</div>
 	</main><!-- #main -->
 

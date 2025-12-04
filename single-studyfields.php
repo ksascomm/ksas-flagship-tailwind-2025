@@ -9,7 +9,7 @@
 
 get_header();
 ?>
-
+<main id="primary">
 	<div class="w-full text-white bg-heritage-blue bg-gradient-to-r from-heritage-blue to-medium-blue">
 		<div class="section-inner"> 
 			<?php
@@ -23,7 +23,7 @@ get_header();
 	</div>
 	<!-- Decorative Bar Below the Image -->
 	<div class="w-full h-3 text-white bg-heritage-blue bg-gradient-to-l from-heritage-blue to-medium-blue"></div>
-	<div class="pt-4 pb-8 lg:pl-0 wayfinding w-full">
+	<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 		<div class="section-inner">
 			<?php get_template_part( 'template-parts/sidebar-menu' ); ?>
 		<?php
@@ -35,7 +35,7 @@ get_header();
 		<?php endif; ?>
 		</div>
 	</div>
-	<main id="primary" class="w-full site-main">
+	<div class="w-full site-main">
 		<?php
 		while ( have_posts() ) :
 			the_post();
@@ -44,7 +44,7 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-
+	</div>
 	</main><!-- #main -->
 
 <?php

@@ -921,6 +921,17 @@ dl dt {
   @apply my-4;
 }
 
+.single-post.news-post article {
+	width: inherit;
+	max-width: inherit;
+}
+
+@media (width >= 96rem /* 1536px */) {
+	.single-post.news-post article {
+        width: var(--container-7xl) /* 80rem = 1280px */;
+	}
+}
+
 /* Comments
 --------------------------------------------- */
 .comment-content a {

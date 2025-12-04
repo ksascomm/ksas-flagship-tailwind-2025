@@ -332,3 +332,11 @@ function my_acf_init() {
 		);
 	}
 }
+
+function add_news_post_body_class( $classes ) {
+	if ( is_single() && 'post' === get_post_type() ) {
+		$classes[] = 'news-post';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_news_post_body_class' );
