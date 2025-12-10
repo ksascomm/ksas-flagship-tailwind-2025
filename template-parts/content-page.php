@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'prose prose-sm lg:prose-lg mx-auto' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'prose prose-sm lg:prose-lg xl:prose-2xl mx-auto' ); ?>>
 
 	<div class="entry-content">
 
@@ -19,22 +19,25 @@
 
 <?php if ( have_rows( 'flip_cards' ) ) : ?>
 	<div class="alignwide">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-			<?php while ( have_rows( 'flip_cards' ) ) : the_row(); ?>
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+			<?php
+			while ( have_rows( 'flip_cards' ) ) :
+				the_row();
+				?>
 				<div class="relative mb-4 focus-within:shadow-lg focus-visible:ring">
 						<div class="p-12 block w-full h-full bg-<?php the_sub_field( 'card_front_color' ); ?>">
-							<h2 class="font-heavy font-serif-bold text-white text-center">
+							<h2 class="text-center text-white font-heavy font-serif-bold">
 								<div class="block">
 									<?php the_sub_field( 'card_icon' ); ?>
 								</div>
 								<?php the_sub_field( 'card_title' ); ?>
 							</h2>
-							<p class="text-lg text-center text-white tracking-tight font-heavy font-bold">
+							<p class="text-lg font-bold tracking-tight text-center text-white font-heavy">
 								<?php the_sub_field( 'card_front' ); ?>
 							</p>
 						</div>
 						<div class="absolute top-0 bottom-0 left-0 right-0 h-full w-full opacity-0 transition ease-in duration-200 flex flex-col justify-center bg-<?php the_sub_field( 'card_back_color' ); ?> hover:opacity-100 focus:opacity-100" id="<?php the_sub_field( 'card_title' ); ?>" tabindex="0">
-							<div class="py-6 px-4 text-white text-base font-heavy font-bold">
+							<div class="px-4 py-6 text-base font-bold text-white font-heavy">
 								<?php the_sub_field( 'card_back' ); ?>
 							</div>
 						</div>
@@ -44,7 +47,7 @@
 				<?php // No rows found ?>
 		</div>
 	</div>
-<?php endif;?>
+<?php endif; ?>
 </div>
 	</div><!-- .entry-content -->
 

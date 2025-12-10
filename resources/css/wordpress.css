@@ -40,6 +40,18 @@
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+}
+
+.entry-content p {
+	text-rendering: auto;
+}
+
 h1 {
 	font-family: var(--font-serif-bold);
 	font-weight: var(--font-bold);
@@ -775,7 +787,7 @@ dl dt {
 
 .site-navigation .main-navigation li.external a::after {
   content: "\ecf6";
-  font-family: 'icomoon', 'gentona-semibold', 'Helvetica Neue', Roboto, sans-serif;
+  font-family: 'icomoon', 'Helvetica Neue', Roboto, sans-serif;
   font-weight: 300;
   padding-left: 0.5rem;
 }
@@ -1927,7 +1939,6 @@ button.toggle.search-toggle.desktop-search-toggle svg {
 
 #site-header .toggle-inner * {
   font-size: 14px;
-  /*font-family: "gentona-semibold";*/
   font-family: var(--font-serif-bold);
   font-weight: 600;
   text-transform: uppercase;
@@ -2200,16 +2211,17 @@ body:not(.enable-search-modal) .site-logo img {
   width: 1.6rem;
 }
 
+/*
 .nav-toggle .toggle-inner {
-  /*padding-top: 0.8rem;
-	padding-left: 0.8rem;*/
+  padding-top: 0.8rem;
+	padding-left: 0.8rem;
 }
+*/
 
 .mobile-nav-toggle .toggle-text,
 .mobile-search-toggle .toggle-text {
-	/*font-family: "gentona-bold";*/
 	font-family: var(--font-heavy);
-  font-weight: 700;
+	font-weight: 700;
 }
 
 /* Menu Modal ------------------------------ */

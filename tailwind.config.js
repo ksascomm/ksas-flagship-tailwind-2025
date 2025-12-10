@@ -54,42 +54,46 @@ module.exports = {
                 maxWidth: "90ch",
                 fontSize: "2rem",
                 fontWeight: "700",
-                fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
+                fontFamily:
+                  "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               h3: {
                 marginTop: "0.5rem",
                 marginBottom: "0.5rem",
                 fontSize: "1.6rem",
                 fontWeight: "700",
-                fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
+                fontFamily:
+                  "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               h4: {
                 marginTop: "0.5rem",
                 marginBottom: "0.5rem",
                 fontSize: "1.25rem",
                 fontWeight: "700",
-                fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
+                fontFamily:
+                  "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               h5: {
                 fontWeight: "700",
-                fontFamily: "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
+                fontFamily:
+                  "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
               },
               p: {
                 marginTop: "1rem",
                 marginBottom: "1rem",
-				letterSpacing:"-0.03rem",
-				fontWeight: 400,
+                letterSpacing: "-0.03rem",
+                fontWeight: 400,
               },
               li: {
                 maxWidth: "90ch",
                 marginTop: "0rem",
                 marginBottom: ".25rem",
-				fontWeight: 400,
+                fontWeight: 400,
               },
               a: {
                 textDecoration: "none",
                 transition: "none",
-				fontWeight: 400,
+                fontWeight: 400,
               },
               strong: {
                 fontFamily: "worksans-bold, system-ui",
@@ -132,45 +136,66 @@ module.exports = {
             },
           ],
         },
-		sm: {
+        sm: {
           css: {
-			h2: {
-              marginTop: theme('spacing.2'), // e.g. mt-2 (.5rem)
-			  marginBottom: theme('spacing.2'),
-			  fontSize: "1.875rem",
+            h2: {
+              marginTop: theme("spacing.2"), // e.g. mt-2 (.5rem)
+              marginBottom: theme("spacing.2"),
+              fontSize: "1.875rem",
             },
-			fontSize: "1.125rem",
-            maxWidth: '100%', // override on small screens
+            fontSize: "1.125rem",
+            maxWidth: "100%", // override on small screens
           },
         },
         lg: {
           css: {
-			h2: {
-              marginTop: theme('spacing.2'), // e.g. mt-2 (.5rem)
-			  marginBottom: theme('spacing.2'),
-			  fontSize: "2rem",
+            h2: {
+              marginTop: theme("spacing.2"), // e.g. mt-2 (.5rem)
+              marginBottom: theme("spacing.2"),
+              fontSize: "2rem",
             },
-			h3: {
-        		marginTop: "0.5rem",
-            	marginBottom: "0.5rem",
-				fontSize: "1.6rem",
-			},
-			h4: {
-        		marginTop: "0.5rem",
-            	marginBottom: "0.5rem",
-				fontSize: "1.25rem",
-			},
+            h3: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              fontSize: "1.6rem",
+            },
+            h4: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              fontSize: "1.25rem",
+            },
+            fontSize: "1.25rem",
+            maxWidth: "75ch", // increase on large screens
+          },
+        },
+        '2xl': {
+          css: {
+			h2: {
+              marginTop: theme("spacing.2"), // e.g. mt-2 (.5rem)
+              marginBottom: theme("spacing.2"),
+              fontSize: "2rem",
+            },
+            h3: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              fontSize: "1.6rem",
+            },
+            h4: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              fontSize: "1.25rem",
+            },
 			fontSize: "1.25rem",
-            maxWidth: '75ch', // increase on large screens
+            maxWidth: "85ch",
           },
         },
       }),
     },
-	variants: {
-		extend: {
-		typography: ['responsive'],
-		},
-	},	
-	},
-	plugins: [require('@tailwindcss/typography')],
+    variants: {
+      extend: {
+        typography: ["responsive"],
+      },
+    },
+  },
+  plugins: [require("@tailwindcss/typography")],
 };

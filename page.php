@@ -29,7 +29,7 @@ get_header();
 			</div>
 		</div>
 		<div class="w-full site-main">
-			<div class="w-full max-w-screen-lg xl:w-6xl xl:mx-auto">
+			<div class="w-full max-w-5xl xl:w-6xl xl:mx-auto">
 				<?php
 				while ( have_posts() ) :
 					the_post();

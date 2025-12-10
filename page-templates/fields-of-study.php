@@ -76,7 +76,7 @@ get_header();
 								<?php endif; ?>
 							<?php endwhile; ?>
 						<?php else : ?>
-							<?php // No layouts found ?>
+							<?php // No layouts found. ?>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -95,7 +95,7 @@ get_header();
 					</div>
 				<?php endif; ?>
 			</div>
-			<form class="w-full max-w-6xl p-4 mb-4 text-left border-2 border-solid study-fields bg-grey-lightest border-grey"" id="filters">
+			<form class="w-full max-w-6xl p-4 mt-4 mb-4 text-left border-2 border-solid lg:mt-0 study-fields bg-grey-lightest border-grey"" id="filters">
 				<!-- Program Type -->
 				<label class="mt-4 mb-2 text-2xl font-bold font-heavy" for="filter-1">Program Type:</label>
 				<select class="mt-4 mb-2 mr-4 border-2 border-solid form-select border-grey"  name="program_type" id="filter-1">
@@ -131,10 +131,10 @@ get_header();
 				<!-- Clear Filters Button -->
 				<button class="p-2 mx-1 mb-2 text-lg font-bold leading-tight text-white capitalize align-bottom border-b-0 font-heavy all button bg-heritage-blue hover:bg-spirit-blue hover:text-primary" type="button" id="clear-filters">Clear Filters</button>
 				
-				<fieldset class="w-auto px-4 xl:px-0 !m-0 search-form">
+				<fieldset class="w-auto px-0 !m-0 search-form">
 					<legend class="mt-4 mb-2 text-xl font-bold font-heavy">Or, search by major/minor name, area of study, or description</legend>
 					<label class="sr-only" for="id_search">Enter term</label>
-					<input class="w-3/4 h-10 p-2 bg-white border-t border-b border-r rounded-r-lg lg:w-7/12 quicksearch" type="text" name="search" id="id_search" aria-label="Search Fields of Study" placeholder="Enter major/minor name, area of study, or description keyword"/>
+					<input class="h-10 p-2 bg-white border-t border-b border-r rounded-r-lg w-7/8 lg:w-7/12 quicksearch" type="text" name="search" id="id_search" aria-label="Search Fields of Study" placeholder="Enter major/minor name, area of study, or description keyword"/>
 				</fieldset>
 			</form>
 
@@ -157,7 +157,7 @@ get_header();
 						while ( $flagship_studyfields_query->have_posts() ) :
 							$flagship_studyfields_query->the_post();
 
-							get_template_part( 'template-parts/content', 'studyfields-cards-dropshadow-link' );
+							get_template_part( 'template-parts/content', 'studyfields-cards' );
 
 						endwhile;
 						?>
