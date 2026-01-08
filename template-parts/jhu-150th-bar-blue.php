@@ -79,7 +79,7 @@
 	#jhu-150th-bar * {
 		box-sizing: inherit;
 		font-size: 1em;
-		line-height: 1.4;
+		line-height: 1.5;
 		margin: 0;
 		padding: 0;
 		vertical-align: middle;

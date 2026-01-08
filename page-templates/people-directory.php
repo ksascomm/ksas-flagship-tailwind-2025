@@ -11,8 +11,9 @@
 
 get_header();
 ?>
+	<main id="primary">
 	<?php get_template_part( 'template-parts/featured-image' ); ?>
-	<div class="pt-4 pb-8 lg:pl-0 wayfinding w-full">
+	<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 		<div class="section-inner">
 			<?php get_template_part( 'template-parts/sidebar-menu' ); ?>
 		<?php
@@ -24,9 +25,9 @@ get_header();
 		<?php endif; ?>
 		</div>
 	</div>
-	<main id="primary" class="site-main w-full overflow-x-hidden">
+	<div class="w-full overflow-x-hidden site-main">
 		
-		<div class="w-full xl:w-6xl max-w-screen-lg xl:mx-auto">
+		<div class="w-full max-w-5xl xl:w-6xl xl:mx-auto">
 
 		<?php
 		if ( have_posts() ) :
@@ -73,8 +74,8 @@ get_header();
 		// Return to main loop.
 		wp_reset_postdata();
 		?>
+	</div>
+	</div>
 	</main><!-- #main -->
-
-</div>
 <?php
 get_footer();

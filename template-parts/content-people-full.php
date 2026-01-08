@@ -15,7 +15,7 @@
 	<!-- Hero container with headshot & contact info -->
 	<div class="w-screen relative left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] mt-0 bg-heritage-blue bg-topography overflow-hidden " id="contact-hero">
 		<div class="container flex flex-wrap justify-start px-10 lg:mx-auto contact-info xl:px-20">
-			<div class="grid grid-cols-3 lg:gap-8 py-8">
+			<div class="grid grid-cols-3 py-8 lg:gap-8">
 				<?php
 				if ( has_post_thumbnail() ) :
 					?>
@@ -40,7 +40,7 @@
 						</h1>
 					</header>
 					<div class="position not-prose">
-						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal font-heavy  text-white">
+						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal text-white font-heavy">
 						<?php if ( get_post_meta( $post->ID, 'ecpt_position', true ) ) : ?>
 							<?php echo wp_kses_post( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?>
 						<?php else : ?>
@@ -56,8 +56,8 @@
 					if ( get_post_meta( $post->ID, 'ecpt_email', true ) ) :
 						$email = get_post_meta( $post->ID, 'ecpt_email', true );
 						?>
-							<li class="pb-4 text-xl  text-white font-bold font-heavy"><span class="fa-solid fa-envelope" aria-hidden="true"></span>
-								<a class="hover:text-primary text-white underline" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>">
+							<li class="pb-4 text-xl font-bold text-white font-heavy"><span class="fa-solid fa-envelope" aria-hidden="true"></span>
+								<a class="text-white underline hover:text-primary" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>">
 							<?php echo esc_html( $email ); ?>
 								</a>
 							</li>
@@ -65,7 +65,7 @@
 
 						
 					<?php if ( get_post_meta( $post->ID, 'ecpt_phone', true ) ) : ?>
-						<li class="text-xl  text-white font-bold font-heavy"><span class="fa-solid fa-phone-office" aria-hidden="true"></span> <?php echo esc_html( get_post_meta( $post->ID, 'ecpt_phone', true ) ); ?></li>
+						<li class="text-xl font-bold text-white font-heavy"><span class="fa-solid fa-phone-office" aria-hidden="true"></span> <?php echo esc_html( get_post_meta( $post->ID, 'ecpt_phone', true ) ); ?></li>
 					<?php endif; ?>
 
 					<?php if ( get_post_meta( $post->ID, 'ecpt_office', true ) ) : ?>
@@ -82,10 +82,10 @@
 	<!--End Hero container with headshot & contact info -->
 
 	<!-- Biography Section -->
-	<div class="w-full xl:w-6xl max-w-screen-lg xl:mx-auto" id="biography">
+	<div class="w-full max-w-screen-lg xl:w-6xl xl:mx-auto" id="biography">
 	<?php if ( get_post_meta( $post->ID, 'ecpt_bio', true ) ) : ?>
 		<!--Wayfinding section -->
-		<div class="pt-4 pb-8 lg:pl-0 wayfinding w-full">
+		<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 			<div class="section-inner">
 				<?php get_template_part( 'template-parts/sidebar-menu' ); ?>
 			<?php
@@ -99,9 +99,9 @@
 		</div>
 		<!--End wayfinding section -->
 	<?php endif; ?>
-	<div class="prose prose-sm lg:prose-lg mx-auto">
+	<div class="mx-auto prose-sm prose lg:prose-lg">
 		<?php if ( get_post_meta( $post->ID, 'ecpt_bio', true ) ) : ?>
-			<div class="text-xl entry-content">
+			<div class="text-xl leading-normal entry-content">
 				<?php echo wp_kses_post( get_post_meta( $post->ID, 'ecpt_bio', true ) ); ?>
 			</div>
 		<?php endif; ?>
