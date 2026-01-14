@@ -1515,7 +1515,20 @@ ul.page-numbers li .page-numbers.current {
 /*--------------------------------------------------------------
 # Front Page Template
 --------------------------------------------------------------*/
+.animate-soft-bounce {
+    animation: soft-bounce 2s infinite;
+}
 
+@keyframes soft-bounce {
+	0%, 100% {
+		transform: translateY(0);
+		animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+	}
+	50% {
+		transform: translateY(-6px); /* Reduced from 25% to just 6px */
+		animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	}
+}
 /* Video Section
 --------------------------------------------- */
 .bg-heritage-blue.bg-topography {

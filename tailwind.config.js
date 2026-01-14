@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
 		screens: {
-		// Custom height-based screen (e.g., hide when viewport height is under 750px or 1000px)
-		'short': { 
-			'raw': '(max-height: 750px)' 
-		},
-		'medium': {
-			'raw': '(max-height: 1000px)' 
-		}
+			// Custom height-based screen (e.g., hide when viewport height is under 750px or 1000px)
+			'short': { 
+				'raw': '(max-height: 750px)' 
+			},
+			'medium': {
+				'raw': '(max-height: 1000px)' 
+			}
 		},
       typography: ({ theme }) => ({
         DEFAULT: {
