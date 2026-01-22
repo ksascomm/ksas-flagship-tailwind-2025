@@ -37,7 +37,22 @@ aria-label="<?php the_title(); ?>">
 							?>
 						</div><!-- .entry-meta -->
 					<?php endif; ?>
-					<?php the_title( '<h2 class="entry-title  mt-2! "><a class="archive-post" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' ); ?>
+					<?php 
+					// Fetch the custom field value.
+					$external_link = get_post_meta( get_the_ID(), 'ecpt_external_link', true );
+
+					// Set the URL and the icon conditional.
+					if ( ! empty( $external_link ) ) {
+						$link_url = esc_url( $external_link );
+						$icon     = ' <span class="fa-solid fa-square-up-right"></span>';
+					} else {
+						$link_url = esc_url( get_permalink() );
+						$icon     = '';
+					}
+
+					// Output the title with the icon appended inside the link.
+					the_title( '<h2 class="entry-title mt-2!"><a class="archive-post" href="' . $link_url . '" rel="bookmark">', $icon . '</a></h2>' );
+					?>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
 					<?php

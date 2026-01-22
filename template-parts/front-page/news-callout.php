@@ -34,8 +34,8 @@ $homepage_query->have_posts() ) :
 			);
 			?>
 		<div class="tracking-[0.03rem] text-xl font-heavy font-bold text-white">
-			<?php if ( get_post_meta( $post->ID, 'ecpt_location', true ) ) : ?>
-				<a class="underline hover:text-grey decoration-dotted hover:decoration-solid" href="<?php echo esc_url( get_post_meta( $post->ID, 'ecpt_location', true ) ); ?>" target="_blank"><?php the_title(); ?> <i class="fa-regular fa-arrow-up-right-from-square"></i></a>
+			<?php if ( get_post_meta( $post->ID, 'ecpt_external_link', true ) ) : ?>
+				<a class="underline hover:text-grey decoration-dotted hover:decoration-solid" href="<?php echo esc_url( get_post_meta( $post->ID, 'ecpt_external_link', true ) ); ?>" target="_blank"><?php the_title(); ?> <i class="fa-regular fa-square-up-right"></i></a>
 			<?php else : ?>
 				<a class="underline hover:text-grey decoration-dotted hover:decoration-solid" href="<?php the_permalink(); ?>"><?php the_title(); ?> <i class="fa-solid fa-circle-chevron-right fa-sm"></i></a>
 			<?php endif; ?>
