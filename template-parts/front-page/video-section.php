@@ -11,7 +11,7 @@
 <section class="bg-heritage-blue bg-topography">
 	<div class="container px-5 py-12 mx-auto xl:px-20">
 		<div class="flex flex-col w-full mx-auto mb-4">
-			<h1 class="mb-4 font-serif-bold font-bold text-3xl text-white">Faculty & Student Voices</h1>
+			<h1 class="mb-4 text-3xl font-bold text-white font-serif-bold">Faculty & Student Voices</h1>
 		</div>
 		<div class="grid grid-cols-1 xl:grid-cols-5 xl:gap-x-24">
 			<div class="xl:col-span-3">
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="xl:col-span-2">
-				<p class="py-12 text-2xl font-bold font-serif-bold prose text-white">
+				<p class="py-12 text-2xl font-bold prose text-white font-serif-bold">
 					Everyone from first-year students to tenured professors engages in hands-on research at the Krieger School: in labs, libraries, museums, and communities. See what kind of discoveries you can make.
 				</p>
 				<div class="my-4"><a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="p-4 text-base font-bold bg-white border-none rounded-md text-heritage-blue font-heavy lg:text-lg hover:bg-spirit-blue hover:text-primary">Find Out More</a></div>

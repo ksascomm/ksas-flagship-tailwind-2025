@@ -31,38 +31,32 @@
 			</div>
 		<?php endif; ?>
 
-		<?php if ( get_post_meta( $post->ID, 'ecpt_location', true ) ) : ?>
-			<div class="pr-4">
-				<span class="fa-solid fa-location-dot"></span>
-				<?php echo esc_html( get_post_meta( $post->ID, 'ecpt_location', true ) ); ?>
-			</div>
-		<?php endif; ?>
 	</div>
 	<div class="flex flex-wrap">
 		<?php if ( get_post_meta( $post->ID, 'ecpt_majors', true ) || get_post_meta( $post->ID, 'ecpt_minors', true ) ) : ?>
-			<div class="mt-4 pr-4">
+			<div class="pr-4 mt-4">
 				<span>Students can:</span>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_majors', true ) ) : ?>
-					<span class="inline-block text-primary bg-spirit-blue font-heavy font-bold text-lg px-2 mx-1">Major</span>
+					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy">Major</span>
 				<?php endif; ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_minors', true ) ) : ?>
-					<span class="inline-block text-primary bg-spirit-blue font-heavy font-bold text-lg px-2 mx-1">Minor</span>
+					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy">Minor</span>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
 		<?php if ( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ) : ?>
-			<div class="mt-4 pr-4">
-				<span>Degrees Offered:</span> <span class="inline-block text-primary bg-spirit-blue font-heavy font-bold text-lg px-2 mx-1"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ); ?></span>
+			<div class="pr-4 mt-4">
+				<span>Degrees Offered:</span> <span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ); ?></span>
 			</div>
 		<?php endif; ?>
 	</div>
 
 	<div class="entry-content">
 		<?php
-		if ( get_post_meta( $post->ID, 'ecpt_section1', true ) ) :
-			$content = get_post_meta( $post->ID, 'ecpt_section1', true );
-				printf( $content );
-		endif;
+		$section_content = get_post_meta( get_the_ID(), 'ecpt_pcitext', true );
+		if ( ! empty( $section_content ) ) {
+			echo wp_kses_post( wpautop( $section_content ) );
+		}
 		?>
 
 	</div><!-- .entry-content -->

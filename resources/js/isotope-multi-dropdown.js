@@ -6,7 +6,8 @@
 
 jQuery(document).ready(function ($) {
   // Initially hide no result box
-  $("#noResult").hide();
+  const $noResult = $("#noResult"); 
+  $noResult.hide();
 
   let qsRegex;
   let filterArray = [];
@@ -25,33 +26,49 @@ jQuery(document).ready(function ($) {
       return searchResult && filterResult;
     },
   });
+  // Remove the loading class once initialized
+  $grid.isotope('on', 'layoutComplete', function() {
+    $("#isotope-list").removeClass("loading");
+  });
+
+  // 2. Create a helper function to check for empty results
+  function checkResults() {
+    const visibleItems = $grid.data("isotope").filteredItems.length;
+    if (0 === visibleItems) {
+      $noResult.fadeIn(); // Use fadeIn for a smoother UI
+    } else {
+      $noResult.hide();
+    }
+  }
 
   // === FILTER HANDLERS ===
 
   // Handle dropdown changes
-  $("#filter-1, #filter-2").on("change", function () {
-    const programType = $("#filter-1").val();
-    const interestArea = $("#filter-2").val();
+  $("#filter-program, #filter-interest").on("change", function () {
+    const programType = $("#filter-program").val();
+    const interestArea = $("#filter-interest").val();
 
     filterArray = [programType, interestArea].filter(val => val); // remove empty
     updateHashFromFilters();
     $grid.isotope(); // Re-filter
+	checkResults();
   });
 
   $("#clear-filters").on("click", function (e) {
     e.preventDefault();
-    $("#filter-1").val("");
-    $("#filter-2").val("");
+    $("#filter-program").val("");
+    $("#filter-interest").val("");
     filterArray = [];
     history.replaceState(null, null, " "); // clear hash without jump
     $grid.isotope();
+	checkResults();
   });
 
   // === HASH FUNCTIONS ===
 
   function updateHashFromFilters() {
-    const programType = $("#filter-1").val()?.replace(/^\./, "") || "";
-    const interestArea = $("#filter-2").val()?.replace(/^\./, "") || "";
+    const programType = $("#filter-program").val()?.replace(/^\./, "") || "";
+    const interestArea = $("#filter-interest").val()?.replace(/^\./, "") || "";
 
     const params = new URLSearchParams();
 
@@ -78,8 +95,8 @@ jQuery(document).ready(function ($) {
     const filters = getFiltersFromHash();
 
     // Set selects
-    $("#filter-1").val(filters.programType);
-    $("#filter-2").val(filters.interestArea);
+    $("#filter-program").val(filters.programType);
+    $("#filter-interest").val(filters.interestArea);
 
     // Update filter array for Isotope
     filterArray = [];
@@ -87,6 +104,7 @@ jQuery(document).ready(function ($) {
     if (filters.interestArea) filterArray.push(filters.interestArea);
 
     $grid.isotope(); // Re-filter
+	checkResults();
   }
 
   // On page load and hash change
@@ -97,16 +115,11 @@ jQuery(document).ready(function ($) {
 
   const $quicksearch = $("#id_search").keyup(
     debounce(function () {
-      qsRegex = new RegExp($quicksearch.val(), "gi");
+	  const val = $quicksearch.val();
+      qsRegex = val ? new RegExp(val, "gi") : null;
       $grid.isotope();
-
-      // Show/hide no result message
-      if (!$grid.data("isotope").filteredItems.length) {
-        $("#noResult").show();
-      } else {
-        $("#noResult").hide();
-      }
-    })
+      checkResults(); // Add this here (it replaces your manual check)
+    }, 300)
   );
 
   function debounce(fn, threshold) {
