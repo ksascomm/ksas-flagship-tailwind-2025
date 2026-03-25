@@ -184,6 +184,7 @@ get_header();
 					'orderby'        => 'title',
 					'order'          => 'ASC',
 					'posts_per_page' => 100,
+					'post__not_in'   => array( 18540 ), // ID of CompThoughtLit-Dept.
 				)
 			);
 
