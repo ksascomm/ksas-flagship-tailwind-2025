@@ -99,35 +99,38 @@
 		</div>
 		<!--End wayfinding section -->
 	<?php endif; ?>
-	<div class="mx-auto prose-sm prose lg:prose-lg">
-		<?php if ( get_post_meta( $post->ID, 'ecpt_bio', true ) ) : ?>
-			<div class="text-xl leading-normal entry-content">
-				<?php echo wp_kses_post( get_post_meta( $post->ID, 'ecpt_bio', true ) ); ?>
-			</div>
-		<?php endif; ?>
-		</div>
-		<?php if ( get_edit_post_link() ) : ?>
-			<footer class="entry-footer">
-				<?php
-				edit_post_link(
-					sprintf(
-						wp_kses(
-							/* translators: %s: Name of current post. Only visible to screen readers */
-							__( 'Edit <span class="sr-only">%s</span>', 'ksas-department-tailwind' ),
-							array(
-								'span' => array(
-									'class' => array(),
-								),
-							)
-						),
-						wp_kses_post( get_the_title() )
-					),
-					'<span class="edit-link">',
-					'</span>'
-				);
+		<div class="mx-auto prose-sm prose lg:prose-lg">
+			<?php
+			$bio_content = get_post_meta( $post->ID, 'ecpt_bio', true );
+			if ( ! empty( $bio_content ) ) :
 				?>
-			</footer><!-- .entry-footer -->
-		<?php endif; ?>
+				<div class="text-xl leading-normal entry-content">
+					<?php echo wp_kses_post( wpautop( $bio_content ) ); ?>
+				</div>
+			<?php endif; ?>
+			<?php if ( get_edit_post_link() ) : ?>
+				<footer class="entry-footer">
+					<?php
+					edit_post_link(
+						sprintf(
+							wp_kses(
+								/* translators: %s: Name of current post. Only visible to screen readers */
+								__( 'Edit <span class="sr-only">%s</span>', 'ksas-department-tailwind' ),
+								array(
+									'span' => array(
+										'class' => array(),
+									),
+								)
+							),
+							wp_kses_post( get_the_title() )
+						),
+						'<span class="edit-link">',
+						'</span>'
+					);
+					?>
+				</footer><!-- .entry-footer -->
+			<?php endif; ?>
+		</div>
 	</div>
 	<!-- End Biography Section -->
 </article><!-- #post-<?php the_ID(); ?> -->
