@@ -6,7 +6,8 @@
  * 1. Global Container & Wrapper
  */
 .gsc-control-cse {
-    @apply !font-sans !text-base;
+    @apply !text-base;
+	font-family: var(--font-sans) !important;
     padding: 0 !important;
     border-width: 0 !important;
     background-color: #fefefe !important;
@@ -23,8 +24,8 @@
 }
 
 .gsc-above-wrapper-area {
-    border: 1px solid #e5e2e0;
-    border-top: none;
+    /*border: 1px solid #e5e2e0;
+    border-top: none;*/
     padding: 0 0.5rem !important;
     margin-bottom: 1rem;
 }
@@ -38,7 +39,7 @@ table.gsc-above-wrapper-area-container {
  * 2. Search Box & Input Fields
  */
 .gsc-search-box {
-    width: 400px;
+    /*width: 400px;*/
     height: 4rem;
     margin: 0 auto;
     overflow: hidden;
@@ -79,6 +80,10 @@ input#gsc-i-id1 {
     padding: 2px 12px !important;
 }
 
+.gsc-option {
+	color: var(--color-primary);
+}
+
 /**
  * 3. Search Button
  */
@@ -98,6 +103,10 @@ button.gsc-search-button.gsc-search-button-v2 {
 /**
  * 4. Results: Titles & Links
  */
+.gsc-control-cse .gsc-table-result {
+  font-family: var(--font-sans);
+}
+
 .gs-webResult.gs-result {
     font-size: 1.5rem !important;
 }
@@ -121,6 +130,10 @@ button.gsc-search-button.gsc-search-button-v2 {
  */
 .gs-webResult.gs-result .gs-bidi-start-align.gs-snippet {
     font-size: 1rem;
+}
+
+.gsc-control-cse .gsc-table-result {
+  font-family: worksans-regular; 
 }
 
 .gs-webResult.gs-result .gsc-url-top {

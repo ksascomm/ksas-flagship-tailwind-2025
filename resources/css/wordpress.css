@@ -1628,35 +1628,12 @@ ul.page-numbers li .page-numbers.current {
 	max-width: 85ch;
 }*/
 
-.page-template-people-directory .xl\:alignfull {
-	@media (width >=80rem) {
-		width: 100vw;
-		margin-left: calc(50% - 50vw);
-		margin-right: calc(50% - 50vw);
-		box-sizing: border-box;
-	}
-}
-
 .people-template-default.single-people .site-main .people ul.not-prose li a {
 	color: var(--color-white);
 }
 
 .people-template-default.single-people .site-main .people ul.not-prose li a:hover {
 	color: var(--color-grey);
-}
-
-.page-template-people-directory .xl\:alignfull:nth-child(odd) {
-	@media (width >=80rem) {
-		background-color: var(--color-grey-lightest);
-		/* Light background for odd blocks */
-	}
-}
-
-.page-template-people-directory .xl\:alignfull:nth-child(even) {
-	@media (width >=80rem) {
-		background-color: var(--color-white);
-		/* white background for even blocks */
-	}
 }
 
 @media screen and (min-width: 64rem) {

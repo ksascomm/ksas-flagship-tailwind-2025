@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'prose lg:prose-xl mx-auto' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'prose lg:prose-xl' ); ?>>
 
 	<div class="entry-content">
 

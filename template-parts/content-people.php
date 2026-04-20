@@ -9,7 +9,7 @@
 
 ?>
 
-<div class="mx-4 xl:alignfull xl:mx-0">
+<div class="mx-4 xl:mx-0">
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'mx-auto max-w-screen-xl border-grey border-solid border md:border-none p-4 lg:px-0 lg:py-2 mt-4' ); ?>>
 		<div class="grid grid-cols-3 lg:gap-8">
 			<div class="col-span-3 lg:col-span-1">
