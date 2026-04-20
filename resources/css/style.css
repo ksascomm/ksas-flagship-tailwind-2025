@@ -2,18 +2,16 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
+/* External Layers */
 @import './wordpress.css' layer(utilities);
 @import './fonts.css' layer(utilities);
 
-/*! purgecss start ignore */
+/* Third Party / Legacy Blocks - Ignored by Purge Logic */
 @import "./google-cse.css";
 @import "./blocks.css";
-/*! purgecss end ignore */
-
-/* Prose Configuration */
-@config '../../tailwind.config.js';
 
 @theme {
+	/* JHU Branding Colors */
 	--color-heritage-blue: #002d72;
 	--color-medium-blue: #0077d8;
 	--color-sais-blue: #005EB8;
@@ -32,14 +30,18 @@
 	--color-sais-gold: #e9b300;
 	--color-gold: #f1c400;
 	--color-sand: #cba052;
+
+	/* JHU Font Stacks */
 	--font-mono: "Menlo", "Monaco", "monospace";
 	--font-sans-light: "worksans-light", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-sans: "worksans-regular", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-sans-medium: "worksans-medium", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-semi: "worksans-semibold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-heavy: "worksans-bold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-serif: "robotoslab-medium",  "Georgia", "serif";
-	--font-serif-bold: "robotoslab-bold",  "Georgia", "serif";
+	--font-serif: "robotoslab-medium", "Georgia", "serif";
+	--font-serif-bold: "robotoslab-bold", "Georgia", "serif";
+
+	/* Typography Settings (Replacing tailwind.config.js values) */
 	--text-sm: .875rem;
 	--text-base: 1rem;
 	--text-lg: 1.125rem;
@@ -48,19 +50,23 @@
 	--text-3xl: 1.875rem;
 	--text-4xl: 2.25rem;
 	--text-4xl: 3rem;
-	/*
-	--font-weight-light: 300;
-	--font-weight-normal: 400;
-	--font-weight-medium: 500;
-	--font-weight-semi: 600;
-	--font-weight-bold: 700;
-	*/
+
+	/* Breakpoints */
 	--breakpoint-sm: 40rem;
 	--breakpoint-md: 48rem;
 	--breakpoint-lg: 64rem;
 	--breakpoint-xl: 80rem;
 	--breakpoint-2xl: 96rem;
+
+	/* Custom Prose Spacing / Variables */
+	--prose-max-width-default: 100%;
+	--prose-max-width-lg: 75ch;
+	--prose-max-width-xl: 85ch;
 }
+
+/* Define height-based variants for v4 */
+@custom-variant short (@media (max-height: 700px));
+@custom-variant medium (@media (max-height: 1000px));
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -79,107 +85,218 @@
 	::file-selector-button {
 		border-color: var(--color-gray-200, currentColor);
 	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@layer utilities {
+	.prose {
+		/* JHU Color Palette */
+		--tw-prose-body: #31261D;
+		--tw-prose-headings: #31261D;
+		--tw-prose-links: #005EB8;
+		--tw-prose-bold: #31261D;
+		--tw-prose-bullets: #005EB8;
+		--tw-prose-quotes: #002d72;
+		--tw-prose-pre-bg: #857d7d;
+		--tw-prose-hr: #bfccd9;
+		--tw-prose-code: #31261D;
+		--tw-prose-pre-code: #31261D;
+		--tw-prose-counters: #31261D;
+		width: 100%;
+		max-width: 100%;
+		line-height: 1.6;
+	}
+
+	/* H1 Heading with JHU Serif Font */
+	:where(.prose h1) {
+		font-family: var(--font-serif-bold);
+		font-weight: 700;
+		font-size: 4rem;
+		margin-bottom: 1rem;
+		line-height: 1.1;
+	}
+
+	/* H2-H5 Headings with JHU Sans Font */
+	:where(.prose h2, .prose h3, .prose h4, .prose h5) {
+		font-family: var(--font-heavy);
+		font-weight: 700;
+	}
+
+	/* Fallback sizes - These will be overridden by prose-sm/2xl classes */
+	:where(.prose h1) {
+		font-size: 4rem;
+		margin-bottom: 1rem;
+		line-height: 1.1;
+	}
+
+	:where(.prose h2) {
+		font-size: 2rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.5rem;
+		max-width: 90ch;
+	}
+
+	:where(.prose h3) {
+		font-size: 1.6rem;
+		margin-top: 1.25rem;
+		margin-bottom: 0.5rem;
+	}
+
+	:where(.prose h4) {
+		font-size: 1.25rem;
+	}
+
+	/* Paragraphs & Text */
+	:where(.prose p) {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		letter-spacing: -0.01rem;
+	}
+
+	:where(.prose strong, .prose b, .prose a strong) {
+		font-family: var(--font-heavy);
+		font-weight: 700;
+	}
+
+	:where(.prose a) {
+		text-decoration: none;
+		color: var(--tw-prose-links);
+		transition: color 0.2s ease;
+	}
+
+	:where(.prose a:hover) {
+		color: var(--color-medium-blue);
+		text-decoration: underline;
+	}
+
+	/* Lists */
+	:where(.prose ul, .prose ol) {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		padding-left: 1.625rem;
+	}
+
+	:where(.prose li) {
+		margin-top: 0.25rem;
+		margin-bottom: 0.25rem;
+		max-width: 90ch;
+	}
+
+	/* Custom List Bullets */
+	:where(.prose ul > li)::marker {
+		color: var(--tw-prose-bullets);
+	}
+
+	.prose ol>li::before {
+		content: none !important;
+	}
+
+	/* Tables */
+	:where(.prose table) {
+		width: 100%;
+		font-size: 1rem;
+		margin: 1.5rem 0;
+		border-collapse: collapse;
+	}
+
+	:where(.prose thead) {
+		border-bottom: 2px solid var(--tw-prose-hr);
+		color: var(--tw-prose-headings);
+	}
+
+	:where(.prose th, .prose td) {
+		padding: 0.75rem;
+		text-align: left;
+	}
+
+	/* Blockquotes */
+	:where(.prose blockquote) {
+		font-style: italic;
+		border-left: 4px solid var(--color-spirit-blue);
+		background-color: var(--color-grey-lightest);
+		padding: 1rem 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	:where(.prose blockquote p:first-of-type::before),
+	:where(.prose blockquote p:last-of-type::after) {
+		content: none;
+		/* Remove default quotes if desired */
+	}
+
+	/* Media Elements */
+	:where(.prose img, .prose figure, .prose video) {
+		margin: 2rem 0;
+		border-radius: 0.25rem;
+	}
+
+	:where(.prose hr) {
+		margin: 2rem 0;
+		border-top: 1px solid var(--tw-prose-hr);
+	}
 }
 
 
-html {
-    scroll-behavior: smooth;
-}
 
+/* Vertical Rhythm Variables */
 :root {
-  --space-default: 1rem;
-  --space-l1-lg: 4rem;
-  --space-l2-lg: 3rem;
-  --space-l3-lg: 2.5rem;
-  --space-l4-lg: 2rem;
-  --space-l5-lg: 1.5rem;
-  --space-l6-lg: 1rem;
-  --space-l1-sm: calc(var(--space-l1-lg) / 4);
-  --space-l2-sm: calc(var(--space-l2-lg) / 4);
-  --space-l3-sm: calc(var(--space-l3-lg) / 4);
-  --space-l4-sm: calc(var(--space-l4-lg) / 4);
-  --space-l5-sm: calc(var(--space-l5-lg) / 4);
-  --space-l6-sm: calc(var(--space-l6-lg) / 4);
-  --space-list-items: 0.5rem;
+	--space-default: 1rem;
+	--space-l1-lg: 4rem;
+	--space-l2-lg: 3rem;
+	--space-l3-lg: 2.5rem;
+	--space-l4-lg: 2rem;
+	--space-l5-lg: 1.5rem;
+	--space-l6-lg: 1rem;
+	--space-l1-sm: calc(var(--space-l1-lg) / 4);
+	--space-l2-sm: calc(var(--space-l2-lg) / 4);
+	--space-l3-sm: calc(var(--space-l3-lg) / 4);
+	--space-l4-sm: calc(var(--space-l4-lg) / 4);
+	--space-l5-sm: calc(var(--space-l5-lg) / 4);
+	--space-l6-sm: calc(var(--space-l6-lg) / 4);
+	--space-list-items: 0.5rem;
 }
 
-
-:where(.page-template-default, .post-template-default) .entry-content :is(p, ul, ol) {
-  margin-bottom: var(--space-default);
+/* WordPress Entry Content Spacing Logic */
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content :is(p, ul, ol) {
+	margin-bottom: var(--space-default);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h1 {
-  margin-bottom: var(--space-l1-sm);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content h1 {
+	margin-bottom: var(--space-l1-sm);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h2 {
-  margin-bottom: var(--space-l2-sm);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content h2 {
+	margin-bottom: var(--space-l2-sm);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h3 {
-  margin-bottom: var(--space-l3-sm);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content h3 {
+	margin-bottom: var(--space-l3-sm);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h4 {
-  margin-bottom: var(--space-l4-sm);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content h4 {
+	margin-bottom: var(--space-l4-sm);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h5 {
-  margin-bottom: var(--space-l5-sm);
+/* Adjacent Sibling Spacing (The :has selector handles the 'margin-top' feel) */
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content *:has(+ h2) {
+	margin-bottom: var(--space-l2-lg);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content h6 {
-  margin-bottom: var(--space-l6-sm);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content *:has(+ h3) {
+	margin-bottom: var(--space-l3-lg);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content *:has(+ h2) {
-  margin-bottom: var(--space-l2-lg);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content *:has(+ h4) {
+	margin-bottom: var(--space-l4-lg);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content *:has(+ h3) {
-  margin-bottom: var(--space-l3-lg);
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content :where(li):has(+ li) {
+	margin-bottom: var(--space-list-items);
 }
 
-:where(.page-template-default, .post-template-default) .entry-content *:has(+ h4) {
-  margin-bottom: var(--space-l4-lg);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content *:has(+ h5) {
-  margin-bottom: var(--space-l5-lg);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content *:has(+ h6) {
-  margin-bottom: var(--space-l6-lg);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(h1):has(+ h2) {
-  margin-bottom: var(--space-l1-sm);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(h2):has(+ h3) {
-  margin-bottom: var(--space-l2-sm);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(h3):has(+ h4) {
-  margin-bottom: var(--space-l3-sm);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(h4):has(+ h5) {
-  margin-bottom: var(--space-l4-sm);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(h5):has(+ h6) {
-  margin-bottom: var(--space-l5-sm);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(li):has(+ li) {
-  margin-bottom: var(--space-list-items);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :where(li) :is(ul, ol) {
-  margin-top: var(--space-list-items);
-}
-
-:where(.page-template-default, .post-template-default) .entry-content :is(p, ul, ol, h1, h2, h3, h4, h5, h6):not(:has(+ *)) {
-  margin-bottom: 0;
+:where(.page-template-default, .post-template-default, .page-template-specialty-page) .entry-content :is(p, ul, ol, h1, h2, h3, h4, h5, h6):not(:has(+ *)) {
+	margin-bottom: 0;
 }

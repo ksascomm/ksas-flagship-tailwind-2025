@@ -22,24 +22,24 @@
 		$total_rows = count( get_field( 'section_area' ) );
 	while ( have_rows( 'section_area' ) ) :
 		?>
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 alignwide section-<?php echo get_row_index(); ?>">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 alignwide section-<?php echo esc_attr( get_row_index() ); ?>">
 			<?php
 			the_row();
 
-			$section_title = strip_tags( get_sub_field( 'section_title' ) );
+			$section_title = wp_strip_all_tags( get_sub_field( 'section_title' ) );
 			$section_title = strtolower( $section_title );
 			$section_title = preg_replace( '/[^a-z0-9\s]/', '', $section_title );
 			$section_title = preg_replace( '/\s+/', '-', $section_title );
 			$section_title = trim( $section_title, '-' );
 
 			?>
-				<div class="relative card-<?php echo get_row_index(); ?>">
+				<div class="relative card-<?php echo esc_attr( get_row_index() ); ?>">
 					<div id="<?php echo esc_attr( $section_title ); ?>" class="clear-both py-5 lg:py-20 animated">
 						<div class="relative z-10 max-w-3xl ">
 							<div class="relative z-10 max-w-4xl mx-auto bg-white border-2 shadow-md border-medium-blue fx fadeIn">
 								<div class="px-10 -translate-y-1/2">
-									<div class="font-serif-bold font-heavy text-center uppercase text-xl leading-none px-[18px] py-3 border-2 border-medium-blue bg-white inline-block tracking-widest">
-										<h2 class="not-prose"><?php the_sub_field( 'section_title' ); ?></h2>
+									<div class="text-center uppercase px-4.5 py-3 border-2 border-medium-blue bg-white inline-block tracking-widest">
+										<h2 class="not-prose! m-0! text-xl! leading-none!"><?php the_sub_field( 'section_title' ); ?></h2>
 									</div>
 								</div>
 								<div class="p-6 pt-0">

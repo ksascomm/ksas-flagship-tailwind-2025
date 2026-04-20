@@ -82,7 +82,7 @@ if ( $children ) :
 </div>
 <?php endif; ?>
 
-<?php if (is_singular( 'people' )) : ?>
+<?php if ( is_singular( 'people' ) ) : ?>
 <div class="relative hidden text-left menu-button-links lg:mr-8 lg:inline-block">
 	<button 
 		class="inline-block justify-center px-4 py-2 text-[.875rem]! leading-5 font-heavy font-bold text-white lg:bg-heritage-blue lg:border lg:border-grey-cool uppercase"
@@ -99,27 +99,27 @@ if ( $children ) :
 	<div id="section-menu" class="prose lg:prose-lg">
 		<?php
 		// Get the menu items (by location or name)
-		$locations = get_nav_menu_locations();
-		$menu_id = $locations['expanded']; // Replace 'primary' with your menu location slug
-		$menu_items = wp_get_nav_menu_items($menu_id);
+		$locations  = get_nav_menu_locations();
+		$menu_id    = $locations['expanded']; // Replace 'primary' with your menu location slug
+		$menu_items = wp_get_nav_menu_items( $menu_id );
 
 		// Find the parent item (e.g., "People")
 		$parent_id = null;
-		foreach ($menu_items as $item) {
-			if ($item->title === 'People') {
+		foreach ( $menu_items as $item ) {
+			if ( $item->title === 'People' ) {
 				$parent_id = $item->ID;
 				break;
 			}
 
-		// (optional: match by URL or object_id instead)
+			// (optional: match by URL or object_id instead)
 		}
 
 		// Output child menu items under "People"
-		if ($parent_id) {
+		if ( $parent_id ) {
 			echo '<ul class="menu nav">';
-			foreach ($menu_items as $item) {
-				if ($item->menu_item_parent == $parent_id) {
-					echo '<li class="menu-item"><a href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a></li>';
+			foreach ( $menu_items as $item ) {
+				if ( $item->menu_item_parent == $parent_id ) {
+					echo '<li class="menu-item"><a href="' . esc_url( $item->url ) . '">' . esc_html( $item->title ) . '</a></li>';
 				}
 			}
 			echo '</ul>';
@@ -145,27 +145,27 @@ if ( $children ) :
 	<div id="section-menu" class="prose lg:prose-lg">
 		<?php
 		// Get the menu items (by location or name)
-		$locations = get_nav_menu_locations();
-		$menu_id = $locations['expanded']; // Replace 'primary' with your menu location slug
-		$menu_items = wp_get_nav_menu_items($menu_id);
+		$locations  = get_nav_menu_locations();
+		$menu_id    = $locations['expanded']; // Replace 'primary' with your menu location slug
+		$menu_items = wp_get_nav_menu_items( $menu_id );
 
 		// Find the parent item (e.g., "About")
 		$parent_id = null;
-		foreach ($menu_items as $item) {
-			if ($item->title === 'About') {
+		foreach ( $menu_items as $item ) {
+			if ( $item->title === 'About' ) {
 				$parent_id = $item->ID;
 				break;
 			}
 
-		// (optional: match by URL or object_id instead)
+			// (optional: match by URL or object_id instead)
 		}
 
 		// Output child menu items under "People"
-		if ($parent_id) {
+		if ( $parent_id ) {
 			echo '<ul class="menu nav">';
-			foreach ($menu_items as $item) {
-				if ($item->menu_item_parent == $parent_id) {
-					echo '<li class="menu-item"><a href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a></li>';
+			foreach ( $menu_items as $item ) {
+				if ( $item->menu_item_parent == $parent_id ) {
+					echo '<li class="menu-item"><a href="' . esc_url( $item->url ) . '">' . esc_html( $item->title ) . '</a></li>';
 				}
 			}
 			echo '</ul>';

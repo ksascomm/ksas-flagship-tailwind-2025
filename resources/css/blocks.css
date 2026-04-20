@@ -22,7 +22,7 @@ a.wp-block-button__link:hover {
 }
 
 /** === Image Gallery === */
-.prose ul.blocks-gallery-grid > li::before {
+.prose ul.blocks-gallery-grid>li::before {
 	content: none;
 }
 
@@ -33,7 +33,8 @@ a.wp-block-button__link:hover {
 .prose figure.wp-block-gallery figcaption.blocks-gallery-caption {
 	@apply text-primary;
 }
-.prose ul.blocks-gallery-grid > li.blocks-gallery-item {
+
+.prose ul.blocks-gallery-grid>li.blocks-gallery-item {
 	padding-left: 0 !important;
 }
 
@@ -50,7 +51,10 @@ a.wp-block-button__link:hover {
 }
 
 /** === Font Sizing === */
-.editor-styles-wrapper .has-normal-font-size, .editor-styles-wrapper .has-regular-font-size, .has-normal-font-size, .has-regular-font-size {
+.editor-styles-wrapper .has-normal-font-size,
+.editor-styles-wrapper .has-regular-font-size,
+.has-normal-font-size,
+.has-regular-font-size {
 	@apply text-base;
 }
 
@@ -61,18 +65,20 @@ a.wp-block-button__link:hover {
 
 .wp-block-ksas-callouts-ksas-callout-block.callout {
 	font-family: var(--font-heavy);
-    font-weight: var(--font-bold);
-    font-style: normal;
-    font-display: swap;
+	font-weight: var(--font-bold);
+	font-style: normal;
+	font-display: swap;
 }
 
-.prose .callout h3, .prose .callout p {
+.prose .callout h3,
+.prose .callout p {
 	margin: 0;
 }
 
 .callout.warning {
 	background-color: #fff3d9;
 }
+
 /** === Accordion === */
 .wp-block-pb-accordion-item.c-accordion__item {
 	@apply pb-2;
@@ -91,36 +97,16 @@ a.wp-block-button__link:hover {
 	@apply p-4 text-black border border-grey;
 }
 
-
-div[class*="wp-block-kadence"] h1,  div[class*="wp-block-kadence"] h2 {
-	@apply font-serif-bold;
+/* WP Block Columns */
+.prose .wp-block-column figure {
+	margin-bottom: .5rem;
 }
 
-div[class*="wp-block-kadence"] h3, div[class*="wp-block-kadence"] h4, div[class*="wp-block-kadence"] h5 {
-	@apply font-heavy;
+.prose .wp-block-column figure img {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-div[class*="wp-block-kadence"] p {
-	@apply font-sans;
-}
-
-span.kt-blocks-info-box-learnmore {
-	font-family: var(--font-heavy);
-    font-weight: var(--font-bold);
-	color: var(--color-primary);
-}
-
-a.kt-blocks-info-box-learnmore.info-box-link {
-	font-family: var(--font-heavy);
-    font-weight: var(--font-bold);
-	color: var(--color-heritage-blue);
-}
-
-.kt-button:hover, .kt-button:focus  {
-	color: #002d72 !important;
-	border-color: #002d72 !important;
-}
-
-a.kt-blocks-info-box-link-wrap {
-	border-style: inherit;
+.prose .wp-block-column .wp-block-heading {
+	margin-top: 0;
 }

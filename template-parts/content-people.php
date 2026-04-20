@@ -9,11 +9,11 @@
 
 ?>
 
-<div class="xl:alignfull">
-	<article id="post-<?php the_ID(); ?>" <?php post_class( 'mx-auto max-w-screen-xl border-grey border-solid border lg:border-none p-4 lg:px-0 lg:py-2 mt-4' ); ?>>
+<div class="mx-4 xl:alignfull xl:mx-0">
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'mx-auto max-w-screen-xl border-grey border-solid border md:border-none p-4 lg:px-0 lg:py-2 mt-4' ); ?>>
 		<div class="grid grid-cols-3 lg:gap-8">
 			<div class="col-span-3 lg:col-span-1">
-				<div class="-mt-2 w-full">
+				<div class="w-full -mt-2">
 				<?php if ( is_singular( 'people' ) ) : ?>
 					<?php flagship_tailwind_post_thumbnail(); ?>
 				<?php else : ?>
@@ -22,7 +22,7 @@
 						the_post_thumbnail(
 							'full',
 							array(
-								'class' => 'w-full pt-4'
+								'class' => 'w-xl pt-4',
 							)
 						);
 					?>
@@ -33,12 +33,12 @@
 			<div class="col-span-3 lg:col-span-2">
 			<?php if ( is_singular( 'people' ) ) : ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_position', true ) ) : ?>
-					<h2 class="font-heavy font-bold"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h2>
+					<h2 class="font-bold font-heavy"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h2>
 				<?php endif; ?>
 			<?php endif; ?>
 			<?php if ( is_page_template( 'page-templates/people-directory.php' ) ) : ?>
-				<div class="prose prose-sm lg:prose-lg">
-				<h2 class="font-heavy font-bold"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+				<div class="prose-sm prose lg:prose-lg">
+				<h2 class="font-bold font-heavy"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				<h3 class=""><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h3>
 			<?php endif; ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_office', true ) ) : ?>

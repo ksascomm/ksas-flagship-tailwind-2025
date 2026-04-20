@@ -9,6 +9,17 @@
 
 get_header();
 ?>
+
+<?php
+$extra_classes = array();
+
+// Check if the current post/page has a parent.
+if ( ! empty( $post->post_parent ) ) {
+	$extra_classes[] = 'child-page';
+}
+
+// Pass the array into the function. Check CSS for specific styles.
+?>
 	<main id="primary" class="w-full site-main">
 		<?php
 		if ( have_posts() ) :
@@ -18,18 +29,12 @@ get_header();
 				the_post();
 				?>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?>>
-					<div class="entry-content prose prose-sm lg:prose-lg mx-auto">
+				<article id="post-<?php the_ID(); ?>" <?php post_class( $extra_classes ); ?>>
+					<div class="mx-auto prose lg:prose-xl entry-content">
 
 						<?php
 						the_content();
 
-						wp_link_pages(
-							array(
-								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'flagship-tailwind' ),
-								'after'  => '</div>',
-							)
-						);
 						?>
 					</div><!-- .entry-content -->
 

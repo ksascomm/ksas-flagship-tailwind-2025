@@ -11,13 +11,19 @@
 
 ?>
 
-	<footer style="background-image:url('<?php echo esc_url( get_template_directory_uri() ); ?>/dist/images/ksas-footer.jpg');" class="relative h-auto lg:h-140 text-white site-footer bg-heritage-blue flex items-center justify-center bg-cover
-	<?php
-	if ( ! is_front_page() ) :
-		?>
-		mt-20
-	<?php endif; ?>
-	">
+<?php
+	$footer_mobile  = get_template_directory_uri() . '/dist/images/ksas-footer-mobile.jpg';
+	$footer_desktop = get_template_directory_uri() . '/dist/images/ksas-footer.jpg';
+?>
+
+<footer 
+	style="--footer-mobile: url('<?php echo esc_url( $footer_mobile ); ?>'); 
+			--footer-desktop: url('<?php echo esc_url( $footer_desktop ); ?>');"
+	class="relative h-auto lg:h-140 text-white site-footer bg-heritage-blue flex items-center justify-center bg-cover bg-center
+	<?php echo ! is_front_page() ? 'mt-20' : ''; ?>
+	bg-(image:--footer-mobile) 
+	md:bg-(image:--footer-desktop)"
+>
 	<div class="max-w-[95vw] w-full px-6 mx-auto xl:mx-20">
 		<div class="grid grid-cols-1 gap-6 pt-8 site-info lg:grid-cols-2">
 			<div class="flex justify-center lg:justify-start">
@@ -55,7 +61,7 @@
 				<li class="px-2" role="menuitem"><a class="font-sans text-white font-regular" href="https://policies.jhu.edu/">University Policies</a> <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
 			</ul>
 			<!-- Copyright -->
-			<p>	&copy; <?php print gmdate( 'Y' ); ?> Johns Hopkins University. <span class="max-md:block">All rights reserved.</span></p>
+			<p>	&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Johns Hopkins University. <span class="max-md:block">All rights reserved.</span></p>
 			</div>
 	</div><!-- .site-info -->
 	</div>

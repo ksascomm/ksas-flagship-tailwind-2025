@@ -8,6 +8,21 @@
  */
 
 ?>
-<div class="w-full">
-	<img loading="lazy" class=" transition-opacity duration-1000 ease-in-out opacity-0 h-40 object-cover xl:h-auto" onload="this.classList.add('opacity-100')" src="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/images/collage-row.jpg" alt="collage of students and faculty">
+<div class="w-full overflow-hidden">
+	<picture>
+		<source 
+			media="(min-width: 1024px)" 
+			srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/images/collage-row.jpg"
+		>
+		<source 
+			srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/images/collage-row-mobile.jpg"
+		>
+		<img 
+			loading="lazy" 
+			class="object-cover w-full h-40 transition-opacity duration-1000 ease-in-out opacity-0 lg:h-auto" 
+			onload="this.classList.add('opacity-100')" 
+			src="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/images/collage-row.jpg" 
+			alt="collage of students and faculty"
+		>
+	</picture>
 </div>

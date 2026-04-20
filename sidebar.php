@@ -11,12 +11,18 @@
 
 <aside id="secondary" class="w-full sidebar widget-area xl:w-[25%] xl:ml-[10%] xl:max-w-[30%]">
 	<!-- Start Flexible Sidebar Content Conditional -->
-	<?php if ( have_rows( 'flex_content' ) ): ?>
-		<?php while ( have_rows( 'flex_content' ) ) : the_row(); ?>
-			<?php if ( get_row_layout() == 'content' ) : ?>
+	<?php if ( have_rows( 'flex_content' ) ) : ?>
+		<?php
+		while ( have_rows( 'flex_content' ) ) :
+			the_row();
+			?>
+			<?php if ( get_row_layout() === 'content' ) : ?>
 				<!-- Image Conditional -->
 				<?php if ( have_rows( 'images' ) ) : ?>
-					<?php while ( have_rows( 'images' ) ) : the_row(); ?>
+					<?php
+					while ( have_rows( 'images' ) ) :
+						the_row();
+						?>
 						<?php $image = get_sub_field( 'image' ); ?>
 						<?php if ( $image ) : ?>
 							<div class="my-8 sidebar-image-box">
@@ -25,7 +31,7 @@
 						<?php endif; ?>
 					<?php endwhile; ?>
 				<?php else : ?>
-					<?php // No rows found ?>
+					<?php // No rows found. ?>
 				<?php endif; ?>
 				<!-- End Image Conditional -->
 
@@ -34,20 +40,24 @@
 					<?php
 					$has_valid_quote = false;
 
-					// Loop once to check for any non-empty fields
-					while ( have_rows( 'sidebar_quote' ) ) : the_row();
+					// Loop once to check for any non-empty fields.
+					while ( have_rows( 'sidebar_quote' ) ) :
+						the_row();
 						if ( get_sub_field( 'quotation' ) || get_sub_field( 'cite' ) ) {
 							$has_valid_quote = true;
 							break;
 						}
 					endwhile;
 
-					// Rewind the rows to loop again if valid quote found
+					// Rewind the rows to loop again if valid quote found.
 					if ( $has_valid_quote ) :
 						reset_rows();
 						?>
 						<div class="my-8 bg-white sidebar-quote">
-							<?php while ( have_rows( 'sidebar_quote' ) ) : the_row(); ?>
+							<?php
+							while ( have_rows( 'sidebar_quote' ) ) :
+								the_row();
+								?>
 								<?php if ( get_sub_field( 'quotation' ) || get_sub_field( 'cite' ) ) : ?>
 									<div class="prose">
 										<blockquote class="relative border-s-[0] ps-[0] bg-white prose">
@@ -56,10 +66,10 @@
 											</svg>
 											<div class="relative z-10">
 												<?php if ( get_sub_field( 'quotation' ) ) : ?>
-													<p class="pb-4 pr-4 pt-8 pl-8 font-heavy font-bold leading-6"><?php the_sub_field( 'quotation' ); ?></p>
+													<p class="pt-8 pb-4 pl-8 pr-4 font-bold leading-6 font-heavy"><?php the_sub_field( 'quotation' ); ?></p>
 												<?php endif; ?>
 												<?php if ( get_sub_field( 'cite' ) ) : ?>
-													<cite class="pb-4 pr-4 pt-8 pl-8 not-italic font-heavy font-bold text-medium-blue text-base"><?php the_sub_field( 'cite' ); ?></cite>
+													<cite class="pt-8 pb-4 pl-8 pr-4 text-base not-italic font-bold font-heavy text-medium-blue"><?php the_sub_field( 'cite' ); ?></cite>
 												<?php endif; ?>
 											</div>
 										</blockquote>
@@ -75,7 +85,10 @@
 				<!-- Statistic Conditional -->
 				<?php if ( have_rows( 'statistics' ) ) : ?>
 					<div class="my-8 text-center statistics">
-					<?php while ( have_rows( 'statistics' ) ) : the_row(); ?>
+					<?php
+					while ( have_rows( 'statistics' ) ) :
+						the_row();
+						?>
 						<div class="statistic-icon">
 							<?php $icon = get_sub_field( 'icon' ); ?>
 							<?php if ( $icon ) : ?>
@@ -105,13 +118,13 @@
 					<?php endwhile; ?>
 					</div>
 					<?php else : ?>
-					<?php // No rows found ?>
+						<?php // No rows found. ?>
 				<?php endif; ?>
 			<?php endif; ?>
 			<!-- End Statistic Conditional -->
 		<?php endwhile; ?>
-	<?php else: ?>
-		<?php // No layouts found ?>
+	<?php else : ?>
+		<?php // No layouts found. ?>
 	<?php endif; ?>
 	<!-- End Flexible Sidebar Content Conditional -->
 </aside><!-- #secondary -->

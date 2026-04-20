@@ -16,22 +16,22 @@ function ksas_disable_gutenberg_colour_settings() {
 			array(
 				'name'  => __( 'Heritage Blue', 'flagship-tailwind' ),
 				'slug'  => 'heritage-blue',
-				'color'	=> '#002d72',
+				'color' => '#002d72',
 			),
 			array(
 				'name'  => __( 'Medium Blue', 'flagship-tailwind' ),
 				'slug'  => 'medium-blue',
-				'color'	=> '#0077d8',
+				'color' => '#0077d8',
 			),
 			array(
 				'name'  => __( 'SAIS Blue', 'flagship-tailwind' ),
 				'slug'  => 'sais-blue',
-				'color'	=> '#005EB8',
+				'color' => '#005EB8',
 			),
 			array(
 				'name'  => __( 'Spirit Blue', 'flagship-tailwind' ),
 				'slug'  => 'spirit-blue',
-				'color'	=> '#68ace5',
+				'color' => '#68ace5',
 			),
 			array(
 				'name'  => __( 'Grey', 'flagship-tailwind' ),
@@ -58,7 +58,6 @@ function ksas_disable_gutenberg_colour_settings() {
 				'slug'  => 'mint-green',
 				'color' => '#86C8BC',
 			),
-			
 			array(
 				'name'  => __( 'Homewood Green', 'flagship-tailwind' ),
 				'slug'  => 'homewood-green',
@@ -95,7 +94,6 @@ function ksas_disable_gutenberg_colour_settings() {
 
 	// Enable widge alignments.
 	add_theme_support( 'align-wide' );
-
 }
 add_action( 'after_setup_theme', 'ksas_disable_gutenberg_colour_settings' );
 

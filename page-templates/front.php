@@ -15,14 +15,29 @@ get_header();
 	$random_images = get_field( 'homepage_hero_images' );
 	shuffle( $random_images );
 	// print("<pre>".print_r($random_images,true)."</pre>");
-	$random_img_url   = $random_images[0]['homepage_hero_image']['url'];
-	$random_img_alt   = $random_images[0]['homepage_hero_image']['alt'];
-	$random_img_title = $random_images[0]['homepage_hero_image']['title'];
+	// Get the Desktop Image.
+	$desktop_url = $random_images[0]['homepage_hero_image']['url'];
+
+	// Get a Mobile Image (Either a specific field or a smaller ACF size)
+	// If you have a mobile-specific field: $random_images[0]['homepage_hero_image_mobile']['url'];
+	// Otherwise, let's use the 'large' size for mobile to save bandwidth...
+	$mobile_url = $random_images[0]['homepage_hero_image']['sizes']['large'] ?? $desktop_url;
+
+	$random_img_alt = $random_images[0]['homepage_hero_image']['alt'];
+
 	?>
 			
 <?php endif; ?>
 <main>
-	<div class="relative grid w-full h-100 xl:h-[90vh] grid-cols-3 border-heritage-blue bg-cover bg-center hero front-featured-image-area" style="background-image:url('<?php echo esc_url( $random_img_url ); ?>')">
+<div 
+	class="relative grid w-full h-100 xl:h-[90vh] grid-cols-3 border-heritage-blue bg-cover bg-center hero front-featured-image-area
+			bg-(image:--hero-mobile) 
+			xl:bg-(image:--hero-desktop)" 
+	style="--hero-mobile: url('<?php echo esc_url( $mobile_url ); ?>'); 
+			--hero-desktop: url('<?php echo esc_url( $desktop_url ); ?>');"
+	role="img" 
+	aria-label="<?php echo esc_attr( $random_img_alt ); ?>"
+>
 		<div class="absolute inset-0 z-0 bg-linear-to-b from-primary/70 via-transparent to-primary/90 xl:to-primary/70"></div>
 		<!-- Left Content (Heading/Text) -->
 		<div class="relative z-10 self-end col-span-3 pb-4 pl-8 pr-8 xl:pr-4 xl:pb-16 xl:col-span-2 xl:w-5/7">

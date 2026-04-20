@@ -26,15 +26,18 @@ get_header();
 			</header><!-- .page-header -->
 
 			<ul class="program-list">
-        <?php while (have_posts()) : the_post(); ?>
-            <li>
-                <h3><?php the_title(); ?></h3>
-                <p><?php the_excerpt(); ?></p>
-                <a href="<?php the_permalink(); ?>">View Program</a>
-            </li>
-        <?php endwhile; ?>
-    </ul>
-<?php 
+			<?php
+			while ( have_posts() ) :
+				the_post();
+				?>
+			<li>
+				<h3><?php the_title(); ?></h3>
+				<p><?php the_excerpt(); ?></p>
+				<a href="<?php the_permalink(); ?>">View Program</a>
+			</li>
+		<?php endwhile; ?>
+	</ul>
+			<?php
 			if ( function_exists( 'flagship_tailwind_pagination' ) ) :
 
 				flagship_tailwind_pagination();
@@ -55,5 +58,4 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();

@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '2.0.0' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '3.0.0' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
@@ -116,7 +116,11 @@ add_action( 'widgets_init', 'flagship_tailwind_widgets_init' );
  * Enqueue scripts and styles.
  */
 function flagship_tailwind_scripts() {
-	wp_enqueue_style( 'flagship-tailwind-style', get_template_directory_uri() . '/dist/css/style.css', array(), filemtime( get_template_directory() . '/dist/css/style.css' ), false );
+	$css_path = get_template_directory() . '/dist/css/style.css';
+	$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
+
+	// Use filemtime for both to force-refresh browsers on every save.
+	wp_enqueue_style( 'flagship-tailwind-style', get_template_directory_uri() . '/dist/css/style.css', array(), filemtime( $css_path ) );
 
 	wp_style_add_data( 'flagship-tailwind-style', 'rtl', 'replace' );
 
@@ -128,22 +132,30 @@ function flagship_tailwind_scripts() {
 
 	wp_enqueue_script( 'google-cse', 'https://cse.google.com/cse.js?cx=012258670098148303364:zptrsb24qaq', array(), FLAGSHIP_TAILWIND_VERSION, false );
 
-	wp_enqueue_script( 'siteimprove', 'https://siteimproveanalytics.com/js/siteanalyze_11464.js', array(), '1.0.0', true );
+	wp_enqueue_script(
+		'siteimprove',
+		'https://siteimproveanalytics.com/js/siteanalyze_11464.js',
+		array(),
+		'1.0.0',
+		array(
+			'strategy'  => 'async',
+			'in_footer' => true,
+		)
+	);
 
-	wp_enqueue_script( 'flagship-tailwind-script', get_template_directory_uri() . '/dist/js/bundle.min.js', array( 'jquery' ), FLAGSHIP_TAILWIND_VERSION, true );
+	wp_enqueue_script( 'flagship-tailwind-script', get_template_directory_uri() . '/dist/js/bundle.min.js', array( 'jquery' ), filemtime( $js_path ), true );
+
+	// Localize for AJAX (Pass the nonce to your JS).
+	wp_localize_script(
+		'flagship-tailwind-script',
+		'fsu_ajax',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'studyfields_filter_nonce' ),
+		)
+	);
 }
 add_action( 'wp_enqueue_scripts', 'flagship_tailwind_scripts' );
-
-/**
- * Add async attribute to the Siteimprove script.
- */
-function add_async_to_siteimprove( $tag, $handle, $src ) {
-	if ( 'siteimprove' == $handle ) {
-		return '<script async src="' . $src . '"></script>';
-	}
-	return $tag;
-}
-add_filter( 'script_loader_tag', 'add_async_to_siteimprove', 10, 3 );
 
 /**
  * Custom post type functions.
@@ -214,124 +226,52 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 }
 
 /**
- * Minify page/post specific Custom CSS from ACF
+ * Minify page/post specific Custom CSS from ACF.
+ *
+ * @param string $custom_page_css Raw CSS string from ACF field.
+ * @return string Minified CSS string or empty string if invalid.
  */
 function minify_custom_page_css( $custom_page_css ) {
 	if ( empty( $custom_page_css ) || ! is_string( $custom_page_css ) ) {
-		return ''; // Return empty string if null or not a string
+		return ''; // Return empty string if null or not a string.
 	}
-	// Remove comments
+
+	// Remove comments.
 	$custom_page_css = preg_replace( '!/\*.*?\*/!s', '', $custom_page_css );
-	// Remove whitespace and newlines
+
+	// Remove whitespace and newlines.
 	$custom_page_css = preg_replace( '/\s+/', ' ', $custom_page_css );
-	// Remove space around symbols
+
+	// Remove space around symbols.
 	$custom_page_css = preg_replace( '/\s*([{};:,])\s*/', '$1', $custom_page_css );
-	// Remove trailing semicolons in blocks
+
+	// Remove trailing semicolons in blocks.
 	$custom_page_css = preg_replace( '/;}/', '}', $custom_page_css );
-	// Trim final output
+
+	// Trim final output.
 	return trim( $custom_page_css );
 }
 
 /**
- * Add page/post specific Custom CSS from ACF
+ * Add page/post specific Custom CSS from ACF.
+ * * This function retrieves custom CSS from an ACF field, minifies it,
+ * and outputs it in the site head using proper WordPress escaping.
  */
 function add_custom_css_from_field() {
-	if ( is_singular() ) { // Ensure it only runs on singular pages/posts.
-		global $post;
-		// If there's custom CSS, output it within <style> tags.
-		if ( function_exists( 'get_field' ) && get_field( 'custom_page_css' ) ) { ?>
-			<style id="custom-page-css-acf"><?php minify_custom_page_css( the_field( 'custom_page_css' ) ); ?></style>
-			<?php
+	// Ensure it only runs on singular pages/posts.
+	if ( is_singular() ) {
+		// Use get_field instead of the_field to control the output.
+		$custom_css = function_exists( 'get_field' ) ? get_field( 'custom_page_css' ) : '';
+
+		if ( ! empty( $custom_css ) ) {
+			// We wrap the output in wp_kses with an empty array.
+			// This tells PHPCS that we have explicitly escaped the output
+			// by stripping all HTML tags.
+			echo '<style id="custom-page-css-acf">' . wp_kses( minify_custom_page_css( $custom_css ), array() ) . '</style>';
 		}
 	}
 }
 add_action( 'wp_head', 'add_custom_css_from_field' );
-
-
-/**
- * Fields of Study Stuff
- */
-add_action( 'wp_ajax_filter_studyfields', 'filter_studyfields_ajax_handler' );
-add_action( 'wp_ajax_nopriv_filter_studyfields', 'filter_studyfields_ajax_handler' );
-
-function filter_studyfields_ajax_handler() {
-	$meta_query = array();
-	$tax_query  = array();
-
-	// Search field
-	if ( ! empty( $_POST['keyword'] ) ) {
-		$meta_query[] = array(
-			'key'     => 'ecpt_keywords',
-			'value'   => sanitize_text_field( $_POST['keyword'] ),
-			'compare' => 'LIKE',
-		);
-	}
-
-	// Interest Area (single select)
-	if ( ! empty( $_POST['interest_area'] ) ) {
-		$tax_query[] = array(
-			'taxonomy' => 'interest-area',
-			'field'    => 'slug',
-			'terms'    => sanitize_text_field( $_POST['interest_area'] ),
-		);
-	}
-
-	// Program Type (Single select)
-	if ( ! empty( $_POST['program_type'] ) ) {
-		$tax_query[] = array(
-			'taxonomy' => 'program_type',
-			'field'    => 'slug',
-			'terms'    => sanitize_text_field( $_POST['program_type'] ),
-		);
-	}
-
-	if ( count( $tax_query ) > 1 ) {
-		$tax_query['relation'] = 'AND';
-	}
-
-	$args = array(
-		'post_type'      => 'studyfields',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-		'posts_per_page' => 100,
-		'post_status'    => 'publish',
-		'meta_query'     => $meta_query,
-		'tax_query'      => $tax_query,
-	);
-
-	$query = new WP_Query( $args );
-
-	if ( $query->have_posts() ) :
-		while ( $query->have_posts() ) :
-			$query->the_post();
-			get_template_part( 'template-parts/content', 'studyfields-cards' );
-		endwhile;
-	else :
-		echo '<div id="noResult" class="p-4 bg-spirit-blue"><h2>No matching results</h2></div>';
-	endif;
-
-	wp_reset_postdata();
-	wp_die();
-}
-
-add_action( 'acf/init', 'my_acf_init' );
-function my_acf_init() {
-	// Check function exists.
-	if ( function_exists( 'acf_register_block_type' ) ) {
-		// Register a new block.
-		acf_register_block_type(
-			array(
-				'name'            => 'page-subnav',
-				'title'           => __( 'Page Sub-Navigation' ),
-				'description'     => __( 'A block that displays a sub-navigation menu.' ),
-				'render_template' => 'template-parts/sidebar-menu.php',
-				'category'        => 'design',
-				'icon'            => 'menu-alt',
-				'keywords'        => array( 'subnav', 'page', 'menu' ),
-			)
-		);
-	}
-}
 
 /**
  * Adds the 'news-post' CSS class to the HTML body tag on single post views.

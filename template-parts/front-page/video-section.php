@@ -17,17 +17,17 @@
 			<div class="xl:col-span-3">
 				<div class="aspect-video">
 					<?php
-					// 'Home' post ID
-					$post_id = 807;
+					// 'Home' post ID.
+					$home_id = 807;
 
-					// Get main video ID
-					$mainid = get_field( 'main_video_id', $post_id );
+					// Get main video ID as found in ACF field.
+					$mainid = get_field( 'main_video_id', $home_id );
 
-					// Initialize array for video IDs
+					// Initialize array for the additional video IDs, as found in the ACF field.
 					$video_ids = array();
 
-					if ( have_rows( 'youtube_video_ids', $post_id ) ) :
-						while ( have_rows( 'youtube_video_ids', $post_id ) ) :
+					if ( have_rows( 'youtube_video_ids', $home_id ) ) :
+						while ( have_rows( 'youtube_video_ids', $home_id ) ) :
 							the_row();
 							$video_id = get_sub_field( 'individual_youtube_video_id' );
 							if ( ! empty( $video_id ) ) {
@@ -36,10 +36,10 @@
 						endwhile;
 					endif;
 
-					// Turn into comma-separated string
+					// Turn into comma-separated string.
 					$vdid = implode( ',', $video_ids );
 
-					// Build and run the shortcode
+					// Build and run the shortcode so everything works!
 					echo do_shortcode( '[yt_playlist mainid="' . esc_attr( $mainid ) . '" vdid="' . esc_attr( $vdid ) . '"]' );
 					?>
 				</div>
