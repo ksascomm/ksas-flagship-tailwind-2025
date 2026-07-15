@@ -97,3 +97,22 @@ function filter_studyfields_ajax_handler() {
 }
 add_action( 'wp_ajax_filter_studyfields', 'filter_studyfields_ajax_handler' );
 add_action( 'wp_ajax_nopriv_filter_studyfields', 'filter_studyfields_ajax_handler' );
+
+/**
+ * Add noindex, nofollow robots headers to a Study Fields post type.
+ *
+ * @param array $robots Associative array of robots directives.
+ *
+ * @return array Modified robots directives.
+ */
+function ksas_noindex_custom_post_type( $robots ) {
+	// Check if we are viewing a single post or an archive.
+	if ( is_singular( 'studyfields' ) || is_post_type_archive( 'studyfields' ) ) {
+		return array(
+			'noindex'  => true,
+			'nofollow' => true,
+		);
+	}
+	return $robots;
+}
+add_filter( 'wp_robots', 'ksas_noindex_custom_post_type' );
