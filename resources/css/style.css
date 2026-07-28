@@ -1,14 +1,13 @@
+/* 1. All imports must come first */
 @import 'tailwindcss';
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/forms";
-
-/* External Layers */
 @import './wordpress.css' layer(utilities);
 @import './fonts.css' layer(utilities);
-
-/* Third Party / Legacy Blocks - Ignored by Purge Logic */
 @import "./google-cse.css";
 @import "./blocks.css";
+
+/* 2. Plugins and other directives go next */
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
 
 @theme {
 	/* JHU Branding Colors */

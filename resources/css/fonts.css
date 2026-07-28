@@ -69,8 +69,7 @@
     src:url('../fonts/icomoon/icomoon.eot');
     src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
         url('../fonts/icomoon/icomoon.woff') format('woff'),
-        url('../fonts/icomoon/icomoon.ttf') format('truetype'),
-        url('../fonts/icomoon/icomoon.svg#icomoon') format('svg');
+        url('../fonts/icomoon/icomoon.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

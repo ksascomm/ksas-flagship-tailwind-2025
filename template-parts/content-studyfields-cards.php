@@ -67,24 +67,24 @@ $bg_class = $is_aap ? 'bg-homewood-green hover:bg-mint-green' : 'bg-heritage-blu
 						<?php endif; ?>
 						
 						<?php $grad_degrees = get_field( 'graduate_degree_type' ); ?>
-<?php
-// 1. Define/Initialize the variable first
-$graduate_degree_type_checked_labels = get_field( 'graduate_degree_type' );
+						<?php
+						// 1. Define/Initialize the variable first
+						$graduate_degree_type_checked_labels = get_field( 'graduate_degree_type' );
 
-// 2. Ensure it's an array so in_array() doesn't crash
-$graduate_degrees = is_array( $graduate_degree_type_checked_labels ) ? $graduate_degree_type_checked_labels : array();
+						// 2. Ensure it's an array so in_array() doesn't crash
+						$graduate_degrees = is_array( $graduate_degree_type_checked_labels ) ? $graduate_degree_type_checked_labels : array();
 
-// 3. Now perform the strict check
-if ( in_array( 'Certificate', $graduate_degrees, true ) ) :
-	?>
-	<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
-		Graduate Certificate
-	</span>
-<?php elseif ( ! empty( $graduate_degrees ) ) : ?>
-	<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
-		Graduate Degree (<?php echo esc_html( implode( ', ', $graduate_degrees ) ); ?>)
-	</span>
-<?php endif; ?>
+						// 3. Now perform the strict check
+						if ( in_array( 'Certificate', $graduate_degrees, true ) ) :
+							?>
+							<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
+								Graduate Certificate
+							</span>
+						<?php elseif ( ! empty( $graduate_degrees ) ) : ?>
+							<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
+								Graduate Degree (<?php echo esc_html( implode( ', ', $graduate_degrees ) ); ?>)
+							</span>
+						<?php endif; ?>
 
 						<?php if ( $pci_text ) : ?>
 							<p class="hidden pt-2 text-base lg:block"><?php echo esc_html( $pci_text ); ?></p>

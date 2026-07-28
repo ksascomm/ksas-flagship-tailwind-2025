@@ -81,7 +81,7 @@ input#gsc-i-id1 {
 }
 
 .gsc-option {
-	color: var(--color-primary);
+	color: var(--color-primary) !important;
 }
 
 /**
@@ -104,7 +104,7 @@ button.gsc-search-button.gsc-search-button-v2 {
  * 4. Results: Titles & Links
  */
 .gsc-control-cse .gsc-table-result {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans) !important;
 }
 
 .gs-webResult.gs-result {
@@ -114,7 +114,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gs-webResult.gs-result a.gs-title,
 .gs-webResult.gs-result a.gs-title b,
 .gsc-result .gs-title {
-    @apply font-sans;
+	font-family: var(--font-sans) !important;
     font-size: 1.5rem !important;
     font-style: normal;
     height: inherit !important;
@@ -132,10 +132,6 @@ button.gsc-search-button.gsc-search-button-v2 {
     font-size: 1rem;
 }
 
-.gsc-control-cse .gsc-table-result {
-  font-family: worksans-regular; 
-}
-
 .gs-webResult.gs-result .gsc-url-top {
     font-size: 1.25rem;
 }
@@ -144,9 +140,9 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long {
     display: inherit !important;
     color: #4a484c;
-    @apply font-sans;
     font-weight: 400;
     font-style: normal;
+	font-family: var(--font-sans)
 }
 
 .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-breadcrumb {
@@ -199,7 +195,8 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion a.gs-title,
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion a.gs-title b {
     font-size: 1.5rem;
-    @apply font-bold font-heavy;
+	font-family: var(--font-heavy);
+	font-weight: var(--font-weight-bold)
 }
 
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion .gs-visibleUrl,
@@ -224,7 +221,9 @@ button.gsc-search-button.gsc-search-button-v2 {
 }
 
 .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
-    @apply bg-white text-heritage-blue border-heritage-blue;
+	background-color: var(--color-white);
+	color: var(--color-heritage-blue);
+	border-color: var(--color-heritage-blue);
     font-family: var(--font-heavy);
     font-weight: var(--font-bold);
 }
