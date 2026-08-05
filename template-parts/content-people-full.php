@@ -40,7 +40,7 @@
 						</h1>
 					</header>
 					<div class="position not-prose">
-						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal text-white font-heavy">
+						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal text-white font-sans-bold">
 						<?php if ( get_post_meta( $post->ID, 'ecpt_position', true ) ) : ?>
 							<?php echo wp_kses_post( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?>
 						<?php else : ?>
@@ -56,7 +56,7 @@
 					if ( get_post_meta( $post->ID, 'ecpt_email', true ) ) :
 						$email = get_post_meta( $post->ID, 'ecpt_email', true );
 						?>
-							<li class="pb-4 text-xl font-bold text-white font-heavy"><span class="fa-solid fa-envelope" aria-hidden="true"></span>
+							<li class="pb-4 text-xl font-bold text-white font-sans-bold"><span class="fa-solid fa-envelope" aria-hidden="true"></span>
 								<a class="text-white underline hover:text-primary" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>">
 							<?php echo esc_html( $email ); ?>
 								</a>
@@ -65,7 +65,7 @@
 
 						
 					<?php if ( get_post_meta( $post->ID, 'ecpt_phone', true ) ) : ?>
-						<li class="text-xl font-bold text-white font-heavy"><span class="fa-solid fa-phone-office" aria-hidden="true"></span> <?php echo esc_html( get_post_meta( $post->ID, 'ecpt_phone', true ) ); ?></li>
+						<li class="text-xl font-bold text-white font-sans-bold"><span class="fa-solid fa-phone-office" aria-hidden="true"></span> <?php echo esc_html( get_post_meta( $post->ID, 'ecpt_phone', true ) ); ?></li>
 					<?php endif; ?>
 
 					<?php if ( get_post_meta( $post->ID, 'ecpt_office', true ) ) : ?>

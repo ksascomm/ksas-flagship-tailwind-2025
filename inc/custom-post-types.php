@@ -16,6 +16,16 @@ add_action( 'wp_enqueue_scripts', 'ksas_flagship_custom_posts_scripts' );
 function ksas_flagship_custom_posts_scripts() {
 	if ( is_page_template( 'page-templates/fields-of-study.php' ) ) :
 		wp_enqueue_script( 'isotope-packaged', 'https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js', array(), '3.0.6', true );
+		$js_path    = get_template_directory() . '/dist/js/isotope-multi-dropdown.js';
+		$js_version = file_exists( $js_path ) ? filemtime( $js_path ) : FLAGSHIP_TAILWIND_VERSION;
+
+		wp_enqueue_script(
+			'isotope-multi-dropdown',
+			get_template_directory_uri() . '/dist/js/isotope-multi-dropdown.js',
+			array( 'jquery', 'isotope-packaged' ), // Declare dependencies if needed.
+			$js_version,
+			true
+		);
 	endif;
 }
 

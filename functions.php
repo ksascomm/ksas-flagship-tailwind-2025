@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '4.0.0' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '4.1.0' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
@@ -115,47 +115,8 @@ add_action( 'widgets_init', 'flagship_tailwind_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function flagship_tailwind_scripts() {
-	$css_path = get_template_directory() . '/dist/css/style.css';
-	$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
+require get_template_directory() . '/inc/enqueue-scripts.php';
 
-	// Use filemtime for both to force-refresh browsers on every save.
-	wp_enqueue_style( 'flagship-tailwind-style', get_template_directory_uri() . '/dist/css/style.css', array(), filemtime( $css_path ) );
-
-	wp_style_add_data( 'flagship-tailwind-style', 'rtl', 'replace' );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	wp_enqueue_script( 'font-awesome', 'https://kit.fontawesome.com/72c92fef89.js', array(), '6.5.2', false );
-
-	wp_enqueue_script( 'google-cse', 'https://cse.google.com/cse.js?cx=012258670098148303364:zptrsb24qaq', array(), FLAGSHIP_TAILWIND_VERSION, false );
-
-	wp_enqueue_script(
-		'siteimprove',
-		'https://siteimproveanalytics.com/js/siteanalyze_11464.js',
-		array(),
-		'1.0.0',
-		array(
-			'strategy'  => 'async',
-			'in_footer' => true,
-		)
-	);
-
-	wp_enqueue_script( 'flagship-tailwind-script', get_template_directory_uri() . '/dist/js/bundle.min.js', array( 'jquery' ), filemtime( $js_path ), true );
-
-	// Localize for AJAX (Pass the nonce to your JS).
-	wp_localize_script(
-		'flagship-tailwind-script',
-		'fsu_ajax',
-		array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( 'studyfields_filter_nonce' ),
-		)
-	);
-}
-add_action( 'wp_enqueue_scripts', 'flagship_tailwind_scripts' );
 
 /**
  * Custom post type functions.
@@ -209,84 +170,6 @@ require get_template_directory() . '/inc/class-twentytwenty-script-loader.php';
 require get_template_directory() . '/inc/gutenberg.php';
 
 /**
- * ACF Options Page
+ * Gutenberg Editor
  */
-if ( function_exists( 'acf_add_options_page' ) ) {
-
-	acf_add_options_page(
-		array(
-			'page_title' => 'Theme General Settings',
-			'menu_title' => 'Theme Settings',
-			'menu_slug'  => 'theme-general-settings',
-			'capability' => 'edit_posts',
-			'redirect'   => false,
-		)
-	);
-
-}
-
-/**
- * Minify page/post specific Custom CSS from ACF.
- *
- * @param string $custom_page_css Raw CSS string from ACF field.
- * @return string Minified CSS string or empty string if invalid.
- */
-function minify_custom_page_css( $custom_page_css ) {
-	if ( empty( $custom_page_css ) || ! is_string( $custom_page_css ) ) {
-		return ''; // Return empty string if null or not a string.
-	}
-
-	// Remove comments.
-	$custom_page_css = preg_replace( '!/\*.*?\*/!s', '', $custom_page_css );
-
-	// Remove whitespace and newlines.
-	$custom_page_css = preg_replace( '/\s+/', ' ', $custom_page_css );
-
-	// Remove space around symbols.
-	$custom_page_css = preg_replace( '/\s*([{};:,])\s*/', '$1', $custom_page_css );
-
-	// Remove trailing semicolons in blocks.
-	$custom_page_css = preg_replace( '/;}/', '}', $custom_page_css );
-
-	// Trim final output.
-	return trim( $custom_page_css );
-}
-
-/**
- * Add page/post specific Custom CSS from ACF.
- * * This function retrieves custom CSS from an ACF field, minifies it,
- * and outputs it in the site head using proper WordPress escaping.
- */
-function add_custom_css_from_field() {
-	// Ensure it only runs on singular pages/posts.
-	if ( is_singular() ) {
-		// Use get_field instead of the_field to control the output.
-		$custom_css = function_exists( 'get_field' ) ? get_field( 'custom_page_css' ) : '';
-
-		if ( ! empty( $custom_css ) ) {
-			// We wrap the output in wp_kses with an empty array.
-			// This tells PHPCS that we have explicitly escaped the output
-			// by stripping all HTML tags.
-			echo '<style id="custom-page-css-acf">' . wp_kses( minify_custom_page_css( $custom_css ), array() ) . '</style>';
-		}
-	}
-}
-add_action( 'wp_head', 'add_custom_css_from_field' );
-
-/**
- * Adds the 'news-post' CSS class to the HTML body tag on single post views.
- *
- * This function checks if the current page is a single post (and the post type
- * is 'post'). If true, it appends the 'news-post' class to the array of body classes.
- * It is hooked into the 'body_class' filter.
- *
- * @param array $classes An array of body classes.
- * @return array The filtered array of body classes.
- */
-function add_news_post_body_class( $classes ) {
-	if ( is_single() && 'post' === get_post_type() ) {
-		$classes[] = 'news-post';
-	}
-	return $classes;
-}
-add_filter( 'body_class', 'add_news_post_body_class' );
+require get_template_directory() . '/inc/acf-functions.php';

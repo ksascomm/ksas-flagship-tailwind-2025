@@ -53,7 +53,7 @@ get_header();
 						<?php the_title(); ?>
 					<?php endif; ?>
 				</h1>
-			<div class="mt-2 text-lg font-bold leading-tight tracking-tight text-white lg:text-xl 2xl:text-2xl font-heavy">
+			<div class="mt-2 text-lg font-bold leading-tight tracking-tight text-white lg:text-xl 2xl:text-2xl font-sans-bold">
 				<?php the_content(); ?>
 			</div>
 		</div>

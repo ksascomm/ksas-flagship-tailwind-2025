@@ -34,14 +34,14 @@ $bg_class = $is_aap ? 'bg-homewood-green hover:bg-mint-green' : 'bg-heritage-blu
 			
 			<div class="flex flex-col p-2 pb-10 transition-all duration-300 ease-out -translate-x-4 -translate-y-4 bg-white border shadow-md grow group-hover:-translate-y-6 group-hover:-translate-x-6 group-focus-within:-translate-y-6 group-focus-within:-translate-x-6 border-grey field group-focus-within:ring-4 group-focus-within:ring-medium-blue">
 				<div class="p-2">
-					<h2 id="title-<?php echo esc_attr( $ksas_current_id ); ?>" class="mb-3 text-xl font-bold font-serif-bold">
+					<h2 id="title-<?php echo esc_attr( $ksas_current_id ); ?>" class="mb-3 text-xl font-weight-semibold font-serif-semibold">
 						<?php the_title(); ?>
 					</h2>
 
 					<div class="items-center grow offerings">
 						
 						<?php if ( $has_majors ) : ?>
-							<span class="inline-block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
+							<span class="inline-block pr-1 text-lg text-medium-blue border-primary font-serif-semibold offering">
 								Major 
 								<?php
 								$undergrad_degrees = get_field( 'undergraduate_degree_type' );
@@ -52,16 +52,16 @@ $bg_class = $is_aap ? 'bg-homewood-green hover:bg-mint-green' : 'bg-heritage-blu
 						<?php endif; ?>
 
 						<?php if ( $has_majors && $has_minors ) : ?>
-							<span class="inline-block pr-1 text-lg font-bold text-medium-blue font-heavy offering" aria-hidden="true">&bull;</span>
+							<span class="inline-block pr-1 text-lg font-weight-semibold text-medium-blue font-serif-semibold offering" aria-hidden="true">&bull;</span>
 						<?php endif; ?>
 
 						<?php if ( $has_minors ) : ?>
-							<span class="inline-block pr-1 text-lg font-bold text-medium-blue font-heavy offering">Minor</span>
+							<span class="inline-block pr-1 text-lg font-weight-semibold text-medium-blue font-serif-semibold offering">Minor</span>
 						<?php endif; ?>
 
 						<?php $combined_degrees = get_field( 'combined_degree_type' ); ?>
 						<?php if ( $combined_degrees ) : ?>
-							<span class="block pr-1 text-lg font-bold text-medium-blue font-heavy offering">
+							<span class="block pr-1 text-lg font-weight-semibold text-medium-blue font-serif-semibold offering">
 								Combined Degree (<?php echo esc_html( implode( ', ', $combined_degrees ) ); ?>)
 							</span>
 						<?php endif; ?>
@@ -77,11 +77,11 @@ $bg_class = $is_aap ? 'bg-homewood-green hover:bg-mint-green' : 'bg-heritage-blu
 						// 3. Now perform the strict check
 						if ( in_array( 'Certificate', $graduate_degrees, true ) ) :
 							?>
-							<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
+							<span class="block pr-1 text-lg font-weight-semibold text-medium-blue border-primary font-serif-semibold offering">
 								Graduate Certificate
 							</span>
 						<?php elseif ( ! empty( $graduate_degrees ) ) : ?>
-							<span class="block pr-1 text-lg font-bold text-medium-blue border-primary font-heavy offering">
+							<span class="block pr-1 text-lg font-weight-semibold text-medium-blue border-primary font-serif-semibold offering">
 								Graduate Degree (<?php echo esc_html( implode( ', ', $graduate_degrees ) ); ?>)
 							</span>
 						<?php endif; ?>
@@ -92,7 +92,7 @@ $bg_class = $is_aap ? 'bg-homewood-green hover:bg-mint-green' : 'bg-heritage-blu
 					</div>
 				</div>
 
-				<div class="absolute bottom-0 w-full text-lg font-bold text-right transition-all duration-500 ease-in-out transform translate-y-4 opacity-0 -left-4 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100 font-heavy">
+				<div class="absolute bottom-0 w-full text-lg text-right transition-all duration-500 ease-in-out transform translate-y-4 opacity-0 font-weight-semibold -left-4 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100 font-serif-semibold">
 					<span class="px-4 text-sm lg:text-base">
 						<?php echo $is_aap ? 'Advanced Academic Programs' : 'View Website'; ?>
 						<i class="transition-transform duration-300 icon-new-tab2 group-hover:translate-x-1 group-focus-within:translate-x-1" aria-hidden="true"></i>

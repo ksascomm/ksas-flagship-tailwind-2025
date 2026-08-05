@@ -39,11 +39,11 @@
 			</div>
 			<!--Address -->
 			<div class="p-4 text-center lg:text-left">
-				<p class="font-bold font-heavy">Johns Hopkins University<br>Zanvyl Krieger School of Arts & Sciences<br>3400 N. Charles Street<br>Baltimore, MD 21218</p>
+				<p class="font-bold font-sans-bold">Johns Hopkins University<br>Zanvyl Krieger School of Arts & Sciences<br>3400 N. Charles Street<br>Baltimore, MD 21218</p>
 			</div>
 			<!-- Quicklinks -->
 			<div class="flex flex-wrap justify-center pt-6 text-center lg:text-left lg:justify-end lg:ml-40">
-				<ul class="font-bold font-heavy">
+				<ul class="font-bold font-sans-bold">
 					<li><a href="https://apply.jhu.edu/">Apply</a> <span class="fa fa-external-link"></span></li>
 					<li><a href="https://jhu.edu">Johns Hopkins University</a> <span class="fa fa-external-link"></span></li>
 					<li><a href="https://www.jhu.edu/contact/">Contact Us</a> <span class="fa fa-external-link"></span></li>

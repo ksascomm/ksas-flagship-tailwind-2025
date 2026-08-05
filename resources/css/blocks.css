@@ -64,7 +64,7 @@ a.wp-block-button__link:hover {
 }
 
 .wp-block-ksas-callouts-ksas-callout-block.callout {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 	font-style: normal;
 	font-display: swap;
@@ -85,7 +85,7 @@ a.wp-block-button__link:hover {
 }
 
 .wp-block-pb-accordion-item.c-accordion__item .c-accordion__title {
-	@apply p-4 mb-0 text-lg font-bold border text-heritage-blue font-heavy border-grey;
+	@apply p-4 mb-0 text-lg font-bold border text-heritage-blue font-sans-bold border-grey;
 }
 
 .wp-block-pb-accordion-item.c-accordion__item .c-accordion__title::after {

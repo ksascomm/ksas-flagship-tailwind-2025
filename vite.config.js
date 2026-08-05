@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 import fs from "fs";
 import { minify } from "terser"; // Modern JS minification
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 // ESM Imports for PostCSS plugins
 import tailwindcss from "@tailwindcss/postcss";
@@ -182,7 +183,6 @@ export default defineConfig(({ mode }) => {
         files: [
           "resources/js/twentytwenty.js",
           "resources/js/custom-jquery.js",
-          "resources/js/isotope-multi-dropdown.js",
           "resources/js/wai-dropdown.js",
           "resources/js/wai-accordion.js",
         ],
@@ -193,6 +193,23 @@ export default defineConfig(({ mode }) => {
           "resources/images": "dist/images",
           "resources/fonts": "dist/fonts",
         },
+      }),
+      viteStaticCopy({
+        targets: [
+          {
+            src: "resources/js/isotope-multi-dropdown.js",
+            dest: "js",
+            rename: { stripBase: 2 },
+            // Minify content on the fly during build
+            async transform(content) {
+              if (isProduction) {
+                const result = await minify(content.toString());
+                return result.code;
+              }
+              return content;
+            },
+          },
+        ],
       }),
     ],
   };

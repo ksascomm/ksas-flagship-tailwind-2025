@@ -67,7 +67,7 @@ h6,
 .widget h3,
 .widget h4,
 ul.nav {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 }
 
@@ -513,7 +513,7 @@ textarea {
 }*/
 
 dl dt {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 }
 
@@ -553,7 +553,7 @@ dl dt {
 		padding-left: calc(var(--spacing) * 2);
 		--tw-leading: calc(var(--spacing) * 6);
 		line-height: calc(var(--spacing) * 6);
-		font-family: var(--font-heavy);
+		font-family: var(--font-sans-bold);
 		font-weight: var(--font-bold);
 	}
 
@@ -563,7 +563,7 @@ dl dt {
 		padding-left: calc(var(--spacing) * 2);
 		font-size: var(--text-base);
 		line-height: var(--tw-leading, var(--text-base--line-height));
-		font-family: var(--font-heavy);
+		font-family: var(--font-sans-bold);
 		font-weight: var(--font-bold);
 		color: var(--color-medium-blue);
 		font-style: normal;
@@ -695,7 +695,7 @@ dl dt {
 .menu-button-links .menu a {
 	font-size: var(--text-base);
 	line-height: var(--tw-leading, var(--text-base--line-height));
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 	color: var(--color-heritage-blue);
 	border-bottom: none;
@@ -767,7 +767,7 @@ dl dt {
 }
 
 .sidebar-menu ul.nav li a {
-	@apply font-bold leading-snug font-heavy;
+	@apply font-bold leading-snug font-sans-bold;
 }
 
 .sidebar-menu ul.nav li a:hover {
@@ -1102,7 +1102,7 @@ ul.page-numbers li .page-numbers.current {
 
 .study-fields button {
 	@apply px-2 py-2 mr-4 text-center border border-solid;
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 }
 
@@ -1188,7 +1188,7 @@ ul.page-numbers li .page-numbers.current {
 }
 
 .breadcrumbs span {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 }
 
@@ -1267,7 +1267,7 @@ ul.page-numbers li .page-numbers.current {
 .tablepress tfoot th,
 .tablepress thead td,
 .tablepress thead th {
-	@apply px-3 pt-2 pb-3 font-bold font-heavy;
+	@apply px-3 pt-2 pb-3 font-bold font-sans-bold;
 }
 
 .tablepress tfoot th,
@@ -1564,7 +1564,7 @@ ul.page-numbers li .page-numbers.current {
 
 .page-template-fields-of-study .prose .entry-content> :not(.wp-block-group) {
 	color: var(--color-white);
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 }
 
@@ -1850,7 +1850,7 @@ button.toggle.search-toggle.desktop-search-toggle svg {
 	color: var(--color-primary);
 	border-bottom: 2px solid transparent;
 	font-weight: var(--font-bold);
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 }
 
 #site-header a:hover,
@@ -1931,10 +1931,37 @@ body.page-template-front #site-header .button.toggle {
 	background-color: transparent;
 }
 
-
+/* Modal Menu Overrides (Aug 2026) ----------------------------- */
+/*
 .showing-menu-modal #site-header {
 	display: none;
-}
+}*/
+  /* Prevent background page scrolling when modal is open */
+  body.showing-menu-modal {
+    overflow: hidden;
+  }
+
+  /* Force the menu modal container to cover the entire viewport */
+  .showing-menu-modal .menu-modal {
+    position: fixed;
+    inset: 0;                   /* top: 0, right: 0, bottom: 0, left: 0 */
+    z-index: 9999;              /* Keeps modal layer above header and page content */
+    background-color: rgba(255, 255, 255, .85);  /* Solid background prevents header text from bleeding through */
+    overflow-y: auto;           /* Allows menu to scroll if content exceeds screen height */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  /* Ensure the toggle/close button stays clickable above the modal overlay */
+  .showing-menu-modal .header-toggle-button,
+  .showing-menu-modal .menu-toggle {
+    position: relative;
+    z-index: 10000;             /* Higher than the modal's 9999 */
+  }
+
+  /* Ensure the header container doesn't clip the full-screen fixed modal */
+  .showing-menu-modal #site-header {
+    overflow: visible !important;
+  }
 
 .header-inner {
 	max-width: 168rem;
@@ -2152,7 +2179,7 @@ body:not(.enable-search-modal) .site-logo img {
 
 .mobile-nav-toggle .toggle-text,
 .mobile-search-toggle .toggle-text {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: 700;
 }
 
@@ -2253,7 +2280,7 @@ button.close-nav-toggle .toggle-text {
 
 .modal-menu>li>a,
 .modal-menu>li>.ancestor-wrapper>a {
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-bold);
 	font-size: 1.5rem;
 	letter-spacing: -0.0375em;
@@ -2506,6 +2533,8 @@ button.sub-menu-toggle.active svg {
 	left: 0;
 	opacity: 1;
 	transition: opacity 0.2s linear;
+	z-index:1001;
+	height:auto;
 }
 
 .search-modal.active .search-modal-inner {

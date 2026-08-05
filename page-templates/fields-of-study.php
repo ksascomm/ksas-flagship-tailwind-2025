@@ -111,7 +111,7 @@ get_header();
 				
 				<div class="flex flex-wrap items-end gap-8 mb-8">
 					<div class="flex flex-col">
-						<label class="mt-4 mb-2 text-2xl font-bold font-heavy" for="filter-program">Program Type:</label>
+						<label class="mt-4 mb-2 text-2xl font-bold font-sans-bold" for="filter-program">Program Type:</label>
 						<select class="mb-2 mr-4 border-2 border-solid form-select border-grey h-11" name="program_type" id="filter-program">
 							<option value="">All Program Types</option>
 							<?php
@@ -134,7 +134,7 @@ get_header();
 					</div>
 
 					<div class="flex flex-col">
-						<label class="mt-4 mb-2 text-2xl font-bold font-heavy" for="filter-interest">Interest Area:</label>
+						<label class="mt-4 mb-2 text-2xl font-bold font-sans-bold" for="filter-interest">Interest Area:</label>
 						<select class="mb-2 mr-4 border-2 border-solid form-select border-grey h-11" name="interest_area" id="filter-interest">
 							<option value="">All Interest Areas</option>
 							<?php
@@ -158,14 +158,14 @@ get_header();
 					</div>
 
 					<div class="pb-2">
-						<button class="p-2 mx-1 mt-2 mb-2 text-lg font-bold leading-tight text-white capitalize border-b-0 font-heavy all button bg-heritage-blue hover:bg-spirit-blue" type="button" id="clear-filters">
+						<button class="p-2 mx-1 mt-2 mb-2 text-lg font-bold leading-tight text-white capitalize border-b-0 font-sans-bold all button bg-heritage-blue hover:bg-spirit-blue" type="button" id="clear-filters">
 							Clear Filters
 						</button>
 					</div>
 				</div>
 
 				<fieldset class="w-full mt-8 border-none !p-0 !m-0">
-					<legend class="mb-2 text-xl font-bold font-heavy">Or, search by major/minor name, area of study, or description</legend>
+					<legend class="mb-2 text-xl font-bold font-sans-bold">Or, search by major/minor name, area of study, or description</legend>
 					<div class="flex items-center">
 						<label class="sr-only" for="id_search">Search Fields of Study</label>
 						<input class="w-full h-10 p-2 bg-white border rounded-lg outline-none border-grey lg:w-7/12 quicksearch focus:ring-2 focus:ring-heritage-blue"" 
@@ -203,7 +203,7 @@ get_header();
 						?>
 				</div>
 				<div id="noResult" class="hidden py-12 mt-4 text-center border-2 border-dashed border-grey-light">
-					<p class="text-2xl font-bold text-heritage-blue font-heavy">No Programs Found</p>
+					<p class="text-2xl font-bold text-heritage-blue font-sans-bold">No Programs Found</p>
 					<p class="text-lg">Try adjusting your filters or search terms.</p>
 				</div>
 			</div>

@@ -30,3 +30,21 @@ function flagship_tailwind_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'flagship_tailwind_pingback_header' );
+
+/**
+ * Adds the 'news-post' CSS class to the HTML body tag on single post views.
+ *
+ * This function checks if the current page is a single post (and the post type
+ * is 'post'). If true, it appends the 'news-post' class to the array of body classes.
+ * It is hooked into the 'body_class' filter.
+ *
+ * @param array $classes An array of body classes.
+ * @return array The filtered array of body classes.
+ */
+function add_news_post_body_class( $classes ) {
+	if ( is_single() && 'post' === get_post_type() ) {
+		$classes[] = 'news-post';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_news_post_body_class' );

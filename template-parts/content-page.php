@@ -32,12 +32,12 @@
 								</div>
 								<?php the_sub_field( 'card_title' ); ?>
 							</h2>
-							<p class="text-lg font-bold tracking-tight text-center font-heavy">
+							<p class="text-lg font-bold tracking-tight text-center font-sans-bold">
 								<?php the_sub_field( 'card_front' ); ?>
 							</p>
 						</div>
 						<div class="absolute top-0 bottom-0 left-0 right-0 h-full w-full opacity-0 transition ease-in duration-200 flex flex-col justify-center bg-<?php the_sub_field( 'card_back_color' ); ?> hover:opacity-100 focus:opacity-100" id="<?php the_sub_field( 'card_title' ); ?>" tabindex="0">
-							<div class="px-4 py-6 text-base font-bold font-heavy">
+							<div class="px-4 py-6 text-base font-bold font-sans-bold">
 								<?php the_sub_field( 'card_back' ); ?>
 							</div>
 						</div>

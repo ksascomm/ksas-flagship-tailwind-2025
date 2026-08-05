@@ -35,10 +35,12 @@
 	--font-sans-light: "worksans-light", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-sans: "worksans-regular", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
 	--font-sans-medium: "worksans-medium", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-semi: "worksans-semibold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-heavy: "worksans-bold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-serif: "robotoslab-medium", "Georgia", "serif";
-	--font-serif-bold: "robotoslab-bold", "Georgia", "serif";
+	--font-sans-semibold: "worksans-semibold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
+	--font-sans-bold: "worksans-bold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
+	--font-serif: "hopkinsslab-regular", "Georgia", "serif";
+	--font-serif-medium: "hopkinsslab-medium", "Georgia", "serif";
+	--font-serif-semibold: "hopkinsslab-semibold", "Georgia", "serif";
+	--font-serif-bold: "hopkinsslab-bold", "Georgia", "serif";
 
 	/* Typography Settings (Replacing tailwind.config.js values) */
 	--text-sm: .875rem;
@@ -49,6 +51,13 @@
 	--text-3xl: 1.875rem;
 	--text-4xl: 2.25rem;
 	--text-4xl: 3rem;
+
+	/* Font Weights */
+	--font-weight-light: 300;
+ 	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
 
 	/* Breakpoints */
 	--breakpoint-sm: 40rem;
@@ -118,7 +127,7 @@
 
 	/* H1 Heading with JHU Serif Font */
 	:where(.prose h1) {
-		font-family: var(--font-serif-bold);
+		font-family: var(--font-serif-semibold);
 		font-weight: 700;
 		font-size: 4rem;
 		margin-bottom: 1rem;
@@ -127,7 +136,7 @@
 
 	/* H2-H5 Headings with JHU Sans Font */
 	:where(.prose h2, .prose h3, .prose h4, .prose h5) {
-		font-family: var(--font-heavy);
+		font-family: var(--font-sans-bold);
 		font-weight: 700;
 	}
 
@@ -163,7 +172,7 @@
 	}
 
 	:where(.prose strong, .prose b, .prose a strong) {
-		font-family: var(--font-heavy);
+		font-family: var(--font-sans-bold);
 		font-weight: 700;
 	}
 

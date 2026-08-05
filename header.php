@@ -19,24 +19,13 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-5VTN64C');</script>
-	<!-- End Google Tag Manager -->
 	<meta name="facebook-domain-verification" content="s1lj448peh4wqw24bgcc5f2t6n23tc" />
 </head>
 
 <body <?php body_class(); ?>>
-	<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VTN64C"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <?php wp_body_open(); ?>
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'flagship-tailwind' ); ?></a>
-	<div class="relative z-[1000] w-full border-b-8 border-medium-blue">
+	<div class="relative w-full border-b-8 z-1000 border-medium-blue">
 		<?php
 		if ( is_front_page() ) :
 			?>
@@ -84,7 +73,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							</a>
 						</div>
 					</div>
-					<div class="self-center text-lg font-bold desktop-menu sm:mb-0 font-heavy">
+					<div class="self-center text-lg font-bold desktop-menu sm:mb-0 font-sans-bold">
 						<div class="flex flex-col my-4 md:flex-row-reverse" id="header-quicklinks">
 							<a class="px-3 py-2 text-xs text-center text-white uppercase hover:bg-medium-blue sm:my-4 md:my-0" href="https://magazine.krieger.jhu.edu">Arts & Sciences Magazine <i class="icon-new-tab2"></i></a>
 							<i class="px-2 mt-2 text-white fa-solid fa-pipe"></i>
@@ -95,34 +84,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<div class="flex flex-col my-4 md:flex-row-reverse">
 							<div class="mr-3 rounded-md">
 								<form method="GET" action="<?php echo esc_url( site_url( '/search' ) ); ?>" role="search" aria-label="Site Search" class="bg-white rounded-md shadow-md site-search sm:mb-2 lg:mb-0">
-									<input type="text" value="<?php echo get_search_query(); ?>" name="q" class="!pl-[6px] text-sm text-primary w-60" id="mobile-search" placeholder="Search this site..." aria-label="search"/>
+									<input type="text" value="<?php echo get_search_query(); ?>" name="q" class="pl-1.5! text-sm text-primary w-60" id="mobile-search" placeholder="Search this site..." aria-label="search"/>
 									<label for="mobile-search" class="screen-reader-text">
 										Search This Website
 									</label>
-									<button type="submit" class="px-4 py-2 text-sm font-bold text-white border border-transparent shadow-md rounded-r-md font-heavy bg-medium-blue hover:bg-heritage-blue" aria-label="search"><span class="fa-solid fa-magnifying-glass"></span></button>
+									<button type="submit" class="px-4 py-2 text-sm font-bold text-white border border-transparent shadow-md rounded-r-md font-sans-bold bg-medium-blue hover:bg-heritage-blue" aria-label="search"><span class="fa-solid fa-magnifying-glass"></span></button>
 								</form>
 							</div>
 						</div>
-						<div role="navigation" class="header-navigation-wrapper lg:mr-6 xl:-mr-[1.125rem] xl:overflow-x-hidden">
+						<div role="navigation" class="header-navigation-wrapper lg:mr-6 xl:-mr-4.5 xl:overflow-x-hidden">
 							<ul id="default-menu" class="flex flex-row mt-0 text-white " aria-label="<?php _e( 'Main Menu', 'textdomain' ); ?>">
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-heavy hover:bg-medium-blue ">Departments & Programs</a>
+									<a href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue ">Departments & Programs</a>
 								</li>								
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/fields/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-heavy hover:bg-medium-blue">Fields of Study</a>
+									<a href="<?php echo esc_url( site_url( '/academics/fields/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Fields of Study</a>
 								</li>
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-heavy hover:bg-medium-blue">Majors & Minors</a>
+									<a href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Majors & Minors</a>
 								</li>
 									<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-heavy hover:bg-medium-blue">Research</a>
+									<a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Research</a>
 								</li>
 								<li class="grow">
 									<div class="pb-1 header-toggles hide-no-js">
 										<div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
 											<button class="block text-center text-white toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
 											<span class="toggle-inner">
-												<span class="toggle-text pr-1.5 !font-heavy !font-bold"><?php esc_attr_e( 'Menu', 'twentytwenty' ); ?></span>
+												<span class="toggle-text pr-1.5 !font-sans-bold !font-bold"><?php esc_attr_e( 'Menu', 'twentytwenty' ); ?></span>
 												<span class="fa-solid fa-bars -mt-0.5"></span>
 											</span>
 										</button><!-- .nav-toggle -->

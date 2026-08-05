@@ -72,7 +72,7 @@ input#gsc-i-id1 {
     background: none !important;
     text-indent: 0 !important;
     color: #31261d;
-    font-family: var(--font-heavy);
+    font-family: var(--font-sans-bold);
     font-weight: var(--font-bold);
 }
 
@@ -121,7 +121,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 }
 
 .gs-webResult.gs-result a.gs-title b {
-    font-family: var(--font-heavy);
+    font-family: var(--font-sans-bold);
     font-weight: var(--font-bold);
 }
 
@@ -153,7 +153,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long b,
 .gs-bidi-start-align.gs-snippet b {
     font-style: italic;
-    font-family: var(--font-heavy);
+    font-family: var(--font-sans-bold);
     font-weight: 700;
 }
 
@@ -195,7 +195,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion a.gs-title,
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion a.gs-title b {
     font-size: 1.5rem;
-	font-family: var(--font-heavy);
+	font-family: var(--font-sans-bold);
 	font-weight: var(--font-weight-bold)
 }
 
@@ -203,7 +203,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion .gs-promotion-text-cell .gs-visibleUrl,
 .gsc-webResult.gsc-result.gsc-promotion .gs-promotion .gs-promotion-text-cell .gs-snippet {
     font-size: 1.25rem;
-    font-family: var(--font-heavy);
+    font-family: var(--font-sans-bold);
     font-weight: var(--font-bold);
 }
 
@@ -224,7 +224,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 	background-color: var(--color-white);
 	color: var(--color-heritage-blue);
 	border-color: var(--color-heritage-blue);
-    font-family: var(--font-heavy);
+    font-family: var(--font-sans-bold);
     font-weight: var(--font-bold);
 }
 

@@ -27,9 +27,9 @@
 			<p class="py-4 text-lg xl:text-2xl">Undergraduate students at the Krieger School major or double major in biology, physics, writing, economics, history, and more. Our programs encourage lifelong learning, foster independent and original research, and connect students with faculty doing groundbreaking work.</p>
 			<div class="my-4">
 				<ul class="prose uppercase">
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold " href="<?php echo esc_url( site_url( '/academics/fields/#program_type=undergrad_program' ) ); ?>"><i class="fa-solid fa-square"></i> Undergraduate Programs</a></li>
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold"  href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>"><i class="fa-solid fa-square"></i> Majors and minors</a></li>
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold"  href="https://undergrad.krieger.jhu.edu/"><i class="fa-solid fa-square"></i> Krieger undergraduate experience <i class="icon-new-tab2"></i></a></li>
+					<li><a class="text-sais-blue! hover:text-primary! font-sans-bold " href="<?php echo esc_url( site_url( '/academics/fields/#program_type=undergrad_program' ) ); ?>"><i class="fa-solid fa-square"></i> Undergraduate Programs</a></li>
+					<li><a class="text-sais-blue! hover:text-primary! font-sans-bold"  href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>"><i class="fa-solid fa-square"></i> Majors and minors</a></li>
+					<li><a class="text-sais-blue! hover:text-primary! font-sans-bold"  href="https://undergrad.krieger.jhu.edu/"><i class="fa-solid fa-square"></i> Krieger undergraduate experience <i class="icon-new-tab2"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -49,11 +49,11 @@
 			</h2>
 			<p class="py-4 text-lg xl:text-2xl">Master’s and doctoral students at the Krieger School work closely with key faculty to build their own research, improve teaching skills, and contribute to pioneering work. Our graduate students are a vital part of our academic programs.</p>
 			<div class="my-4">
-				<ul class="font-bold prose uppercase font-heavy">
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold " href="<?php echo esc_url( site_url( '/academics/masters-doctorates' ) ); ?>"><i class="fa-solid fa-square"></i> Full-time master’s and doctoral programs </a></li>
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold "  href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>"><i class="fa-solid fa-square"></i> Academic departments</a></li>
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold "  href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>"><i class="fa-solid fa-square"></i> Research at the Krieger School</a></li>
-					<li><a class="!text-sais-blue hover:!text-primary font-heavy font-bold "  href="https://advanced.jhu.edu/"><i class="fa-solid fa-square"></i> Professional master's programs <i class="icon-new-tab2"></i></a></li>
+				<ul class="font-bold prose uppercase font-sans-bold">
+					<li><a class="!text-sais-blue hover:!text-primary font-sans-bold font-bold " href="<?php echo esc_url( site_url( '/academics/masters-doctorates' ) ); ?>"><i class="fa-solid fa-square"></i> Full-time master’s and doctoral programs </a></li>
+					<li><a class="!text-sais-blue hover:!text-primary font-sans-bold font-bold "  href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>"><i class="fa-solid fa-square"></i> Academic departments</a></li>
+					<li><a class="!text-sais-blue hover:!text-primary font-sans-bold font-bold "  href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>"><i class="fa-solid fa-square"></i> Research at the Krieger School</a></li>
+					<li><a class="!text-sais-blue hover:!text-primary font-sans-bold font-bold "  href="https://advanced.jhu.edu/"><i class="fa-solid fa-square"></i> Professional master's programs <i class="icon-new-tab2"></i></a></li>
 					
 				</ul>
 			</div>

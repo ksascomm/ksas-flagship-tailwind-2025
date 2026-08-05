@@ -28,7 +28,7 @@ if ( ! function_exists( 'flagship_tailwind_posted_on' ) ) :
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
 			esc_html_x( '%s', 'post date', 'flagship-tailwind' ),
-			'<span class="font-bold font-heavy">' . $time_string . '</span>'
+			'<span class="font-bold font-sans-bold">' . $time_string . '</span>'
 		);
 
 		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -269,3 +269,24 @@ function twentytwenty_nav_menu_social_icons( $item_output, $item, $depth, $args 
 }
 
 add_filter( 'walker_nav_menu_start_el', 'twentytwenty_nav_menu_social_icons', 10, 4 );
+
+/**
+ * Gets unique ID.
+ *
+ * This is a PHP implementation of Underscore's uniqueId method. A static variable
+ * contains an integer that is incremented with each call. This number is returned
+ * with the optional prefix. As such the returned value is not universally unique,
+ * but it is unique across the life of the PHP process.
+ *
+ * @see wp_unique_id() Themes requiring WordPress 5.0.3 and greater should use this instead.
+ *
+ * @param string $prefix Prefix for the returned ID.
+ * @return string Unique ID.
+ */
+function twentytwenty_unique_id( $prefix = '' ) {
+	static $id_counter = 0;
+	if ( function_exists( 'wp_unique_id' ) ) {
+		return wp_unique_id( $prefix );
+	}
+	return $prefix . (string) ++$id_counter;
+}

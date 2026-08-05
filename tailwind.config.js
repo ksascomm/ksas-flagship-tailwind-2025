@@ -37,7 +37,7 @@ module.exports = {
                 marginBottom: "0rem",
                 fontSize: "4rem",
                 fontWeight: "700",
-                fontFamily: "robotoslab-bold, Georgia, serif",
+                fontFamily: "hopkinsslab-bold, Georgia, serif",
               },
               h2: {
                 marginTop: "0.5rem",
@@ -159,9 +159,9 @@ module.exports = {
             maxWidth: "75ch", // increase on large screens
           },
         },
-        '2xl': {
+        "2xl": {
           css: {
-			h2: {
+            h2: {
               marginTop: theme("spacing.2"), // e.g. mt-2 (.5rem)
               marginBottom: theme("spacing.2"),
               fontSize: "2rem",
@@ -176,7 +176,7 @@ module.exports = {
               marginBottom: "0.5rem",
               fontSize: "1.25rem",
             },
-			fontSize: "1.25rem",
+            fontSize: "1.25rem",
             maxWidth: "85ch",
           },
         },

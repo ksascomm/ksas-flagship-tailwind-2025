@@ -39,7 +39,7 @@
 							<div class="relative z-10 max-w-4xl mx-auto bg-white border-2 shadow-md border-medium-blue fx fadeIn">
 								<div class="px-10 -translate-y-1/2">
 									<div class="text-center uppercase px-4.5 py-3 border-2 border-medium-blue bg-white inline-block tracking-widest">
-										<h2 class="not-prose! m-0! text-xl! leading-none!"><?php the_sub_field( 'section_title' ); ?></h2>
+										<h2 class="not-prose! m-0! text-xl! leading-none! font-serif-semibold font-weight-semibold!"><?php the_sub_field( 'section_title' ); ?></h2>
 									</div>
 								</div>
 								<div class="p-6 pt-0">

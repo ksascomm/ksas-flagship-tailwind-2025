@@ -66,10 +66,10 @@
 											</svg>
 											<div class="relative z-10">
 												<?php if ( get_sub_field( 'quotation' ) ) : ?>
-													<p class="pt-8 pb-4 pl-8 pr-4 font-bold leading-6 font-heavy"><?php the_sub_field( 'quotation' ); ?></p>
+													<p class="pt-8 pb-4 pl-8 pr-4 font-bold leading-6 font-sans-bold"><?php the_sub_field( 'quotation' ); ?></p>
 												<?php endif; ?>
 												<?php if ( get_sub_field( 'cite' ) ) : ?>
-													<cite class="pt-8 pb-4 pl-8 pr-4 text-base not-italic font-bold font-heavy text-medium-blue"><?php the_sub_field( 'cite' ); ?></cite>
+													<cite class="pt-8 pb-4 pl-8 pr-4 text-base not-italic font-bold font-sans-bold text-medium-blue"><?php the_sub_field( 'cite' ); ?></cite>
 												<?php endif; ?>
 											</div>
 										</blockquote>
@@ -101,7 +101,7 @@
 							</div>
 						<?php endif; ?>
 						<?php if ( get_sub_field( 'statistic_head' ) ) : ?>
-							<div class="text-3xl font-bold statistic-heading font-heavy text-homewood-green">
+							<div class="text-3xl font-bold statistic-heading font-sans-bold text-homewood-green">
 								<?php the_sub_field( 'statistic_head' ); ?>
 							</div>
 						<?php endif; ?>

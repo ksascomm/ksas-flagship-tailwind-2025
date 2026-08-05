@@ -20,6 +20,42 @@
   }
 
 @font-face {
+	font-family: "hopkinsslab-regular";
+	src: url("../fonts/hopkins_slab/HopkinsSlab-Regular.woff") format("woff");
+    font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	font-optical-sizing: auto;
+}
+
+@font-face {
+	font-family: "hopkinsslab-medium";
+	src: url("../fonts/hopkins_slab/HopkinsSlab-Medium.woff") format("woff");
+    font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	font-optical-sizing: auto;
+}
+
+@font-face {
+	font-family: "hopkinsslab-semibold";
+	src: url("../fonts/hopkins_slab/hopkinsslab-semibold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	font-optical-sizing: auto;
+}
+
+@font-face {
+	font-family: "hopkinsslab-bold";
+	src: url("../fonts/hopkins_slab/HopkinsSlab-Bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	font-optical-sizing: auto;
+}
+
+@font-face {
 	font-family: "worksans-light";
 	src: url("../fonts/work_sans/WorkSans-Light.woff") format("woff");
 	font-weight: 300;

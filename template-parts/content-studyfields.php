@@ -37,16 +37,16 @@
 			<div class="pr-4 mt-4">
 				<span>Students can:</span>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_majors', true ) ) : ?>
-					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy">Major</span>
+					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-sans-bold">Major</span>
 				<?php endif; ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_minors', true ) ) : ?>
-					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy">Minor</span>
+					<span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-sans-bold">Minor</span>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
 		<?php if ( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ) : ?>
 			<div class="pr-4 mt-4">
-				<span>Degrees Offered:</span> <span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-heavy"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ); ?></span>
+				<span>Degrees Offered:</span> <span class="inline-block px-2 mx-1 text-lg font-bold text-primary bg-spirit-blue font-sans-bold"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_degreesoffered', true ) ); ?></span>
 			</div>
 		<?php endif; ?>
 	</div>

@@ -35,11 +35,11 @@ if ( ! empty( $callouts ) ) :?>
 					Spotlight
 				</span>
 				<img class="w-full py-4" src="<?php echo esc_url( $callout->acf->ecpt_header_background ); ?>">
-				<div class="text-2xl font-semi text-white font-semi">
+				<div class="text-2xl text-white font-sans-semibold">
 					<?php echo esc_html( $callout->title->rendered ); ?>
 				</div>
 				<div>
-					<a class="text-xl italic font-semi font-semi text-gold hover:underline hover:underline-offset-2" href="https://magazine.krieger.jhu.edu">
+					<a class="text-xl italic font-sans-semibold text-gold hover:underline hover:underline-offset-2" href="https://magazine.krieger.jhu.edu">
 						Arts & Sciences Magazine <span class="pl-1 fa-regular fa-square-up-right"></span>
 					</a>
 				</div>

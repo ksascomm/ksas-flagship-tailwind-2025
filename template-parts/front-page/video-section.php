@@ -48,7 +48,7 @@
 				<p class="py-12 text-2xl font-bold prose text-white font-serif-bold">
 					Everyone from first-year students to tenured professors engages in hands-on research at the Krieger School: in labs, libraries, museums, and communities. See what kind of discoveries you can make.
 				</p>
-				<div class="my-4"><a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="p-4 text-base font-bold bg-white border-none rounded-md text-heritage-blue font-heavy lg:text-lg hover:bg-spirit-blue hover:text-primary">Find Out More</a></div>
+				<div class="my-4"><a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="p-4 text-base font-bold bg-white border-none rounded-md text-heritage-blue font-sans-bold lg:text-lg hover:bg-spirit-blue hover:text-primary">Find Out More</a></div>
 			</div>
 		</div>
 	</div>
