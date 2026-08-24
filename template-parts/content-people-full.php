@@ -40,7 +40,7 @@
 						</h1>
 					</header>
 					<div class="position not-prose">
-						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal text-white font-sans-bold">
+						<h2 class="pr-2 my-4 text-2xl font-bold leading-normal text-white font-serif-bold">
 						<?php if ( get_post_meta( $post->ID, 'ecpt_position', true ) ) : ?>
 							<?php echo wp_kses_post( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?>
 						<?php else : ?>

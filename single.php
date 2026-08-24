@@ -16,7 +16,7 @@ get_header();
 				if ( is_singular() ) :
 					the_title( '<h1 class="tracking-tight leading-10 sm:leading-none text-3xl lg:text-4xl xl:text-[44px] lg:pl-2 xl:pl-0 py-4 mb-0">', '</h1>' );
 			else :
-				the_title( '<h2 class="font-bold entry-title font-sans-bold"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				the_title( '<h2 class="font-bold entry-title font-serif-bold"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 			endif;
 			?>
 			</div>

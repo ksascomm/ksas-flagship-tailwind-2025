@@ -33,12 +33,12 @@
 			<div class="col-span-3 lg:col-span-2">
 			<?php if ( is_singular( 'people' ) ) : ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_position', true ) ) : ?>
-					<h2 class="font-bold font-sans-bold"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h2>
+					<h2 class="font-bold font-serif-bold"><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h2>
 				<?php endif; ?>
 			<?php endif; ?>
 			<?php if ( is_page_template( 'page-templates/people-directory.php' ) ) : ?>
 				<div class="prose-sm prose lg:prose-lg">
-				<h2 class="font-bold font-sans-bold"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+				<h2 class="font-bold font-serif-bold !my-4 !lg:my-2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				<h3 class=""><?php echo esc_html( get_post_meta( $post->ID, 'ecpt_position', true ) ); ?></h3>
 			<?php endif; ?>
 				<?php if ( get_post_meta( $post->ID, 'ecpt_office', true ) ) : ?>

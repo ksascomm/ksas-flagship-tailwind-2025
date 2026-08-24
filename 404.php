@@ -18,7 +18,7 @@ get_header();
 	</div>
 	<!-- Decorative Bar Below the Image -->
 	<div class="w-full h-3 text-white bg-heritage-blue bg-gradient-to-l from-heritage-blue to-medium-blue"></div>
-	<div class="pt-4 pb-8 lg:pl-0 wayfinding w-full">
+	<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 		<div class="section-inner">
 		<?php
 		if ( function_exists( 'bcn_display' ) ) :
@@ -30,13 +30,13 @@ get_header();
 		</div>
 	</div>
 	<main id="primary" class="w-full site-main">
-		<div class="w-full xl:w-6xl max-w-screen-lg xl:mx-auto">
+		<div class="w-full max-w-screen-lg xl:w-6xl xl:mx-auto">
 			<div class="prose prose-sm lg:prose-lg mx-auto error-404 not-found lg:shadow-lg lg:bg-white lg:border-2 lg:border-medium-blue lg:border-solid lg:px-[calc(var(--spacing)_*_5)] lg:max-w-[calc(1640px+17.0731707317%)] lg:mx-[-4.5rem] lg:mb-8 lg:pt-4">
 				<header class="page-header">
-					<h2 class="text-medium-blue xl:!mt-0 pt-2"><?php esc_html_e( 'Sorry! That page can&rsquo;t be found.', 'flagship-tailwind' ); ?></h2>
+					<h2 class="text-medium-blue font-serif-bold xl:!mt-0 pt-2"><?php esc_html_e( 'Sorry! That page can&rsquo;t be found.', 'flagship-tailwind' ); ?></h2>
 				</header><!-- .page-header -->
 
-				<div class="entry-content text-2xl">
+				<div class="text-2xl entry-content">
 					<p><?php esc_html_e( 'The page you are looking for might have been removed, was renamed, or is temporarily unavailable. We apologize for the inconvenience.', 'flagship-tailwind' ); ?></p>
 					<p><?php _e( 'Please try the following:', 'flagship-tailwind' ); ?></p>
 					<ul>

@@ -45,8 +45,7 @@ module.exports = {
                 maxWidth: "90ch",
                 fontSize: "2rem",
                 fontWeight: "700",
-                fontFamily:
-                  "worksans-bold, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, sans-serif",
+                fontFamily: "hopkinsslab-bold, Georgia, serif",
               },
               h3: {
                 marginTop: "0.5rem",
