@@ -102,10 +102,8 @@
 
 @font-face {
     font-family: 'icomoon';
-    src:url('../fonts/icomoon/icomoon.eot');
-    src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon/icomoon.woff') format('woff'),
-        url('../fonts/icomoon/icomoon.ttf') format('truetype');
+	src: url('../fonts/icomoon/icomoon.woff2') format('woff2'),
+       url('../fonts/icomoon/icomoon.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

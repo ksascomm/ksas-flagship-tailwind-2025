@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '4.1.2' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '4.2.0' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
@@ -170,6 +170,54 @@ require get_template_directory() . '/inc/class-twentytwenty-script-loader.php';
 require get_template_directory() . '/inc/gutenberg.php';
 
 /**
- * Gutenberg Editor
+ * ACF Functions
  */
 require get_template_directory() . '/inc/acf-functions.php';
+
+/**
+ * Functions for Vite development server integration. This allows for hot module replacement and live reloading during development.
+ */
+function enqueue_vite_development_assets() {
+	$vite_server = 'http://localhost:5173';
+	$is_dev      = false;
+
+	// Check if Vite server is running on port 5173.
+	$connection = @fsockopen( '127.0.0.1', 5173, $errno, $errstr, 0.05 );
+	if ( $connection ) {
+		$is_dev = true;
+		fclose( $connection );
+	}
+
+	if ( $is_dev ) {
+		// 1. Convert enqueued script tag to type="module".
+		add_filter(
+			'script_loader_tag',
+			function ( $tag, $handle, $src ) {
+				if ( $handle === 'vite-client' ) {
+					return '<script type="module" src="' . esc_url( $src ) . '"></script>';
+				}
+				return $tag;
+			},
+			10,
+			3
+		);
+
+		// 2. Enqueue the Vite client script.
+		wp_enqueue_script( 'vite-client', $vite_server . '/@vite/client', array(), null, false );
+
+		// 3. Enqueue Tailwind CSS directly through Vite
+		wp_enqueue_style( 'theme-tailwind-dev', $vite_server . '/resources/css/style.css', array(), null );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_vite_development_assets' );
+
+/**
+ * Add type="module" to Vite scripts in dev mode.
+ */
+function flagship_add_vite_module_type( $tag, $handle, $src ) {
+	if ( in_array( $handle, array( 'vite-client', 'theme-tailwind-dev-js' ), true ) ) {
+		return sprintf( '<script type="module" src="%s"></script>', esc_url( $src ) );
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'flagship_add_vite_module_type', 10, 3 );

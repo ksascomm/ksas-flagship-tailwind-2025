@@ -11,6 +11,14 @@ Description: Used to style the content editor in posts and pages
 }
 
 @font-face {
+  font-family: "hopkinsslab-semibold";
+  src: url("../dist/fonts/hopkins_slab/HopkinsSlab-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "worksans-regular";
   src: url("../dist/fonts/work_sans/WorkSans-Regular.woff") format("woff");
   font-weight: 400;
@@ -340,4 +348,21 @@ ul.block-editor-rich-text__editable li, ol.block-editor-rich-text__editable li {
 
 :where(.editor-styles-wrapper) p.block-editor-rich-text__editable, :where(.editor-styles-wrapper) ul.block-editor-rich-text__editable li, :where(.editor-styles-wrapper) ol.block-editor-rich-text__editable li {
   letter-spacing: -0.03rem;
+}
+
+.intro-paragraph {
+	margin: 1.5rem 0;
+}
+
+.intro-paragraph p {
+	color: #002d72;
+	font-size: 1.875rem;
+	line-height: 1.5;
+	font-family: "hopkinsslab-semibold", "Helvetica Neue", Roboto, sans-serif;
+	font-weight: 600;
+	width: 50ch;
+}
+
+.intro-paragraph p a:hover {
+	color: #31261D;
 }

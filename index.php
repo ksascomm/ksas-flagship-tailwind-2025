@@ -31,7 +31,8 @@ get_header();
 				<!-- Decorative Bar Below the Image -->
 				<div class="w-full h-3 text-white bg-heritage-blue bg-gradient-to-l from-heritage-blue to-medium-blue"></div>
 				<?php
-			endif; ?>
+			endif;
+			?>
 			<div class="w-full pt-4 pb-8 lg:pl-0 wayfinding">
 				<div class="section-inner">
 					<?php get_template_part( 'template-parts/sidebar-menu' ); ?>
@@ -46,7 +47,7 @@ get_header();
 			</div>
 			<div class="w-full px-4">
 					<div class="w-full xl:w-7xl max-w-screen-3xl xl:mx-auto">
-					<?php 
+					<?php
 					/* Start the Loop */
 					while ( have_posts() ) :
 						the_post();

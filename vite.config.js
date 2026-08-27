@@ -3,10 +3,10 @@ import path from "path";
 import fs from "fs";
 import { minify } from "terser"; // Modern JS minification
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import liveReload from "vite-plugin-live-reload";
 
-// ESM Imports for PostCSS plugins
-import tailwindcss from "@tailwindcss/postcss";
-import autoprefixer from "autoprefixer";
+// ESM Imports for Tailwind v4 Vite Plugin
+import tailwindcss from "@tailwindcss/vite";
 
 // Recursive directory copying helper (Mimics mix.copyDirectory)
 function copyDirRecursive(src, dest) {
@@ -43,7 +43,7 @@ function customWordPressAssets(options) {
     // 1. Concatenate JS Files
     let concatenatedContent = files
       .map((file) => {
-        const absolutePath = path.resolve(__dirname, file);
+        const absolutePath = path.resolve(import.meta.dirname, file);
         if (fs.existsSync(absolutePath)) {
           return (
             `/* --- Source: ${file} --- */\n` +
@@ -82,8 +82,8 @@ function customWordPressAssets(options) {
     // 3. Sync Directories (Ensures PHP template files can access ALL assets)
     if (copyDirectories) {
       Object.entries(copyDirectories).forEach(([srcDir, destDir]) => {
-        const absoluteSrc = path.resolve(__dirname, srcDir);
-        const absoluteDest = path.resolve(__dirname, destDir);
+        const absoluteSrc = path.resolve(import.meta.dirname, srcDir);
+        const absoluteDest = path.resolve(import.meta.dirname, destDir);
         copyDirRecursive(absoluteSrc, absoluteDest);
         console.log(`\x1b[32m✓\x1b[0m synced directory ${srcDir} → ${destDir}`);
       });
@@ -114,16 +114,27 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
 
   return {
-    // Tells Vite to prefix compiled CSS asset paths with your theme's dist directory
-    base: "/wp-content/themes/ksas-flagship-tailwind-2025/dist/",
-
-    publicDir: false, // Disables copying of default /public/ folder
-
-    css: {
-      postcss: {
-        plugins: [tailwindcss(), autoprefixer()],
+    // 1. Add Vite Dev Server Settings for Local WordPress
+    server: {
+      host: "0.0.0.0", // Bind to all local interfaces
+      port: 5173,
+      strictPort: true,
+      cors: {
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+      },
+      origin: "http://localhost:5173",
+      hmr: {
+        host: "localhost",
+        protocol: "ws",
       },
     },
+
+    // 2. Base path update
+    base: isProduction
+      ? "/wp-content/themes/ksas-flagship-tailwind-2025/dist/"
+      : "/",
 
     build: {
       outDir: "dist",
@@ -140,7 +151,10 @@ export default defineConfig(({ mode }) => {
 
       rollupOptions: {
         input: {
-          "css/style": path.resolve(__dirname, "resources/css/style.css"),
+          "css/style": path.resolve(
+            import.meta.dirname,
+            "resources/css/style.css",
+          ),
         },
         output: {
           // Dynamic asset router. Rebuilds the original nested folder hierarchies.
@@ -178,6 +192,8 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
+      tailwindcss(), // Enabled native Tailwind v4 Vite plugin
+      liveReload(["**/*.php"]),
       customWordPressAssets({
         isProduction,
         files: [
@@ -186,9 +202,7 @@ export default defineConfig(({ mode }) => {
           "resources/js/wai-dropdown.js",
           "resources/js/wai-accordion.js",
         ],
-        outputFile: path.resolve(__dirname, "dist/js/bundle.min.js"),
-        // FIXED: Enabled mirroring. This copies all images/fonts (even those only
-        // referenced in PHP files) directly to your dist folder.
+        outputFile: path.resolve(import.meta.dirname, "dist/js/bundle.min.js"),
         copyDirectories: {
           "resources/images": "dist/images",
           "resources/fonts": "dist/fonts",
@@ -200,7 +214,6 @@ export default defineConfig(({ mode }) => {
             src: "resources/js/isotope-multi-dropdown.js",
             dest: "js",
             rename: { stripBase: 2 },
-            // Minify content on the fly during build
             async transform(content) {
               if (isProduction) {
                 const result = await minify(content.toString());

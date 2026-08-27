@@ -6,32 +6,89 @@
  */
 
 /**
+ * Check if Vite development server is actively running.
+ */
+function is_vite_dev_server_active() {
+	static $is_active = null;
+
+	if ( null !== $is_active ) {
+		return $is_active;
+	}
+
+	// Ping the Vite dev server with a short timeout.
+	$handle = @fsockopen( 'localhost', 5173, $errno, $errstr, 0.2 );
+	if ( $handle ) {
+		fclose( $handle );
+		$is_active = true;
+	} else {
+		$is_active = false;
+	}
+
+	return $is_active;
+}
+
+/**
  * Enqueue scripts and styles for the theme.
  */
 function flagship_tailwind_scripts() {
-	$css_path = get_template_directory() . '/dist/css/style.css';
-	$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
+	$is_dev      = is_vite_dev_server_active();
+	$vite_server = 'http://localhost:5173';
 
-	// Safe cache-busting: Fall back to theme version if build assets are missing.
-	$css_version = file_exists( $css_path ) ? filemtime( $css_path ) : FLAGSHIP_TAILWIND_VERSION;
-	$js_version  = file_exists( $js_path ) ? filemtime( $js_path ) : FLAGSHIP_TAILWIND_VERSION;
+	if ( $is_dev ) {
+		// --- VITE DEV MODE ---
+		// 1. Enqueue Vite client core
+		wp_enqueue_script(
+			'vite-client',
+			$vite_server . '/@vite/client',
+			array(),
+			null,
+			false
+		);
 
-	// Enqueue primary stylesheet.
-	wp_enqueue_style(
-		'flagship-tailwind-style',
-		get_template_directory_uri() . '/dist/css/style.css',
-		array(),
-		$css_version
-	);
+		// 2. Enqueue Dev CSS via Vite HMR
+		wp_enqueue_style(
+			'theme-tailwind-dev',
+			$vite_server . '/resources/css/style.css',
+			array(),
+			null
+		);
 
-	wp_style_add_data( 'flagship-tailwind-style', 'rtl', 'replace' );
+		// 3. Enqueue Dev JS via Vite HMR (if applicable)
+		wp_enqueue_script(
+			'theme-tailwind-dev-js',
+			$vite_server . '/resources/js/main.js', // Adjust path to your JS entrypoint
+			array( 'jquery' ),
+			null,
+			true
+		);
 
-	// Threaded comments script.
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	} else {
+		// --- PRODUCTION BUILD MODE ---
+		$css_path = get_template_directory() . '/dist/css/style.css';
+		$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
+
+		$css_version = file_exists( $css_path ) ? filemtime( $css_path ) : FLAGSHIP_TAILWIND_VERSION;
+		$js_version  = file_exists( $js_path ) ? filemtime( $js_path ) : FLAGSHIP_TAILWIND_VERSION;
+
+		// Production CSS
+		wp_enqueue_style(
+			'flagship-tailwind-style',
+			get_template_directory_uri() . '/dist/css/style.css',
+			array(),
+			$css_version
+		);
+
+		// Production JS Bundle
+		wp_enqueue_script(
+			'flagship-tailwind-script',
+			get_template_directory_uri() . '/dist/js/bundle.min.js',
+			array( 'jquery' ),
+			$js_version,
+			true
+		);
 	}
 
-	// External third-party scripts with deferred/async loading strategies.
+	// External third-party scripts (Load regardless of Dev or Prod)
 	wp_enqueue_script(
 		'font-awesome',
 		'https://kit.fontawesome.com/72c92fef89.js',
@@ -43,40 +100,10 @@ function flagship_tailwind_scripts() {
 		)
 	);
 
-	wp_enqueue_script(
-		'google-cse',
-		'https://cse.google.com/cse.js?cx=012258670098148303364:zptrsb24qaq',
-		array(),
-		FLAGSHIP_TAILWIND_VERSION,
-		array(
-			'strategy'  => 'async',
-			'in_footer' => true,
-		)
-	);
-
-	wp_enqueue_script(
-		'siteimprove',
-		'https://siteimproveanalytics.com/js/siteanalyze_11464.js',
-		array(),
-		'1.0.0',
-		array(
-			'strategy'  => 'async',
-			'in_footer' => true,
-		)
-	);
-
-	// Enqueue main bundled JS.
-	wp_enqueue_script(
-		'flagship-tailwind-script',
-		get_template_directory_uri() . '/dist/js/bundle.min.js',
-		array( 'jquery' ),
-		$js_version,
-		true
-	);
-
-	// Localize script for AJAX calls.
+	// Localize script for AJAX calls
+	$script_handle = $is_dev ? 'theme-tailwind-dev-js' : 'flagship-tailwind-script';
 	wp_localize_script(
-		'flagship-tailwind-script',
+		$script_handle,
 		'fsu_ajax',
 		array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),

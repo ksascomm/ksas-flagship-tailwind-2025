@@ -118,7 +118,7 @@ if ( function_exists( 'register_block_pattern' ) ) {
 		array(
 			'title'       => __( 'Intro Paragraph', 'ksas-flagship-blocks' ),
 			'description' => __( 'An introductory paragraph inside a constrained group.', 'ksas-flagship-blocks' ),
-			'categories'    => array( 'ksas-flagship-blocks' ),
+			'categories'  => array( 'ksas-flagship-blocks' ),
 			'content'     => ' <!-- wp:group {"metadata":{"categories":["ksas-flagship-blocks"],"patternName":"ksasblocks/intro-paragraph","name":"Intro Paragraph"},"className":"intro-paragraph","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group intro-paragraph"><!-- wp:paragraph -->
 			<p>The Krieger School is comprised of 22 departments and 33 centers, programs, and institutes, and home to students interested in the arts, humanities, natural sciences, and social sciences.</p>

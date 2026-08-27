@@ -1,13 +1,11 @@
 {
 	"name": "ksas-flagship-tailwind-2025",
-	"version": "4.1.2",
+	"version": "4.2.0",
 	"private": true,
 	"scripts": {
-		"dev": "vite build --mode development",
+		"dev": "vite",
 		"watch": "vite build --watch --mode development",
-		"prod": "vite build",
-		"sync": "browser-sync start -p 'https://krieger.local' -f '**/*.php, dist/css/*.css, dist/js/*.js'",
-		"dev-sync": "npm run watch & npm run sync"
+		"prod": "vite build"
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.3.3",
@@ -16,6 +14,7 @@
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.3",
 		"autoprefixer": "^10.5.4",
 		"browser-sync": "^3.0.4",
 		"postcss": "^8.5.26",
@@ -23,6 +22,7 @@
 		"tailwindcss": "^4.3.3",
 		"terser": "^5.50.0",
 		"vite": "^8.2.2",
+		"vite-plugin-live-reload": "^3.1.0",
 		"vite-plugin-static-copy": "^4.1.1"
 	},
 	"overrides": {
