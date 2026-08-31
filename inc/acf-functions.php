@@ -52,19 +52,25 @@ function minify_custom_page_css( $custom_page_css ) {
 
 /**
  * Add page/post specific Custom CSS from ACF.
- * * This function retrieves custom CSS from an ACF field, minifies it,
- * and outputs it in the site head using proper WordPress escaping.
+ * Works for published pages, drafts, and published previews.
  */
 function add_custom_css_from_field() {
-	// Ensure it only runs on singular pages/posts.
 	if ( is_singular() ) {
-		// Use get_field instead of the_field to control the output.
-		$custom_css = function_exists( 'get_field' ) ? get_field( 'custom_page_css' ) : '';
+		// Get the current post ID (handles standard posts & drafts).
+		$post_id = get_the_ID();
+
+		// If previewing a published post revision, get the revision ID instead.
+		if ( is_preview() ) {
+			$preview_id = wp_get_post_autosave( $post_id );
+			if ( $preview_id ) {
+				$post_id = $preview_id->ID;
+			}
+		}
+
+		// Pass the explicit $post_id to ACF.
+		$custom_css = function_exists( 'get_field' ) ? get_field( 'custom_page_css', $post_id ) : '';
 
 		if ( ! empty( $custom_css ) ) {
-			// We wrap the output in wp_kses with an empty array.
-			// This tells PHPCS that we have explicitly escaped the output
-			// by stripping all HTML tags.
 			echo '<style id="custom-page-css-acf">' . wp_kses( minify_custom_page_css( $custom_css ), array() ) . '</style>';
 		}
 	}
