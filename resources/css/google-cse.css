@@ -114,7 +114,7 @@ button.gsc-search-button.gsc-search-button-v2 {
 .gs-webResult.gs-result a.gs-title,
 .gs-webResult.gs-result a.gs-title b,
 .gsc-result .gs-title {
-	font-family: var(--font-sans) !important;
+	font-family: var(--font-sans);
     font-size: 1.5rem !important;
     font-style: normal;
     height: inherit !important;

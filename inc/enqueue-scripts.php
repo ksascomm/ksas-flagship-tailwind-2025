@@ -100,6 +100,19 @@ function flagship_tailwind_scripts() {
 		)
 	);
 
+	wp_enqueue_script( 'google-cse', 'https://cse.google.com/cse.js?cx=012258670098148303364:zptrsb24qaq', array(), FLAGSHIP_TAILWIND_VERSION, false );
+
+	wp_enqueue_script(
+		'siteimprove',
+		'https://siteimproveanalytics.com/js/siteanalyze_11464.js',
+		array(),
+		'1.0.0',
+		array(
+			'strategy'  => 'async',
+			'in_footer' => true,
+		)
+	);
+
 	// Localize script for AJAX calls
 	$script_handle = $is_dev ? 'theme-tailwind-dev-js' : 'flagship-tailwind-script';
 	wp_localize_script(

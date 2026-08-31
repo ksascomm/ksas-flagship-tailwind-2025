@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '4.2.0' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '4.2.1' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
@@ -221,3 +221,22 @@ function flagship_add_vite_module_type( $tag, $handle, $src ) {
 	return $tag;
 }
 add_filter( 'script_loader_tag', 'flagship_add_vite_module_type', 10, 3 );
+
+/**
+ * Force /search requests to use search.php.
+ */
+function flagship_custom_search_rewrite() {
+	add_rewrite_rule( '^search/?$', 'index.php?pagename=search', 'top' );
+}
+add_action( 'init', 'flagship_custom_search_rewrite' );
+
+function flagship_custom_search_template( $template ) {
+	if ( is_page( 'search' ) ) {
+		$search_template = locate_template( 'search.php' );
+		if ( ! empty( $search_template ) ) {
+			return $search_template;
+		}
+	}
+	return $template;
+}
+add_filter( 'template_include', 'flagship_custom_search_template' );
