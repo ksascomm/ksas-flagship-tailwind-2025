@@ -11,7 +11,8 @@ function ksas_disable_gutenberg_colour_settings() {
 	// Disable custom colors.
 	add_theme_support( 'disable-custom-colors' );
 	// Add foundation color palette to the editor.
-	add_theme_support( 'editor-color-palette',
+	add_theme_support(
+		'editor-color-palette',
 		array(
 			array(
 				'name'  => __( 'Heritage Blue', 'flagship-tailwind' ),
@@ -98,28 +99,23 @@ function ksas_disable_gutenberg_colour_settings() {
 add_action( 'after_setup_theme', 'ksas_disable_gutenberg_colour_settings' );
 
 /**
- * Custom Gutenberg scripts
- *
- * @link https://www.billerickson.net/block-styles-in-gutenberg/
+ * Load Gutenberg Editor Assets from /dist/
  */
-function custom_gutenberg_scripts() {
+function custom_gutenberg_assets() {
+	// Compiled editor JavaScript.
 	wp_enqueue_script(
 		'custom-editor',
-		get_stylesheet_directory_uri() . '/gutenberg-editor/editor.js',
-		array( 'wp-blocks', 'wp-dom' ),
-		filemtime( get_stylesheet_directory() . '/gutenberg-editor/editor.js' ),
+		get_stylesheet_directory_uri() . '/dist/js/editor.js',
+		array( 'wp-blocks', 'wp-dom', 'wp-edit-post' ),
+		filemtime( get_stylesheet_directory() . '/dist/js/editor.js' ),
 		true
 	);
 }
-add_action( 'enqueue_block_editor_assets', 'custom_gutenberg_scripts' );
+add_action( 'enqueue_block_editor_assets', 'custom_gutenberg_assets' );
 
-/**
- * Custom Gutenberg styles
- *
- * @link https://www.billerickson.net/block-styles-in-gutenberg/
- */
-function custom_gutenberg_css() {
-	add_theme_support( 'editor-styles' ); // if you don't add this line, your stylesheet won't be added!
-	add_editor_style( 'gutenberg-editor/editor-style.css' ); // tries to include editor-style.css directly from your theme folder..
+function custom_gutenberg_editor_styles() {
+	add_theme_support( 'editor-styles' );
+	// Compiled Tailwind v4 editor stylesheet.
+	add_editor_style( 'dist/css/editor-style.css' );
 }
-add_action( 'after_setup_theme', 'custom_gutenberg_css' );
+add_action( 'after_setup_theme', 'custom_gutenberg_editor_styles' );

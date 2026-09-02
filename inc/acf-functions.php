@@ -8,9 +8,7 @@
 /**
  * ACF Options Page
  */
-
 if ( function_exists( 'acf_add_options_page' ) ) {
-
 	acf_add_options_page(
 		array(
 			'page_title' => 'Theme General Settings',
@@ -20,7 +18,6 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'redirect'   => false,
 		)
 	);
-
 }
 
 /**
@@ -31,7 +28,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
  */
 function minify_custom_page_css( $custom_page_css ) {
 	if ( empty( $custom_page_css ) || ! is_string( $custom_page_css ) ) {
-		return ''; // Return empty string if null or not a string.
+		return '';
 	}
 
 	// Remove comments.
@@ -46,33 +43,66 @@ function minify_custom_page_css( $custom_page_css ) {
 	// Remove trailing semicolons in blocks.
 	$custom_page_css = preg_replace( '/;}/', '}', $custom_page_css );
 
-	// Trim final output.
 	return trim( $custom_page_css );
 }
 
 /**
- * Add page/post specific Custom CSS from ACF.
- * Works for published pages, drafts, and published previews.
+ * Output page/post dynamic ACF CSS.
+ * Targets Front-end (wp_head) and Block Editor iframe canvas (enqueue_block_assets).
  */
 function add_custom_css_from_field() {
-	if ( is_singular() ) {
-		// Get the current post ID (handles standard posts & drafts).
+	$post_id = false;
+
+	if ( is_admin() ) {
+		// Handle Gutenberg iframe editor post detection
+		if ( isset( $_GET['post'] ) ) {
+			$post_id = (int) $_GET['post'];
+		} elseif ( isset( $_POST['post_id'] ) ) {
+			$post_id = (int) $_POST['post_id'];
+		}
+	} elseif ( is_singular() ) {
 		$post_id = get_the_ID();
 
-		// If previewing a published post revision, get the revision ID instead.
 		if ( is_preview() ) {
 			$preview_id = wp_get_post_autosave( $post_id );
 			if ( $preview_id ) {
 				$post_id = $preview_id->ID;
 			}
 		}
+	}
 
-		// Pass the explicit $post_id to ACF.
-		$custom_css = function_exists( 'get_field' ) ? get_field( 'custom_page_css', $post_id ) : '';
+	if ( ! $post_id || ! function_exists( 'get_field' ) ) {
+		return;
+	}
 
-		if ( ! empty( $custom_css ) ) {
-			echo '<style id="custom-page-css-acf">' . wp_kses( minify_custom_page_css( $custom_css ), array() ) . '</style>';
-		}
+	$custom_css = get_field( 'custom_page_css', $post_id );
+
+	if ( ! empty( $custom_css ) ) {
+		$minified_css = minify_custom_page_css( $custom_css );
+		// Use wp_strip_all_tags() or esc_html() to prevent stripping CSS rules while removing HTML tags
+		echo '<style id="custom-page-css-acf">' . wp_strip_all_tags( $minified_css ) . '</style>' . "\n";
 	}
 }
+// Outputs CSS on front-end
 add_action( 'wp_head', 'add_custom_css_from_field' );
+
+// Injects CSS directly into the Gutenberg editor iframe
+add_action( 'enqueue_block_assets', 'add_custom_css_from_field' );
+
+/**
+ * Enqueue JavaScript bridge for live updating ACF CSS in the Block Editor.
+ */
+function enqueue_acf_live_css_script() {
+	$script_path = get_stylesheet_directory() . '/dist/js/live-acf-css.js';
+
+	if ( file_exists( $script_path ) ) {
+		wp_enqueue_script(
+			'acf-live-css',
+			get_stylesheet_directory_uri() . '/dist/js/live-acf-css.js',
+			array( 'wp-blocks', 'wp-data', 'wp-dom-ready', 'wp-edit-post' ),
+			filemtime( $script_path ),
+			true
+		);
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'enqueue_acf_live_css_script' );

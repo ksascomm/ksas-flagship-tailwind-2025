@@ -1,10 +1,24 @@
-/*
-Description: Used to style the content editor in posts and pages
-*/
+/* 1. TAILWIND v4 MAIN IMPORT */
+@import "tailwindcss";
 
+/* 2. THEME CONFIGURATION (Replaces tailwind.config.js) */
+@theme {
+  --font-serif-bold: "hopkinsslab-bold", "Helvetica Neue", Roboto, sans-serif;
+  --font-serif-semibold: "hopkinsslab-semibold", "Helvetica Neue", Roboto, sans-serif;
+  --font-sans-regular: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
+  --font-sans-semibold: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
+  --font-sans-bold: "worksans-bold", "Helvetica Neue", Roboto, sans-serif;
+
+  --color-brand-primary: #002d72;
+  --color-brand-dark: #00050c;
+  --color-brand-text: #31261d;
+  --color-brand-light: #fefefe;
+}
+
+/* 3. CUSTOM FONTS */
 @font-face {
   font-family: "hopkinsslab-bold";
-  src: url("../dist/fonts/hopkins_slab/HopkinsSlab-Bold.woff") format("woff");
+  src: url("../resources/fonts/hopkins_slab/HopkinsSlab-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -12,7 +26,7 @@ Description: Used to style the content editor in posts and pages
 
 @font-face {
   font-family: "hopkinsslab-semibold";
-  src: url("../dist/fonts/hopkins_slab/HopkinsSlab-SemiBold.woff") format("woff");
+  src: url("../resources/fonts/hopkins_slab/HopkinsSlab-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -20,7 +34,7 @@ Description: Used to style the content editor in posts and pages
 
 @font-face {
   font-family: "worksans-regular";
-  src: url("../dist/fonts/work_sans/WorkSans-Regular.woff") format("woff");
+  src: url("../resources/fonts/work_sans/WorkSans-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -28,226 +42,253 @@ Description: Used to style the content editor in posts and pages
 
 @font-face {
   font-family: "worksans-semibold";
-  src: url("../dist/fonts/work_sans/WorkSans-SemiBold.woff") format("woff");
+  src: url("../resources/fonts/work_sans/WorkSans-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
-:root {
-  --tec-font-family-sans-serif: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
-  --tec-color-text-primary: #31261d;
-  --tec-color-link-primary: #002d72;
+
+@font-face {
+  font-family: "worksans-bold";
+  src: url("../resources/fonts/work_sans/WorkSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-a:where(:not(.wp-element-button)) {
-  text-decoration: underline;
+/* 4. BASE & CANVAS OVERRIDES */
+@layer base {
+  :root {
+    --tec-font-family-sans-serif: var(--font-sans-regular);
+    --tec-color-text-primary: var(--color-brand-text);
+    --tec-color-link-primary: var(--color-brand-primary);
+  }
+
+  .editor-styles-wrapper {
+    font-family: var(--font-sans-regular) !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    @apply text-[var(--color-brand-text)] bg-white;
+  }
+
+  .editor-styles-wrapper a:where(:not(.wp-element-button)) {
+    @apply underline;
+  }
+
+  .block-editor-block-list__layout a {
+    color: var(--color-brand-primary);
+  }
+
+  /* Typography */
+  .editor-styles-wrapper h1,
+  .editor-post-title__block .editor-post-title__input,
+  .editor-writing-flow .wp-block h1 {
+    font-family: var(--font-serif-bold);
+    font-weight: 700;
+  }
+
+  .editor-styles-wrapper h2,
+  .editor-styles-wrapper h3,
+  .editor-styles-wrapper h4,
+  .editor-styles-wrapper h5,
+  .editor-styles-wrapper h6,
+  .editor-writing-flow .wp-block h2,
+  .editor-writing-flow .wp-block h3,
+  .editor-writing-flow .wp-block h4,
+  .editor-writing-flow .wp-block h5,
+  .editor-writing-flow .wp-block h6 {
+    font-family: var(--font-sans-bold);
+    font-weight: 700;
+  }
+
+  .editor-styles-wrapper p strong,
+  .editor-styles-wrapper p b,
+  .editor-styles-wrapper li strong,
+  .editor-styles-wrapper li b {
+    font-family: var(--font-sans-semibold);
+    font-weight: 600;
+  }
+
+  .editor-styles-wrapper p u,
+  .editor-styles-wrapper li u {
+    text-decoration: none;
+  }
 }
 
-
-/* Main column width */
-.wp-block, #editor div.block-editor-writing-flow {
+/* 5. GUTENBERG LAYOUT & ALIGNMENTS */
+.editor-styles-wrapper .wp-block,
+#editor div.block-editor-writing-flow {
   max-width: 100%;
 }
 
-/* Width of "wide" blocks */
-.wp-block[data-align="wide"] {
+.editor-styles-wrapper .wp-block[data-align="wide"] {
   max-width: 95%;
 }
 
-/* Width of "full-width" blocks */
-.wp-block[data-align="full"] {
+.editor-styles-wrapper .wp-block[data-align="full"] {
   max-width: none;
 }
 
+/* 6. COMPONENTS & UTILITIES */
+@layer components {
+  .wp-block-button__link {
+    @apply inline-block align-middle mb-4 px-[1em] py-[0.85em] border border-transparent rounded-none text-center cursor-pointer text-[0.9rem] leading-none transition-colors duration-300;
+    background-color: var(--color-brand-primary);
+    color: var(--color-brand-light);
+    font-family: inherit;
+  }
 
-body {
-  font-family: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #31261d;
+  .wp-block-button__link:hover {
+    background-color: var(--color-brand-dark);
+    color: #fff;
+  }
+
+  .rich-text.editor-rich-text__editable.block-editor-rich-text__editable.wp-block-button__link {
+    font-size: 18px;
+  }
+
+  .wp-block-quote__citation {
+    font-size: 1rem;
+    font-family: var(--font-sans-semibold);
+    font-weight: 600;
+    color: var(--color-brand-text);
+  }
+
+  .wp-block-quote__citation:before {
+    content: "— ";
+  }
+
+  .wp-block-quote.is-large, 
+  .wp-block-quote.is-style-large {
+    border-left: 0.25em solid var(--color-brand-text);
+  }
+
+  .wp-block-quote.is-large p, 
+  .wp-block-quote.is-style-large p {
+    font-style: normal;
+  }
+
+  .wp-block-quote.is-style-large .wp-block-quote__citation {
+    font-size: 1.125em;
+  }
+
+  .intro-paragraph {
+    @apply my-6;
+  }
+
+  .intro-paragraph p {
+    color: var(--color-brand-primary);
+    font-size: 1.875rem;
+    line-height: 1.5;
+    font-family: var(--font-serif-semibold);
+    font-weight: 600;
+    width: 50ch;
+  }
+
+  .intro-paragraph p a:hover {
+    color: var(--color-brand-text);
+  }
 }
 
-/* TinyMCE Editor */
-.editor-styles-wrapper p strong,
-.editor-rich-text p strong {
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
+/* 7. PLUGIN OVERRIDES (ACF, THE EVENTS CALENDAR, WORDPRESS UI) */
+a.acf-icon { color: #555d66; }
+a.acf-icon:hover { background: #f3f5f6; border-color: #0071a1; color: #0071a1; }
+a.acf-icon.-minus:hover, a.acf-icon.-cancel:hover { background: #f7efef; border-color: #a10000; color: #dc3232; }
+.acf-icon.dark { color: #eee; }
+a.acf-icon.dark:hover { color: #00b9eb; }
+a.acf-icon.dark.-minus:hover, a.acf-icon.dark.-cancel:hover { color: #D54E21; }
+a.acf-button.button.button-primary { color: var(--color-brand-light); }
+
+.wp-block-file * + .wp-block-file__button { display: none; }
+.wp-block-buttons > .wp-block-button.wp-block-button__width-50 { width: calc(50% - .5em); }
+
+.wp-block-cover .wp-block-cover__background.has-background-dim {
+  background-color: transparent;
+  opacity: 1 !important;
+}
+
+:root .has-primary-color { color: var(--color-brand-primary); }
+:root .has-primary-background-color { background-color: var(--color-brand-primary); color: var(--color-brand-light); }
+
+:where(.editor-styles-wrapper) p.block-editor-rich-text__editable,
+:where(.editor-styles-wrapper) ul.block-editor-rich-text__editable li,
+:where(.editor-styles-wrapper) ol.block-editor-rich-text__editable li {
+  letter-spacing: -0.03rem;
+}
+
+p.block-editor-rich-text__editable, 
+ul.block-editor-rich-text__editable li, 
+ol.block-editor-rich-text__editable li {
+  box-shadow: inset 0 0 0 1px #e5e2e0 !important;
+  padding: .25rem;
+  line-height: 1.45;
+}
+
+ul.block-editor-rich-text__editable li, 
+ol.block-editor-rich-text__editable li {
+  margin: .25rem 0;
+}
+
+.tribe-editor__subtitle .tribe-editor__btn--label, 
+.tribe-editor__event-price__price, 
+.tribe-editor__venue .tribe-editor__venue__name h3.tribe-editor__venue__name-heading, 
+.tribe-editor__organizer__details p,
+.tribe-editor__btn--label strong, 
+.tribe-editor__event-details .tribe-editor__meta-group .tribe-editor__events-section__headline input, 
+.tribe-editor__block strong, 
+.tribe-editor__block p strong,
+.block-editor-block-list__block.wp-block.is-selected input.tribe-editor__date-input {
+  font-family: var(--font-sans-semibold);
   font-weight: 600;
 }
 
-p b,
-p strong,
-li b,
-li strong {
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-}
-
-p u,
-li u {
-  text-decoration: none;
-}
-
-.rich-text.editor-rich-text__editable.block-editor-rich-text__editable.wp-block-button__link {
-  font-size: 18px;
-}
-
-/* Links */
-.block-editor-block-list__layout a {
-  color: #002d72;
-}
-
-
-
-a.acf-icon {
-  color: #555d66;
-}
-
-a.acf-icon:hover {
-  background: #f3f5f6;
-  border-color: #0071a1;
-  color: #0071a1;
-}
-
-a.acf-icon.-minus:hover, a.acf-icon.-cancel:hover {
-  background: #f7efef;
-  border-color: #a10000;
-  color: #dc3232;
-}
-
-.acf-icon.dark {
-  color: #eee;
-}
-
-a.acf-icon.dark:hover {
-  color: #00b9eb;
-}
-
-a.acf-icon.dark.-minus:hover, a.acf-icon.dark.-cancel:hover {
-  color: #D54E21;
-}
-
-a.acf-button.button.button-primary {
-  color: #fefefe;
-}
-
-.wp-block-file * + .wp-block-file__button {
-  display: none;
-}
-
-.wp-block-button__link {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 0 1rem 0;
-  padding: 0.85em 1em;
-  border: 1px solid transparent;
-  border-radius: 0;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  font-family: inherit;
-  font-size: 0.9rem;
-  line-height: 1;
-  text-align: center;
-  cursor: pointer;
-  background-color: #002d72;
-  color: #fefefe;
-}
-
-.wp-block-button__link:hover {
-  background-color: #00050c;
-  color: #fff;
-}
-
-/* The Post Title */
-.editor-post-title__block .editor-post-title__input {
-  font-family: "hopkinsslab-bold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 700;
-}
-
-/* Headings */
-.editor-writing-flow .wp-block h1 {
-  font-family: "hopkinsslab-bold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 700;
-}
-.editor-writing-flow .wp-block h2,
-.editor-writing-flow .wp-block h3,
-.editor-writing-flow .wp-block h4,
-.editor-writing-flow .wp-block h5,
-.editor-writing-flow .wp-block h6 {
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-}
-
-h1 {
-  font-family: "hopkinsslab-bold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 700;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-}
-
-/* Blockquote styles */
-.wp-block-quote__citation {
-  font-size: 1rem;
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-  color: #31261d;
-}
-
-.wp-block-quote__citation:before, .wp-block-quote__citation:before {
-  content: "— ";
-}
-
-.wp-block-quote.is-large, .wp-block-quote.is-style-large {
-  border-left: 0.25em solid #31261D;
-}
-
-.wp-block-quote.is-large p, .wp-block-quote.is-style-large p {
-  font-style: normal;
-}
-
-.wp-block-quote.is-style-large .wp-block-quote__citation {
-  font-size: 1.125em;
-}
-
-/* Event Calendar Plugin */
-.tribe-editor__subtitle .tribe-editor__btn--label, .tribe-editor__event-price__price, .tribe-editor__venue .tribe-editor__venue__name h3.tribe-editor__venue__name-heading, .tribe-editor__organizer__details p {
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-}
-
-.tribe-editor__venue__address, .tribe-editor__venue__phone, .tribe-editor__venue__website, .tribe-editor__event-website__label-text input, .tribe-editor__events-link .tribe-editor__btn--link input, .block-editor-url-input__input[type=text] {
-  font-family: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
+.tribe-editor__venue__address, 
+.tribe-editor__venue__phone, 
+.tribe-editor__venue__website, 
+.tribe-editor__event-website__label-text input, 
+.tribe-editor__events-link .tribe-editor__btn--link input, 
+.block-editor-url-input__input[type=text],
+.tribe-editor__featured-image .components-placeholder__instructions,
+.tribe-editor__block, 
+.tribe-editor__block p, 
+.block-editor .block-editor-plain-text, 
+.tribe-editor__btn--label, 
+.tribe-editor__soc__input {
+  font-family: var(--font-sans-regular);
   font-weight: 400;
 }
 
-.tribe-editor__organizer__details p, .tribe-editor__events-link .tribe-editor__btn--link input, .tribe-editor__venue__address a {
-  color: #002d72;
+.tribe-editor__organizer__details p, 
+.tribe-editor__events-link .tribe-editor__btn--link input, 
+.tribe-editor__venue__address a {
+  color: var(--color-brand-primary);
 }
 
 .tribe-editor__event-website__label-text input {
-  background-color: #002d72;
-  border-color: #002d72;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
 }
 
 .tribe-editor__event-website__url .block-editor-url-input__input[type=text] {
   font-size: 1.25rem;
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
+  font-family: var(--font-sans-semibold);
   font-weight: 600;
-  color: #002d72;
+  color: var(--color-brand-primary);
 }
 
-.tribe-editor__btn--link.tribe-events-ical svg path, .tribe-editor__btn--link.tribe-events-gcal svg path {
-  fill: #002d72;
+.tribe-editor__btn--link.tribe-events-ical svg path, 
+.tribe-editor__btn--link.tribe-events-gcal svg path {
+  fill: var(--color-brand-primary);
 }
 
-.tribe-editor__separator {
-  color: #31261d;
+.tribe-editor__separator,
+.tribe-editor__btn--label strong, 
+.tribe-editor__event-details .tribe-editor__meta-group .tribe-editor__events-section__headline input, 
+.tribe-editor__block strong, 
+.tribe-editor__block p strong,
+.block-editor-block-list__block.wp-block.is-selected input.tribe-editor__date-input {
+  color: var(--color-brand-text);
 }
 
 .tribe-editor__featured-image .components-placeholder.components-placeholder {
@@ -267,102 +308,14 @@ h2.tribe-editor__subtitle__headline {
   border: 1px solid black !important;
 }
 
-.tribe-editor__featured-image .components-placeholder__instructions {
-  font-family: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 400;
-  color: #4A484C;
-}
-
-
-/* Fields converted from Classic to Block Editor */
-.tribe-editor__btn--label strong, .tribe-editor__event-details .tribe-editor__meta-group .tribe-editor__events-section__headline input, .tribe-editor__block strong, .tribe-editor__block p strong {
-  color: #31261d;
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
-}
-
-.tribe-editor__block, .tribe-editor__block p, .block-editor .block-editor-plain-text, .tribe-editor__btn--label, .tribe-editor__soc__input {
-  font-family: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 400;
-}
-
-.tribe-editor__subtitle__headline-date, .tribe-editor__separator, .tribe-editor__subtitle .tribe-editor__event-cost span {
-  font-size: 1.25rem;
-}
-
-.tribe-editor__block, .tribe-editor__block p {
-  font-size: 1rem;
-}
-
+.tribe-editor__subtitle__headline-date, 
+.tribe-editor__separator, 
+.tribe-editor__subtitle .tribe-editor__event-cost span,
 .block-editor-block-list__block.wp-block.is-selected input.tribe-editor__date-input {
   font-size: 1.25rem;
-  color: #31261d;
-  font-family: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  font-weight: 600;
 }
 
-
-p.block-editor-rich-text__editable, ul.block-editor-rich-text__editable li, ol.block-editor-rich-text__editable li {
-  box-shadow: inset 0 0 0 1px #e5e2e0 !important;
-  padding: .25rem;
-  line-height: 1.45;
-  letter-spacing: -.2px;
-}
-
-ul.block-editor-rich-text__editable li, ol.block-editor-rich-text__editable li {
-  margin: .25rem 0;
-}
-
-
-:root .has-primary-color {
-	color: #002d72;
-}
-
-:root .has-primary-background-color {
-	background-color: #002d72;
-	color: #fefefe;
-}
-
-.right-call-to-action.has-white-background-color, .left-call-to-action.has-white-background-color {
-	background: url('../dist/images/blueInWhite_corner1.svg') no-repeat right bottom;
-  background-color: #fefefe;
-  background-size: 2.666666666666667rem auto;
-  border: .06667rem solid #002d72;
-  border-bottom: none;
-  box-shadow: 0 0.4rem 0 0 #002d72;
-}
-
-.wp-block-buttons>.wp-block-button.wp-block-button__width-50 {
-	width: calc(50% - .5em);
-}
-
-.pl-12 {
-  padding-left: 3rem;
-}
-
-/** === Cover Block === */
-.wp-block-cover .wp-block-cover__background.has-background-dim {
-  background-color: transparent;
-  opacity: 1 !important;
-}
-
-:where(.editor-styles-wrapper) p.block-editor-rich-text__editable, :where(.editor-styles-wrapper) ul.block-editor-rich-text__editable li, :where(.editor-styles-wrapper) ol.block-editor-rich-text__editable li {
-  letter-spacing: -0.03rem;
-}
-
-.intro-paragraph {
-	margin: 1.5rem 0;
-}
-
-.intro-paragraph p {
-	color: #002d72;
-	font-size: 1.875rem;
-	line-height: 1.5;
-	font-family: "hopkinsslab-semibold", "Helvetica Neue", Roboto, sans-serif;
-	font-weight: 600;
-	width: 50ch;
-}
-
-.intro-paragraph p a:hover {
-	color: #31261D;
+.tribe-editor__block, 
+.tribe-editor__block p {
+  font-size: 1rem;
 }

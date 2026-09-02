@@ -1,14 +1,12 @@
 import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import fs from "fs";
-import { minify } from "terser"; // Modern JS minification
+import { minify } from "terser";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import liveReload from "vite-plugin-live-reload";
 
-// ESM Imports for Tailwind v4 Vite Plugin
-import tailwindcss from "@tailwindcss/vite";
-
-// Recursive directory copying helper (Mimics mix.copyDirectory)
+// Recursive directory copying helper
 function copyDirRecursive(src, dest) {
   if (!fs.existsSync(src)) return;
 
@@ -30,7 +28,7 @@ function copyDirRecursive(src, dest) {
   }
 }
 
-// Custom plugin that handles JS concatenation, minification, & Asset Syncing
+// Custom plugin handling JS concatenation, minification, & Asset Syncing
 function customWordPressAssets(options) {
   const processAssets = async () => {
     const { files, outputFile, copyDirectories, isProduction } = options;
@@ -62,7 +60,7 @@ function customWordPressAssets(options) {
       try {
         const minified = await minify(concatenatedContent, {
           compress: {
-            drop_console: true, // Drops console.log statements in production
+            drop_console: true,
           },
           mangle: true,
         });
@@ -79,7 +77,7 @@ function customWordPressAssets(options) {
     fs.writeFileSync(outputFile, concatenatedContent, "utf-8");
     console.log(`\x1b[32m✓\x1b[0m concatenated JS scripts into ${outputFile}`);
 
-    // 3. Sync Directories (Ensures PHP template files can access ALL assets)
+    // 3. Sync Directories
     if (copyDirectories) {
       Object.entries(copyDirectories).forEach(([srcDir, destDir]) => {
         const absoluteSrc = path.resolve(import.meta.dirname, srcDir);
@@ -114,9 +112,9 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
 
   return {
-    // 1. Add Vite Dev Server Settings for Local WordPress
+    // 1. Dev Server Settings for Local WordPress
     server: {
-      host: "0.0.0.0", // Bind to all local interfaces
+      host: "0.0.0.0",
       port: 5173,
       strictPort: true,
       cors: {
@@ -131,7 +129,7 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    // 2. Base path update
+    // 2. Base Path Configuration
     base: isProduction
       ? "/wp-content/themes/ksas-flagship-tailwind-2025/dist/"
       : "/",
@@ -141,12 +139,9 @@ export default defineConfig(({ mode }) => {
       assetsDir: "",
       emptyOutDir: false,
       manifest: false,
-      sourcemap: !isProduction, // Generates source maps only for development builds
-
-      // Forces Vite to process ALL font and image files through rollup instead of inlining them
+      sourcemap: !isProduction,
       assetsInlineLimit: 0,
 
-      // Only watch during development. Turns off during production builds so it exits!
       watch: isProduction ? null : { exclude: ["node_modules/**", "dist/**"] },
 
       rollupOptions: {
@@ -155,19 +150,40 @@ export default defineConfig(({ mode }) => {
             import.meta.dirname,
             "resources/css/style.css",
           ),
+          "css/editor-style": path.resolve(
+            import.meta.dirname,
+            "gutenberg-editor/editor-style.css",
+          ),
+          "js/editor": path.resolve(
+            import.meta.dirname,
+            "gutenberg-editor/editor.js",
+          ),
+          "js/live-acf-css": path.resolve(
+            import.meta.dirname,
+            "gutenberg-editor/live-acf-css.js",
+          ),
         },
         output: {
-          // Dynamic asset router. Rebuilds the original nested folder hierarchies.
+          entryFileNames: "[name].js",
           assetFileNames: (assetInfo) => {
             const info = assetInfo.name || "";
 
-            if (info.endsWith(".css")) {
+            // Handle specific CSS output paths mapped from input names
+            if (info === "style.css" || info === "css/style.css") {
               return "css/style.css";
             }
+            if (
+              info === "editor-style.css" ||
+              info === "css/editor-style.css"
+            ) {
+              return "css/editor-style.css";
+            }
+            if (info.endsWith(".css")) {
+              return "css/[name].[ext]";
+            }
 
-            // Check if Rollup provided an original file location (e.g. source file system path)
+            // Restore original directory structure for fonts/images
             const originalPath = assetInfo.originalFileName || "";
-
             if (originalPath) {
               const resourcesIndex = originalPath.indexOf("resources/");
               if (resourcesIndex !== -1) {
@@ -177,7 +193,7 @@ export default defineConfig(({ mode }) => {
               }
             }
 
-            // Fallbacks if Rollup cannot find original path metadata
+            // Fallback rules
             if (/\.(woff2?|eot|ttf|otf)$/i.test(info)) {
               return "fonts/[name].[ext]";
             }
@@ -192,7 +208,7 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      tailwindcss(), // Enabled native Tailwind v4 Vite plugin
+      tailwindcss(),
       liveReload(["**/*.php"]),
       customWordPressAssets({
         isProduction,
