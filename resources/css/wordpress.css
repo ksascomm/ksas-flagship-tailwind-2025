@@ -53,8 +53,8 @@ html {
 }
 
 h1, h2 {
-	font-family: var(--font-serif-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-serif);
+	font-weight: var(--font-weight-bold);
 }
 
 h3,
@@ -66,8 +66,8 @@ h6,
 .widget h3,
 .widget h4,
 ul.nav {
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 }
 
 h2.wp-block-heading,
@@ -512,8 +512,8 @@ textarea {
 }*/
 
 dl dt {
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 }
 
 .prose ol {
@@ -552,8 +552,8 @@ dl dt {
 		padding-left: calc(var(--spacing) * 2);
 		--tw-leading: calc(var(--spacing) * 6);
 		line-height: calc(var(--spacing) * 6);
-		font-family: var(--font-sans-bold);
-		font-weight: var(--font-bold);
+		font-family: var(--font-sans);
+		font-weight: var(--font-weight-bold);
 	}
 
 	cite {
@@ -562,8 +562,8 @@ dl dt {
 		padding-left: calc(var(--spacing) * 2);
 		font-size: var(--text-base);
 		line-height: var(--tw-leading, var(--text-base--line-height));
-		font-family: var(--font-sans-bold);
-		font-weight: var(--font-bold);
+		font-family: var(--font-sans);
+		font-weight: var(--font-weight-bold);
 		color: var(--color-medium-blue);
 		font-style: normal;
 	}
@@ -694,8 +694,8 @@ dl dt {
 .menu-button-links .menu a {
 	font-size: var(--text-base);
 	line-height: var(--tw-leading, var(--text-base--line-height));
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 	color: var(--color-heritage-blue);
 	border-bottom: none;
 	letter-spacing: -.03rem;
@@ -766,7 +766,7 @@ dl dt {
 }
 
 .sidebar-menu ul.nav li a {
-	@apply font-bold leading-snug font-sans-bold;
+	@apply leading-snug font-sans-bold;
 }
 
 .sidebar-menu ul.nav li a:hover {
@@ -1101,8 +1101,8 @@ ul.page-numbers li .page-numbers.current {
 
 .study-fields button {
 	@apply px-2 py-2 mr-4 text-center border border-solid;
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 }
 
 .study-fields button::-moz-focus-inner {
@@ -1187,8 +1187,8 @@ ul.page-numbers li .page-numbers.current {
 }
 
 .breadcrumbs span {
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 }
 
 .single-post .breadcrumbs,
@@ -1266,7 +1266,7 @@ ul.page-numbers li .page-numbers.current {
 .tablepress tfoot th,
 .tablepress thead td,
 .tablepress thead th {
-	@apply px-3 pt-2 pb-3 font-bold font-sans-bold;
+	@apply px-3 pt-2 pb-3 font-sans-bold;
 }
 
 .tablepress tfoot th,
@@ -1290,7 +1290,7 @@ ul.page-numbers li .page-numbers.current {
 	font-size: 1.35rem;
 	line-height: 1.5;
 	letter-spacing: -.05rem;
-	font-family: var(--font-serif-semibold);
+	font-family: var(--font-serif);
 	font-weight: 600;
 	width: 50ch;
 }
@@ -1563,8 +1563,8 @@ ul.page-numbers li .page-numbers.current {
 
 .page-template-fields-of-study .prose .entry-content> :not(.wp-block-group) {
 	color: var(--color-white);
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 }
 
 .page-template-fields-of-study .prose .entry-content> :not(.wp-block-group) a {
@@ -1848,8 +1848,8 @@ button.toggle.search-toggle.desktop-search-toggle svg {
 #site-header .header-toggles button {
 	color: var(--color-primary);
 	border-bottom: 2px solid transparent;
-	font-weight: var(--font-bold);
-	font-family: var(--font-sans-bold);
+	font-weight: var(--font-weight-bold);
+	font-family: var(--font-sans);
 }
 
 #site-header a:hover,
@@ -1870,7 +1870,7 @@ button.toggle.search-toggle.desktop-search-toggle svg {
 
 #site-header .toggle-inner * {
 	font-size: 14px;
-	font-family: var(--font-serif-bold);
+	font-family: var(--font-sans);
 	font-weight: 600;
 	text-transform: uppercase;
 }
@@ -1995,9 +1995,9 @@ body:not(.enable-search-modal) .header-titles-wrapper {
 }
 
 .site-title {
-	font-family: var(--font-serif-bold);
+	font-family: var(--font-serif);
+	font-weight: var(--font-weight-bold);
 	line-height: 1;
-	font-weight: 500;
 }
 
 .site-title a {
@@ -2009,7 +2009,6 @@ body:not(.enable-search-modal) .header-titles-wrapper {
 	margin-top: 1rem;
 	color: #6d6d6d;
 	font-size: 1.8rem;
-	font-weight: 500;
 	display: none;
 	letter-spacing: -0.0311em;
 	transition: all 0.15s linear;
@@ -2178,7 +2177,7 @@ body:not(.enable-search-modal) .site-logo img {
 
 .mobile-nav-toggle .toggle-text,
 .mobile-search-toggle .toggle-text {
-	font-family: var(--font-sans-bold);
+	font-family: var(--font-sans);
 	font-weight: 700;
 }
 
@@ -2239,7 +2238,6 @@ button.close-nav-toggle {
 	align-items: center;
 	display: flex;
 	font-size: 1.6rem;
-	font-weight: 500;
 	justify-content: flex-end;
 	padding: 3.1rem 0;
 	width: 100%;
@@ -2279,8 +2277,8 @@ button.close-nav-toggle .toggle-text {
 
 .modal-menu>li>a,
 .modal-menu>li>.ancestor-wrapper>a {
-	font-family: var(--font-sans-bold);
-	font-weight: var(--font-bold);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-bold);
 	font-size: 1.5rem;
 	letter-spacing: -0.0375em;
 }
@@ -2375,8 +2373,8 @@ button.sub-menu-toggle.active svg {
 }
 
 .modal-menu ul li a {
-	/*color: inherit;*/
-	font-weight: 300;
+	/*color: inherit;
+	font-weight: 300;*/
 	font-size: 1.25rem;
 }
 
@@ -2478,7 +2476,6 @@ button.sub-menu-toggle.active svg {
 .menu-copyright {
 	display: none;
 	font-size: 1.6rem;
-	font-weight: 500;
 	margin: 0;
 }
 

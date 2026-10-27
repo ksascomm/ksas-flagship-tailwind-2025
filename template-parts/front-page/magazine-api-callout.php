@@ -31,7 +31,7 @@ if ( ! empty( $callouts ) ) :?>
 		<?php foreach ( $callouts as $callout ) : ?>
 		
 			<div class="p-4 rounded-2xl">
-				<span class="text-xl font-bold tracking-wide uppercase font-serif-bold text-gold">
+				<span class="text-xl tracking-wide uppercase font-serif-bold text-gold">
 					Spotlight
 				</span>
 				<img class="w-full py-4" src="<?php echo esc_url( $callout->acf->ecpt_header_background ); ?>">

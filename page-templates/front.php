@@ -41,7 +41,7 @@ get_header();
 		<div class="absolute inset-0 z-0 bg-linear-to-b from-primary/70 via-transparent to-primary/90 xl:to-primary/70"></div>
 		<!-- Left Content (Heading/Text) -->
 		<div class="relative z-10 self-end col-span-3 pb-4 pl-8 pr-8 xl:pr-4 xl:pb-16 xl:col-span-2 xl:w-5/7">
-			<h1 class="text-2xl font-bold text-white xl:text-3xl 2xl:text-4xl font-serif-bold">
+			<h1 class="text-2xl text-white xl:text-3xl 2xl:text-4xl font-serif-bold">
 					<?php if ( have_rows( 'heading' ) ) : ?>
 						<?php
 						$repeater = get_field( 'heading' ); // Get the repeater field.
@@ -53,7 +53,7 @@ get_header();
 						<?php the_title(); ?>
 					<?php endif; ?>
 				</h1>
-			<div class="mt-2 text-lg font-bold leading-tight tracking-tight text-white lg:text-xl 2xl:text-2xl font-sans-bold">
+			<div class="mt-2 text-lg leading-tight tracking-tight text-white lg:text-xl 2xl:text-2xl font-sans-bold">
 				<?php the_content(); ?>
 			</div>
 		</div>

@@ -3,11 +3,9 @@
 
 /* 2. THEME CONFIGURATION (Replaces tailwind.config.js) */
 @theme {
-  --font-serif-bold: "hopkinsslab-bold", "Helvetica Neue", Roboto, sans-serif;
-  --font-serif-semibold: "hopkinsslab-semibold", "Helvetica Neue", Roboto, sans-serif;
-  --font-sans-regular: "worksans-regular", "Helvetica Neue", Roboto, sans-serif;
-  --font-sans-semibold: "worksans-semibold", "Helvetica Neue", Roboto, sans-serif;
-  --font-sans-bold: "worksans-bold", "Helvetica Neue", Roboto, sans-serif;
+ 	--font-mono: "Menlo", "Monaco", "monospace";
+	--font-sans: "Work Sans", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
+	--font-serif: "Hopkins Slab", "Georgia", "serif";
 
   --color-brand-primary: #002d72;
   --color-brand-dark: #00050c;
@@ -15,58 +13,16 @@
   --color-brand-light: #fefefe;
 }
 
-/* 3. CUSTOM FONTS */
-@font-face {
-  font-family: "hopkinsslab-bold";
-  src: url("../resources/fonts/hopkins_slab/HopkinsSlab-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "hopkinsslab-semibold";
-  src: url("../resources/fonts/hopkins_slab/HopkinsSlab-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "worksans-regular";
-  src: url("../resources/fonts/work_sans/WorkSans-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "worksans-semibold";
-  src: url("../resources/fonts/work_sans/WorkSans-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-
-@font-face {
-  font-family: "worksans-bold";
-  src: url("../resources/fonts/work_sans/WorkSans-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* 4. BASE & CANVAS OVERRIDES */
 @layer base {
   :root {
-    --tec-font-family-sans-serif: var(--font-sans-regular);
+    --tec-font-family-sans-serif: var(--font-sans);
     --tec-color-text-primary: var(--color-brand-text);
     --tec-color-link-primary: var(--color-brand-primary);
   }
 
   .editor-styles-wrapper {
-    font-family: var(--font-sans-regular) !important;
+    font-family: var(--font-sans) !important;
     font-weight: 400 !important;
     font-size: 20px !important;
     @apply text-[var(--color-brand-text)] bg-white;
@@ -84,7 +40,7 @@
   .editor-styles-wrapper h1,
   .editor-post-title__block .editor-post-title__input,
   .editor-writing-flow .wp-block h1 {
-    font-family: var(--font-serif-bold);
+    font-family: var(--font-serif);
     font-weight: 700;
   }
 
@@ -98,7 +54,7 @@
   .editor-writing-flow .wp-block h4,
   .editor-writing-flow .wp-block h5,
   .editor-writing-flow .wp-block h6 {
-    font-family: var(--font-sans-bold);
+    font-family: var(--font-sans);
     font-weight: 700;
   }
 
@@ -106,7 +62,7 @@
   .editor-styles-wrapper p b,
   .editor-styles-wrapper li strong,
   .editor-styles-wrapper li b {
-    font-family: var(--font-sans-semibold);
+    font-family: var(--font-sans);
     font-weight: 600;
   }
 
@@ -150,7 +106,7 @@
 
   .wp-block-quote__citation {
     font-size: 1rem;
-    font-family: var(--font-sans-semibold);
+    font-family: var(--font-sans);
     font-weight: 600;
     color: var(--color-brand-text);
   }
@@ -181,7 +137,7 @@
     color: var(--color-brand-primary);
     font-size: 1.875rem;
     line-height: 1.5;
-    font-family: var(--font-serif-semibold);
+    font-family: var(--font-serif);
     font-weight: 600;
     width: 50ch;
   }
@@ -239,7 +195,7 @@ ol.block-editor-rich-text__editable li {
 .tribe-editor__block strong, 
 .tribe-editor__block p strong,
 .block-editor-block-list__block.wp-block.is-selected input.tribe-editor__date-input {
-  font-family: var(--font-sans-semibold);
+  font-family: var(--font-sans);
   font-weight: 600;
 }
 
@@ -255,7 +211,7 @@ ol.block-editor-rich-text__editable li {
 .block-editor .block-editor-plain-text, 
 .tribe-editor__btn--label, 
 .tribe-editor__soc__input {
-  font-family: var(--font-sans-regular);
+  font-family: var(--font-sans);
   font-weight: 400;
 }
 
@@ -272,7 +228,7 @@ ol.block-editor-rich-text__editable li {
 
 .tribe-editor__event-website__url .block-editor-url-input__input[type=text] {
   font-size: 1.25rem;
-  font-family: var(--font-sans-semibold);
+  font-family: var(--font-sans);
   font-weight: 600;
   color: var(--color-brand-primary);
 }

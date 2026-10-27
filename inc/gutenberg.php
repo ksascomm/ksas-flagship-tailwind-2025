@@ -113,9 +113,58 @@ function custom_gutenberg_assets() {
 }
 add_action( 'enqueue_block_editor_assets', 'custom_gutenberg_assets' );
 
+/**
+ * Load external JHU fonts directly into both frontend and Gutenberg Block Editor iframe.
+ */
+function flagship_tailwind_enqueue_block_fonts() {
+	wp_enqueue_style(
+		'jhu-hopkins-slab',
+		'https://assets.jhu.edu/fonts/latest/hopkins-slab/hopkins-slab.css',
+		array(),
+		null
+	);
+
+	wp_enqueue_style(
+		'jhu-work-sans',
+		'https://assets.jhu.edu/fonts/latest/work-sans/work-sans.css',
+		array(),
+		null
+	);
+}
+// 'enqueue_block_assets' loads styles in both the frontend and the block editor canvas
+add_action( 'enqueue_block_assets', 'flagship_tailwind_enqueue_block_fonts' );
+
+/**
+ * Keep editor-styles for your compiled local Tailwind editor stylesheet.
+ */
 function custom_gutenberg_editor_styles() {
 	add_theme_support( 'editor-styles' );
-	// Compiled Tailwind v4 editor stylesheet.
 	add_editor_style( 'dist/css/editor-style.css' );
 }
 add_action( 'after_setup_theme', 'custom_gutenberg_editor_styles' );
+
+add_filter( 'wp_kses_allowed_html', 'allow_script_tags_for_administrators_only', 10, 2 );
+
+/**
+ * Allows administrators to save script tags in post meta and ACF contexts.
+ *
+ * @param array  $allowed_tags Allowed tags and attributes.
+ * @param string $context      The context where sanitization is happening.
+ * @return array Filtered allowed tags and attributes.
+ */
+function allow_script_tags_for_administrators_only( $allowed_tags, $context ) {
+	// Check if the current user is an Administrator.
+	if ( current_user_can( 'manage_options' ) ) {
+		// Apply allowed script tags specifically during post/meta saving or ACF contexts.
+		if ( 'post' === $context || 'pre_safe_post' === $context || 'acf' === $context ) {
+			$allowed_tags['script'] = array(
+				'type'  => true,
+				'src'   => true,
+				'defer' => true,
+				'async' => true,
+			);
+		}
+	}
+
+	return $allowed_tags;
+}

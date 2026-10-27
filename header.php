@@ -73,7 +73,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="self-center text-lg font-bold desktop-menu sm:mb-0 font-sans-bold">
+					<div class="self-center text-lg desktop-menu sm:mb-0 font-sans-bold">
 						<div class="flex flex-col my-4 md:flex-row-reverse" id="header-quicklinks">
 							<a class="px-3 py-2 text-xs text-center text-white uppercase hover:bg-medium-blue sm:my-4 md:my-0" href="https://magazine.krieger.jhu.edu">Arts & Sciences Magazine <i class="icon-new-tab2"></i></a>
 							<i class="px-2 mt-2 text-white fa-solid fa-pipe"></i>
@@ -88,30 +88,30 @@
 									<label for="mobile-search" class="screen-reader-text">
 										Search This Website
 									</label>
-									<button type="submit" class="px-4 py-2 text-sm font-bold text-white border border-transparent shadow-md rounded-r-md font-sans-bold bg-medium-blue hover:bg-heritage-blue" aria-label="search"><span class="fa-solid fa-magnifying-glass"></span></button>
+									<button type="submit" class="px-4 py-2 text-sm text-white border border-transparent shadow-md rounded-r-md font-sans-bold bg-medium-blue hover:bg-heritage-blue" aria-label="search"><span class="fa-solid fa-magnifying-glass"></span></button>
 								</form>
 							</div>
 						</div>
 						<div role="navigation" class="header-navigation-wrapper lg:mr-6 xl:-mr-4.5 xl:overflow-x-hidden">
 							<ul id="default-menu" class="flex flex-row mt-0 text-white " aria-label="<?php _e( 'Main Menu', 'textdomain' ); ?>">
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue ">Departments & Programs</a>
+									<a href="<?php echo esc_url( site_url( '/academics/departments-programs-and-centers/' ) ); ?>" class="block px-4 py-2 text-sm text-center uppercase font-sans-bold hover:bg-medium-blue ">Departments & Programs</a>
 								</li>								
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/fields/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Fields of Study</a>
+									<a href="<?php echo esc_url( site_url( '/academics/fields/' ) ); ?>" class="block px-4 py-2 text-sm text-center uppercase font-sans-bold hover:bg-medium-blue">Fields of Study</a>
 								</li>
 								<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Majors & Minors</a>
+									<a href="<?php echo esc_url( site_url( '/academics/majors-minors/' ) ); ?>" class="block px-4 py-2 text-sm text-center uppercase font-sans-bold hover:bg-medium-blue">Majors & Minors</a>
 								</li>
 									<li class="grow lg:mr-2">
-									<a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="block px-4 py-2 text-sm font-bold text-center uppercase font-sans-bold hover:bg-medium-blue">Research</a>
+									<a href="<?php echo esc_url( site_url( '/our-community/research/' ) ); ?>" class="block px-4 py-2 text-sm text-center uppercase font-sans-bold hover:bg-medium-blue">Research</a>
 								</li>
 								<li class="grow">
 									<div class="pb-1 header-toggles hide-no-js">
 										<div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
 											<button class="block text-center text-white toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
 											<span class="toggle-inner">
-												<span class="toggle-text pr-1.5 !font-sans-bold !font-bold"><?php esc_attr_e( 'Menu', 'twentytwenty' ); ?></span>
+												<span class="toggle-text pr-1.5 font-sans-bold "><?php esc_attr_e( 'Menu', 'twentytwenty' ); ?></span>
 												<span class="fa-solid fa-bars -mt-0.5"></span>
 											</span>
 										</button><!-- .nav-toggle -->

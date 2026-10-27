@@ -122,9 +122,9 @@ export default defineConfig(({ mode }) => {
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
       },
-      origin: "http://localhost:5173",
+      origin: "http://krieger.local:5173",
       hmr: {
-        host: "localhost",
+        host: "krieger.local",
         protocol: "ws",
       },
     },

@@ -6,89 +6,33 @@
  */
 
 /**
- * Check if Vite development server is actively running.
- */
-function is_vite_dev_server_active() {
-	static $is_active = null;
-
-	if ( null !== $is_active ) {
-		return $is_active;
-	}
-
-	// Ping the Vite dev server with a short timeout.
-	$handle = @fsockopen( 'localhost', 5173, $errno, $errstr, 0.2 );
-	if ( $handle ) {
-		fclose( $handle );
-		$is_active = true;
-	} else {
-		$is_active = false;
-	}
-
-	return $is_active;
-}
-
-/**
  * Enqueue scripts and styles for the theme.
  */
 function flagship_tailwind_scripts() {
-	$is_dev      = is_vite_dev_server_active();
-	$vite_server = 'http://localhost:5173';
+	$css_path = get_template_directory() . '/dist/css/style.css';
+	$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
 
-	if ( $is_dev ) {
-		// --- VITE DEV MODE ---
-		// 1. Enqueue Vite client core
-		wp_enqueue_script(
-			'vite-client',
-			$vite_server . '/@vite/client',
-			array(),
-			null,
-			false
-		);
+	$css_version = file_exists( $css_path ) ? filemtime( $css_path ) : FLAGSHIP_TAILWIND_VERSION;
+	$js_version  = file_exists( $js_path ) ? filemtime( $js_path ) : FLAGSHIP_TAILWIND_VERSION;
 
-		// 2. Enqueue Dev CSS via Vite HMR
-		wp_enqueue_style(
-			'theme-tailwind-dev',
-			$vite_server . '/resources/css/style.css',
-			array(),
-			null
-		);
+	// Compiled Tailwind CSS
+	wp_enqueue_style(
+		'flagship-tailwind-style',
+		get_template_directory_uri() . '/dist/css/style.css',
+		array(),
+		$css_version
+	);
 
-		// 3. Enqueue Dev JS via Vite HMR (if applicable)
-		wp_enqueue_script(
-			'theme-tailwind-dev-js',
-			$vite_server . '/resources/js/main.js', // Adjust path to your JS entrypoint
-			array( 'jquery' ),
-			null,
-			true
-		);
+	// Compiled JS Bundle
+	wp_enqueue_script(
+		'flagship-tailwind-script',
+		get_template_directory_uri() . '/dist/js/bundle.min.js',
+		array( 'jquery' ),
+		$js_version,
+		true
+	);
 
-	} else {
-		// --- PRODUCTION BUILD MODE ---
-		$css_path = get_template_directory() . '/dist/css/style.css';
-		$js_path  = get_template_directory() . '/dist/js/bundle.min.js';
-
-		$css_version = file_exists( $css_path ) ? filemtime( $css_path ) : FLAGSHIP_TAILWIND_VERSION;
-		$js_version  = file_exists( $js_path ) ? filemtime( $js_path ) : FLAGSHIP_TAILWIND_VERSION;
-
-		// Production CSS
-		wp_enqueue_style(
-			'flagship-tailwind-style',
-			get_template_directory_uri() . '/dist/css/style.css',
-			array(),
-			$css_version
-		);
-
-		// Production JS Bundle
-		wp_enqueue_script(
-			'flagship-tailwind-script',
-			get_template_directory_uri() . '/dist/js/bundle.min.js',
-			array( 'jquery' ),
-			$js_version,
-			true
-		);
-	}
-
-	// External third-party scripts (Load regardless of Dev or Prod)
+	// External third-party scripts.
 	wp_enqueue_script(
 		'font-awesome',
 		'https://kit.fontawesome.com/72c92fef89.js',
@@ -113,10 +57,9 @@ function flagship_tailwind_scripts() {
 		)
 	);
 
-	// Localize script for AJAX calls
-	$script_handle = $is_dev ? 'theme-tailwind-dev-js' : 'flagship-tailwind-script';
+	// Localize script for AJAX calls.
 	wp_localize_script(
-		$script_handle,
+		'flagship-tailwind-script',
 		'fsu_ajax',
 		array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -160,3 +103,45 @@ function flagship_tailwind_gtm_body() {
 	<?php
 }
 add_action( 'wp_body_open', 'flagship_tailwind_gtm_body', 1 );
+
+/**
+ * Add preconnect resource hints for JHU assets domain.
+ *
+ * @param array  $urls          URLs to print for resource hints.
+ * @param string $relation_type The relation type the URLs are queued for.
+ * @return array Filtered resource hints.
+ */
+function ksas_resource_hints( $urls, $relation_type ) {
+	if ( 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href'        => 'https://assets.jhu.edu',
+			'crossorigin' => 'anonymous',
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'ksas_resource_hints', 10, 2 );
+
+/**
+ * Enqueue JHU Fonts (Hopkins Slab & Work Sans).
+ *
+ * @return void
+ */
+function ksas_enqueue_jhu_fonts() {
+	// Hopkins Slab.
+	wp_enqueue_style(
+		'jhu-hopkins-slab',
+		'https://assets.jhu.edu/fonts/latest/hopkins-slab/hopkins-slab.css',
+		array(),
+		'1.0.0'
+	);
+
+	// Work Sans.
+	wp_enqueue_style(
+		'jhu-work-sans',
+		'https://assets.jhu.edu/fonts/latest/work-sans/work-sans.css',
+		array(),
+		'1.0.0'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'ksas_enqueue_jhu_fonts' );

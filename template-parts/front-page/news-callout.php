@@ -23,7 +23,7 @@ $homepage_query->have_posts() ) :
 
 <div class="relative z-10 self-end hidden col-span-1 mb-16 ml-8 short:hidden xl:block w-80 bg-heritage-blue/70">
 	<div class="p-4 rounded-2xl">
-		<span class="text-xl font-bold tracking-wide uppercase font-serif-bold text-gold">
+		<span class="text-xl tracking-wide uppercase font-serif-bold text-gold">
 			Spotlight
 		</span>
 			<?php
@@ -34,7 +34,7 @@ $homepage_query->have_posts() ) :
 				)
 			);
 			?>
-		<div class="tracking-[0.03rem] text-xl font-sans-bold font-bold text-white">
+		<div class="tracking-[0.03rem] text-xl font-sans-bold text-white">
 			<?php if ( $external_link ) : ?>
 				<a class="underline hover:text-grey decoration-dotted hover:decoration-solid" 
 					href="<?php echo esc_url( $external_link ); ?>" 

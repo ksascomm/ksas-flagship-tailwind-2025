@@ -28,7 +28,7 @@ if ( ! function_exists( 'flagship_tailwind_posted_on' ) ) :
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
 			esc_html_x( '%s', 'post date', 'flagship-tailwind' ),
-			'<span class="font-bold font-sans-bold">' . $time_string . '</span>'
+			'<span class="font-sans-bold">' . $time_string . '</span>'
 		);
 
 		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

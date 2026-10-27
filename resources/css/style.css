@@ -32,15 +32,8 @@
 
 	/* JHU Font Stacks */
 	--font-mono: "Menlo", "Monaco", "monospace";
-	--font-sans-light: "worksans-light", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-sans: "worksans-regular", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-sans-medium: "worksans-medium", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-sans-semibold: "worksans-semibold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-sans-bold: "worksans-bold", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
-	--font-serif: "hopkinsslab-regular", "Georgia", "serif";
-	--font-serif-medium: "hopkinsslab-medium", "Georgia", "serif";
-	--font-serif-semibold: "hopkinsslab-semibold", "Georgia", "serif";
-	--font-serif-bold: "hopkinsslab-bold", "Georgia", "serif";
+	--font-sans: "Work Sans", "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "sans-serif";
+	--font-serif: "Hopkins Slab", "Georgia", "serif";
 
 	/* Typography Settings (Replacing tailwind.config.js values) */
 	--text-sm: .875rem;
@@ -71,6 +64,37 @@
 	--prose-max-width-lg: 75ch;
 	--prose-max-width-xl: 85ch;
 }
+
+/* Custom Font Utilities */
+	@utility font-sans-regular {
+		font-family: var(--font-sans);
+		font-weight: var(--font-weight-regular);
+	}
+
+	@utility font-sans-semibold {
+		font-family: var(--font-sans);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	@utility font-sans-bold {
+		font-family: var(--font-sans);
+		font-weight: var(--font-weight-bold);
+	}
+
+	@utility font-serif-medium {
+		font-family: var(--font-serif);
+		font-weight: var(--font-weight-medium);
+	}
+
+	@utility font-serif-semibold {
+		font-family: var(--font-serif);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	@utility font-serif-bold {
+		font-family: var(--font-serif);
+		font-weight: var(--font-weight-bold);
+	}
 
 /* Define height-based variants for v4 */
 @custom-variant short (@media (max-height: 700px));
@@ -113,10 +137,10 @@
 		--tw-prose-code: #31261D;
 		--tw-prose-pre-code: #31261D;
 		--tw-prose-counters: #31261D;
-		width: 100%;
-		max-width: 100%;
 		--tw-prose-font-size: 1.125rem; 
 		--tw-prose-line-height: 1.6;
+		width: 100%;
+		max-width: 100%;
 	}
 
 	/* Now this will successfully override the variables above */
@@ -127,7 +151,7 @@
 
 	/* H1-H2 Headings with JHU Serif Font */
 	:where(.prose h1, .prose h2) {
-		font-family: var(--font-serif-semibold);
+		font-family: var(--font-serif);
 		font-weight: 700;
 		font-size: 4rem;
 		margin-bottom: 1rem;
@@ -136,7 +160,7 @@
 
 	/* H3-H5 Headings with JHU Sans Font */
 	:where(.prose h3, .prose h4, .prose h5) {
-		font-family: var(--font-sans-bold);
+		font-family: var(--font-sans);
 		font-weight: 700;
 	}
 
@@ -172,7 +196,7 @@
 	}
 
 	:where(.prose strong, .prose b, .prose a strong) {
-		font-family: var(--font-sans-bold);
+		font-family: var(--font-sans);
 		font-weight: 700;
 	}
 
@@ -186,11 +210,16 @@
 		text-decoration: none;
 		color: var(--tw-prose-links);
 		transition: color 0.2s ease;
+		font-weight: 400;
 	}
 
 	:where(.prose a:hover) {
 		color: var(--color-medium-blue);
 		text-decoration: underline;
+	}
+
+	.prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-weight: 400;
 	}
 
 	/* Lists */
