@@ -67,7 +67,7 @@ h6,
 .widget h4,
 ul.nav {
 	font-family: var(--font-sans);
-	font-weight: var(--font-weight-bold);
+	font-weight: var(--font-weight-bold) !important;
 }
 
 h2.wp-block-heading,
@@ -517,7 +517,7 @@ dl dt {
 }
 
 .prose ol {
-	counter-reset: section !important;
+	counter-reset: revert;
 }
 
 .prose ol>li::before {
@@ -526,7 +526,7 @@ dl dt {
 }
 
 .prose .entry-content {
-	& :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *))::marker {
+	& :where(ul li):not(:where([class~="not-prose"], [class~="not-prose"] *))::marker {
 		content: "\203A";
 		font: var(--fa-font-solid);
 		text-rendering: auto;
@@ -585,6 +585,50 @@ dl dt {
 		content: url('data:image/svg+xml,<svg width="65" height="65" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.39762 10.3C7.39762 11.0733 7.14888 11.7 6.6514 12.18C6.15392 12.6333 5.52552 12.86 4.76621 12.86C3.84979 12.86 3.09047 12.5533 2.48825 11.94C1.91222 11.3266 1.62421 10.4467 1.62421 9.29999C1.62421 8.07332 1.96459 6.87332 2.64535 5.69999C3.35231 4.49999 4.33418 3.55332 5.59098 2.85999L6.4943 4.25999C5.81354 4.73999 5.26369 5.27332 4.84476 5.85999C4.45201 6.44666 4.19017 7.12666 4.05926 7.89999C4.29491 7.79332 4.56983 7.73999 4.88403 7.73999C5.61716 7.73999 6.21938 7.97999 6.69067 8.45999C7.16197 8.93999 7.39762 9.55333 7.39762 10.3ZM14.6242 10.3C14.6242 11.0733 14.3755 11.7 13.878 12.18C13.3805 12.6333 12.7521 12.86 11.9928 12.86C11.0764 12.86 10.3171 12.5533 9.71484 11.94C9.13881 11.3266 8.85079 10.4467 8.85079 9.29999C8.85079 8.07332 9.19117 6.87332 9.87194 5.69999C10.5789 4.49999 11.5608 3.55332 12.8176 2.85999L13.7209 4.25999C13.0401 4.73999 12.4903 5.27332 12.0713 5.85999C11.6786 6.44666 11.4168 7.12666 11.2858 7.89999C11.5215 7.79332 11.7964 7.73999 12.1106 7.73999C12.8437 7.73999 13.446 7.97999 13.9173 8.45999C14.3886 8.93999 14.6242 9.55333 14.6242 10.3Z" fill="%2368ace5"></path></svg>');
 
 	}
+}
+
+blockquote p {
+  font-size:2rem;
+  font-family:var(--font-serif);
+  padding-left:4rem;
+  margin:0;
+  line-height:1.5
+}
+blockquote p strong {
+  font-weight:700
+}
+blockquote cite {
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-style:normal;
+  font-size:1.125rem;
+  margin-top:1.3333333em;
+  padding-left:4rem;
+  display:inherit;
+  font-style:normal
+}
+blockquote {
+  background:none;
+  border-left:none;
+  padding-block-end:30px;
+  padding-block-start:20px;
+  padding-inline-end:50px;
+  padding-inline-start:10px;
+  position:relative;
+  overflow:hidden
+}
+blockquote::before {
+  color:var(--color-medium-blue);
+  content:url("data:image/svg+xml;charset=utf-8,%3Csvg width='65' height='65' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cpath d='M7.398 10.3c0 .773-.25 1.4-.747 1.88-.497.453-1.125.68-1.885.68-.916 0-1.676-.307-2.278-.92-.576-.613-.864-1.493-.864-2.64 0-1.227.34-2.427 1.021-3.6.707-1.2 1.69-2.147 2.946-2.84l.903 1.4c-.68.48-1.23 1.013-1.65 1.6-.392.587-.654 1.267-.785 2.04.236-.107.51-.16.825-.16.733 0 1.335.24 1.807.72.471.48.707 1.093.707 1.84Zm7.226 0c0 .773-.248 1.4-.746 1.88-.498.453-1.126.68-1.885.68-.917 0-1.676-.307-2.278-.92-.576-.613-.864-1.493-.864-2.64 0-1.227.34-2.427 1.02-3.6.708-1.2 1.69-2.147 2.947-2.84l.903 1.4c-.68.48-1.23 1.013-1.65 1.6-.392.587-.654 1.267-.785 2.04.236-.107.51-.16.825-.16.733 0 1.335.24 1.806.72.472.48.707 1.093.707 1.84Z' fill='%2368ace5'/%3E%3C/svg%3E");
+  height:calc(var(--spacing)*65);
+  inset-inline-start:calc(var(--spacing)*--1);
+  opacity:.3;
+  position:absolute;
+  top:calc(var(--spacing)*0);
+  width:calc(var(--spacing)*65)
+}
+blockquote cite::before {
+  content:"\2014"
 }
 
 .prose .entry-content blockquote.wp-block-quote cite::before,
@@ -1253,25 +1297,35 @@ ul.page-numbers li .page-numbers.current {
 	margin: 0 !important
 }
 
-.tablepress {
+.tablepress, .wp-block-table {
 	@apply my-4;
 }
 
 .tablepress tbody td,
-.tablepress tbody th {
+.tablepress tbody th,
+.wp-block-table tbody td,
+.wp-block-table tbody th {
 	@apply px-3 pt-2 pb-3;
 }
 
 .tablepress tfoot td,
 .tablepress tfoot th,
 .tablepress thead td,
-.tablepress thead th {
+.tablepress thead th,
+.wp-block-table tfoot td,
+.wp-block-table tfoot th,
+.wp-block-table thead td,
+.wp-block-table thead th {
 	@apply px-3 pt-2 pb-3 font-sans-bold;
+}
+
+th {
+	color: #fefefe;
 }
 
 .tablepress tfoot th,
 .tablepress thead th {
-	@apply bg-sais-blue;
+	@apply text-white bg-sais-blue;
 }
 
 .dt-container .dt-input {

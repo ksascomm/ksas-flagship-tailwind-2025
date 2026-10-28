@@ -9,7 +9,7 @@
 
 if ( ! defined( 'FLAGSHIP_TAILWIND_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'FLAGSHIP_TAILWIND_VERSION', '5.0.0' );
+	define( 'FLAGSHIP_TAILWIND_VERSION', '5.1.0' );
 }
 
 if ( ! function_exists( 'flagship_tailwind_setup' ) ) :
@@ -192,3 +192,72 @@ function flagship_custom_search_template( $template ) {
 	return $template;
 }
 add_filter( 'template_include', 'flagship_custom_search_template' );
+
+function ksas_enqueue_vite_assets() {
+	$is_vite_running = false;
+
+	// Build a stream context that allows self-signed local certificates for dev
+	$context = stream_context_create(
+		array(
+			'ssl' => array(
+				'verify_peer'      => false,
+				'verify_peer_name' => false,
+			),
+		)
+	);
+
+	// Use stream_socket_client to check if Vite server is running on port 5174
+	$socket = @stream_socket_client(
+		'ssl://localhost:5174',
+		$errno,
+		$errstr,
+		0.2, // Timeout in seconds
+		STREAM_CLIENT_CONNECT,
+		$context
+	);
+
+	if ( $socket ) {
+		$is_vite_running = true;
+		fclose( $socket );
+	}
+
+	if ( $is_vite_running ) {
+		$vite_host = 'https://localhost:5174';
+
+		// 1. Inject Vite Client for HMR
+		wp_enqueue_script( 'vite-client', $vite_host . '/@vite/client', array(), null, true );
+
+		// 2. Add type="module" attribute to the Vite client script tag
+		add_filter(
+			'script_loader_tag',
+			function ( $tag, $handle, $src ) {
+				if ( 'vite-client' === $handle ) {
+					return '<script type="module" src="' . esc_url( $src ) . '"></script>';
+				}
+				return $tag;
+			},
+			10,
+			3
+		);
+
+		// 3. Inject styles and scripts directly from Vite
+		wp_enqueue_style( 'ksas-main-style', $vite_host . '/resources/css/style.css', array(), null );
+		wp_enqueue_script( 'ksas-bundle', $vite_host . '/dist/js/bundle.min.js', array( 'jquery' ), null, true );
+
+		// Gutenberg Editor Assets
+		wp_enqueue_script( 'ksas-editor-js', $vite_host . '/gutenberg-editor/editor.js', array( 'wp-blocks', 'wp-dom', 'wp-element', 'wp-edit-post' ), null, true );
+		wp_enqueue_script( 'ksas-live-acf-css', $vite_host . '/gutenberg-editor/live-acf-css.js', array( 'jquery' ), null, true );
+		add_editor_style( $vite_host . '/gutenberg-editor/editor-style.css' );
+	} else {
+		// --- PRODUCTION FALLBACK ---
+		$dist_url = get_template_directory_uri() . '/dist/';
+		$dist_dir = get_template_directory() . '/dist/';
+		if ( file_exists( $dist_dir . 'css/style.css' ) ) {
+			wp_enqueue_style( 'ksas-main-style', $dist_url . 'css/style.css', array(), filemtime( $dist_dir . 'css/style.css' ) );
+		}
+		if ( file_exists( $dist_dir . 'js/bundle.min.js' ) ) {
+			wp_enqueue_script( 'ksas-bundle', $dist_url . 'js/bundle.min.js', array( 'jquery' ), filemtime( $dist_dir . 'js/bundle.min.js' ), true );
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'ksas_enqueue_vite_assets' );

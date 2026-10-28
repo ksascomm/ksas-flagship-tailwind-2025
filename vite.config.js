@@ -5,6 +5,7 @@ import fs from "fs";
 import { minify } from "terser";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import liveReload from "vite-plugin-live-reload";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 
 // Recursive directory copying helper
 function copyDirRecursive(src, dest) {
@@ -112,20 +113,21 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
 
   return {
-    // 1. Dev Server Settings for Local WordPress
+    // 1. Dev Server Settings for Local WordPress (Secure HTTPS on port 5174)
     server: {
       host: "0.0.0.0",
-      port: 5173,
+      port: 5174,
       strictPort: true,
+      https: true, // Crucial: Matches your https://krieger.local site to prevent Mixed Content blocking
       cors: {
         origin: "*",
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
       },
-      origin: "http://krieger.local:5173",
+      origin: "https://localhost:5174",
       hmr: {
-        host: "krieger.local",
-        protocol: "ws",
+        host: "localhost",
+        protocol: "wss", // Secure WebSocket matching https://
       },
     },
 
@@ -168,7 +170,6 @@ export default defineConfig(({ mode }) => {
           assetFileNames: (assetInfo) => {
             const info = assetInfo.name || "";
 
-            // Handle specific CSS output paths mapped from input names
             if (info === "style.css" || info === "css/style.css") {
               return "css/style.css";
             }
@@ -182,7 +183,6 @@ export default defineConfig(({ mode }) => {
               return "css/[name].[ext]";
             }
 
-            // Restore original directory structure for fonts/images
             const originalPath = assetInfo.originalFileName || "";
             if (originalPath) {
               const resourcesIndex = originalPath.indexOf("resources/");
@@ -193,7 +193,6 @@ export default defineConfig(({ mode }) => {
               }
             }
 
-            // Fallback rules
             if (/\.(woff2?|eot|ttf|otf)$/i.test(info)) {
               return "fonts/[name].[ext]";
             }
@@ -208,6 +207,7 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
+      basicSsl(), // Automatically provisions the local dev SSL cert
       tailwindcss(),
       liveReload(["**/*.php"]),
       customWordPressAssets({

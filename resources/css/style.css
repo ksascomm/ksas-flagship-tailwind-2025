@@ -149,14 +149,26 @@
 		--tw-prose-line-height: 1.8;
 	}
 
-	/* H1-H2 Headings with JHU Serif Font */
-	:where(.prose h1, .prose h2) {
-		font-family: var(--font-serif);
-		font-weight: 700;
-		font-size: 4rem;
-		margin-bottom: 1rem;
-		line-height: 1.1;
+/* Headings with JHU Serif Font */
+    :where(.prose h1) {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: 3.5rem; /* ~56px */
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
+	
+	.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    	font-weight: 700;
 	}
+
+    :where(.prose h2) {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: 2.75rem; /* ~44px */
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
 
 	/* H3-H5 Headings with JHU Sans Font */
 	:where(.prose h3, .prose h4, .prose h5) {
@@ -219,7 +231,7 @@
 	}
 
 	.prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-		font-weight: 400;
+		font-weight: inherit;
 	}
 
 	/* Lists */
