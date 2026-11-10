@@ -106,7 +106,7 @@ function custom_gutenberg_assets() {
 	wp_enqueue_script(
 		'custom-editor',
 		get_stylesheet_directory_uri() . '/dist/js/editor.js',
-		array( 'wp-blocks', 'wp-dom', 'wp-edit-post' ),
+		array( 'wp-blocks', 'wp-dom', 'wp-block-editor' ),
 		filemtime( get_stylesheet_directory() . '/dist/js/editor.js' ),
 		true
 	);

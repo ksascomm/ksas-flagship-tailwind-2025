@@ -99,7 +99,7 @@ function enqueue_acf_live_css_script() {
 		wp_enqueue_script(
 			'acf-live-css',
 			get_stylesheet_directory_uri() . '/dist/js/live-acf-css.js',
-			array( 'wp-blocks', 'wp-data', 'wp-dom-ready', 'wp-edit-post' ),
+			array( 'wp-blocks', 'wp-data', 'wp-dom-ready', 'wp-block-editor' ),
 			filemtime( $script_path ),
 			true
 		);

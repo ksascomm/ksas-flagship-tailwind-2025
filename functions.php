@@ -245,7 +245,7 @@ function ksas_enqueue_vite_assets() {
 		wp_enqueue_script( 'ksas-bundle', $vite_host . '/dist/js/bundle.min.js', array( 'jquery' ), null, true );
 
 		// Gutenberg Editor Assets
-		wp_enqueue_script( 'ksas-editor-js', $vite_host . '/gutenberg-editor/editor.js', array( 'wp-blocks', 'wp-dom', 'wp-element', 'wp-edit-post' ), null, true );
+		wp_enqueue_script( 'ksas-editor-js', $vite_host . '/gutenberg-editor/editor.js', array( 'wp-blocks', 'wp-dom', 'wp-element', 'wp-block-editor' ), null, true );
 		wp_enqueue_script( 'ksas-live-acf-css', $vite_host . '/gutenberg-editor/live-acf-css.js', array( 'jquery' ), null, true );
 		add_editor_style( $vite_host . '/gutenberg-editor/editor-style.css' );
 	} else {

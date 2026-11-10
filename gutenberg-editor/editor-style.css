@@ -1,3 +1,7 @@
+/* Load font sources */
+@import url('https://assets.jhu.edu/fonts/latest/hopkins-slab/hopkins-slab.css');
+@import url('https://assets.jhu.edu/fonts/latest/work-sans/work-sans.css');
+
 /* 1. TAILWIND v4 MAIN IMPORT */
 @import "tailwindcss";
 
@@ -25,11 +29,12 @@
     font-family: var(--font-sans) !important;
     font-weight: 400 !important;
     font-size: 20px !important;
-    @apply text-[var(--color-brand-text)] bg-white;
+	background-color: var(--color-white);
+	color: var(--color-brand-text);
   }
 
   .editor-styles-wrapper a:where(:not(.wp-element-button)) {
-    @apply underline;
+    text-decoration-line: underline;
   }
 
   .block-editor-block-list__layout a {
@@ -89,10 +94,25 @@
 /* 6. COMPONENTS & UTILITIES */
 @layer components {
   .wp-block-button__link {
-    @apply inline-block align-middle mb-4 px-[1em] py-[0.85em] border border-transparent rounded-none text-center cursor-pointer text-[0.9rem] leading-none transition-colors duration-300;
-    background-color: var(--color-brand-primary);
-    color: var(--color-brand-light);
-    font-family: inherit;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 1rem;
+  padding-top: 0.85em;
+  padding-bottom: 0.85em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 1px solid transparent;
+  border-radius: 0;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  background-color: var(--color-brand-primary);
+  color: var(--color-brand-light);
+  font-family: inherit;
   }
 
   .wp-block-button__link:hover {
