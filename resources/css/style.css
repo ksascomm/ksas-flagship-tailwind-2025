@@ -157,7 +157,7 @@
         margin-bottom: 1rem;
         line-height: 1.1;
     }
-	
+
 	.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     	font-weight: 700;
 	}
@@ -207,7 +207,7 @@
 		letter-spacing: -0.01rem;
 	}
 
-	:where(.prose strong, .prose b, .prose a strong) {
+	.prose :where(strong, b, a strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 		font-family: var(--font-sans);
 		font-weight: 700;
 	}
@@ -275,16 +275,15 @@
 	}
 
 	/* Blockquotes */
-	:where(.prose blockquote) {
-		font-style: italic;
-		border-left: 4px solid var(--color-spirit-blue);
-		background-color: var(--color-grey-lightest);
-		padding: 1rem 1.5rem;
-		margin: 1.5rem 0;
+	.prose :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-style: normal;
 	}
 
+
 	:where(.prose blockquote p:first-of-type::before),
-	:where(.prose blockquote p:last-of-type::after) {
+	:where(.prose blockquote p:last-of-type::after),
+	.prose :where(blockquote.wp-block-quote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before,
+	.prose :where(blockquote.wp-block-quote p:last-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
 		content: none;
 		/* Remove default quotes if desired */
 	}

@@ -587,50 +587,6 @@ dl dt {
 	}
 }
 
-blockquote p {
-  font-size:2rem;
-  font-family:var(--font-serif);
-  padding-left:4rem;
-  margin:0;
-  line-height:1.5
-}
-blockquote p strong {
-  font-weight:700
-}
-blockquote cite {
-  font-family:var(--font-serif);
-  font-weight:700;
-  font-style:normal;
-  font-size:1.125rem;
-  margin-top:1.3333333em;
-  padding-left:4rem;
-  display:inherit;
-  font-style:normal
-}
-blockquote {
-  background:none;
-  border-left:none;
-  padding-block-end:30px;
-  padding-block-start:20px;
-  padding-inline-end:50px;
-  padding-inline-start:10px;
-  position:relative;
-  overflow:hidden
-}
-blockquote::before {
-  color:var(--color-medium-blue);
-  content:url("data:image/svg+xml;charset=utf-8,%3Csvg width='65' height='65' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cpath d='M7.398 10.3c0 .773-.25 1.4-.747 1.88-.497.453-1.125.68-1.885.68-.916 0-1.676-.307-2.278-.92-.576-.613-.864-1.493-.864-2.64 0-1.227.34-2.427 1.021-3.6.707-1.2 1.69-2.147 2.946-2.84l.903 1.4c-.68.48-1.23 1.013-1.65 1.6-.392.587-.654 1.267-.785 2.04.236-.107.51-.16.825-.16.733 0 1.335.24 1.807.72.471.48.707 1.093.707 1.84Zm7.226 0c0 .773-.248 1.4-.746 1.88-.498.453-1.126.68-1.885.68-.917 0-1.676-.307-2.278-.92-.576-.613-.864-1.493-.864-2.64 0-1.227.34-2.427 1.02-3.6.708-1.2 1.69-2.147 2.947-2.84l.903 1.4c-.68.48-1.23 1.013-1.65 1.6-.392.587-.654 1.267-.785 2.04.236-.107.51-.16.825-.16.733 0 1.335.24 1.806.72.472.48.707 1.093.707 1.84Z' fill='%2368ace5'/%3E%3C/svg%3E");
-  height:calc(var(--spacing)*65);
-  inset-inline-start:calc(var(--spacing)*--1);
-  opacity:.3;
-  position:absolute;
-  top:calc(var(--spacing)*0);
-  width:calc(var(--spacing)*65)
-}
-blockquote cite::before {
-  content:"\2014"
-}
-
 .prose .entry-content blockquote.wp-block-quote cite::before,
 .sidebar .prose blockquote cite::before {
 	content: "\2014";
@@ -1376,6 +1332,11 @@ th {
 	color: var(--color-white) !important;
 }
 
+.flip-cards h2,
+.flip-cards h3 {
+	margin-top: 0;
+}
+
 /*--------------------------------------------------------------
 # Utilities
 --------------------------------------------------------------*/
@@ -1911,6 +1872,15 @@ button.toggle.search-toggle.desktop-search-toggle svg {
 	background: var(--color-medium-blue);
 	color: var(--color-white);
 	border-radius: var(--radius-md);
+}
+
+#site-header #program-explorer a {
+	color: var(--color-white);
+}
+
+#site-header #program-explorer a:hover {
+	background: var(--color-heritage-blue);
+	border-radius: 0;
 }
 
 #site-header #header-quicklinks a:hover {
