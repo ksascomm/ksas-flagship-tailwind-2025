@@ -3,7 +3,18 @@
 @import url('https://assets.jhu.edu/fonts/latest/work-sans/work-sans.css');
 
 /* 1. TAILWIND v4 MAIN IMPORT */
-@import "tailwindcss";
+/* this all prints to /dist/css/editor-style.css */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Prevent Tailwind Preflight from overriding the admin body font and margins */
+body#tinymce.wp-editor {
+  font-size: 1.125rem;
+  font-weight: revert;
+  font-family: "Work Sans", "Helvetica Neue", sans-serif;
+  color: #31261d;
+}
 
 /* 2. THEME CONFIGURATION (Replaces tailwind.config.js) */
 @theme {
